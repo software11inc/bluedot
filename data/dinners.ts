@@ -1,0 +1,206 @@
+import { StaticImageData } from "next/image";
+
+// Import dinner images - Bilt Dinner
+import bilt008 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 008.jpg";
+import bilt009 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 009.jpg";
+import bilt011 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 011.jpg";
+import bilt013 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 013.jpg";
+import bilt026 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 026.jpg";
+import bilt042 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 042.jpg";
+import bilt061 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 061.jpg";
+import bilt076 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 076.jpg";
+import bilt083 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 083.jpg";
+import bilt093 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 093.jpg";
+
+// Import dinner images - Cross River Dinner
+import crossRiver003 from "@/app/assets/dinners/Cross river Dinner/IMG_0003.jpg";
+import crossRiver004 from "@/app/assets/dinners/Cross river Dinner/IMG_0004.jpg";
+import crossRiver1006 from "@/app/assets/dinners/Cross river Dinner/IMG_1006.jpeg";
+import crossRiver7976 from "@/app/assets/dinners/Cross river Dinner/IMG_7976.jpg";
+import crossRiver7994 from "@/app/assets/dinners/Cross river Dinner/IMG_7994.jpg";
+import crossRiver7998 from "@/app/assets/dinners/Cross river Dinner/IMG_7998.jpeg";
+import crossRiver8001 from "@/app/assets/dinners/Cross river Dinner/IMG_8001.jpeg";
+
+// Import dinner images - Moneylion Dinner
+import moneylion4929 from "@/app/assets/dinners/Moneylion Dinner/DSC04929.jpg";
+import moneylion4934 from "@/app/assets/dinners/Moneylion Dinner/DSC04934.jpg";
+import moneylion4953 from "@/app/assets/dinners/Moneylion Dinner/DSC04953.jpg";
+import moneylion5013 from "@/app/assets/dinners/Moneylion Dinner/DSC05013.jpg";
+import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.jpg";
+
+export interface BlogSection {
+  heading?: string;
+  paragraphs: string[];
+}
+
+export interface DinnerEvent {
+  title: string;
+  date: string;
+  slug: string;
+  image: StaticImageData;
+  galleryImages: StaticImageData[];
+  // Optional custom blog content
+  blogTitle?: string;
+  intro?: string;
+  sections?: BlogSection[];
+  quote?: { text: string; author: string };
+}
+
+export const dinnerSeries: DinnerEvent[] = [
+  {
+    title: "Bilt Dinner",
+    date: "December 2024",
+    slug: "bilt-rewards-dinner",
+    image: bilt061,
+    galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
+    blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
+    intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
+    sections: [
+      {
+        heading: "Born to Build",
+        paragraphs: [
+          "Ankur grew up immersed in entrepreneurship. His father left Microsoft to found InfoSpace when Ankur was six, and he spent afternoons in startup offices absorbing the business-building process. By eleven, he'd launched his first company. That early exposure instilled a conviction: technology could solve real problems affecting everyday people. After stints founding Humin (acquired by Tinder) and establishing Kairos as a venture studio, Ankur identified an enormous gap: Americans spend over $500 billion annually on rent with zero rewards or a path to homeownership.",
+        ],
+      },
+      {
+        heading: "Building Three Companies at Once",
+        paragraphs: [
+          "Ankur shared the challenges of building really three companies at once: a credit card program, a payments platform, and a merchant rewards network. The complexity behind this architecture is staggering. After a 2018 conversation with real estate magnate Barry Sternlicht revealed how profitable airline and hotel loyalty programs are, Ankur realized rent represented an even larger opportunity. But building it proved nearly impossible.",
+        ],
+      },
+      {
+        heading: "The Early Days",
+        paragraphs: [
+          "The early days tested every assumption. Landlords initially refused to fund the rewards program despite loving the concept. This forced Bilt to create its own loyalty currency, which in hindsight was actually a breakthrough that made the economics work. Then came 18 months petitioning the FHA, Fannie Mae, and Treasury Department to approve using rewards points toward home down payments, a use case regulators had never contemplated. Rejections piled up before approval finally came in October 2019. Meanwhile, Ankur assembled partners including Mastercard, Wells Fargo, and major property owners representing millions of rental units. Each partnership required solving unprecedented technical and regulatory challenges.",
+        ],
+      },
+      {
+        heading: "Pandemic Breakthrough",
+        paragraphs: [
+          "It wasn't until the pandemic that Bilt was able to start gaining traction with landlords. With the economy grinding to a halt, suddenly the big landlords were more open to new ideas to boost tenant retention.",
+        ],
+      },
+      {
+        heading: "What's Next",
+        paragraphs: [
+          "While providing few details, Ankur teased the release of Bilt for homeowners that will be launching in Q1 2026, which will move them beyond the rental market. Ankur's north star? In ten years, Bilt becomes the central financial platform for residential living, from renting to homeownership and every transaction in between.",
+          "Despite the late hour, everyone in the room remained fully engaged as Ankur shared how Bilt has become such a transformational company. His message was clear: the opportunity to reshape how Americans build wealth through housing is just beginning.",
+        ],
+      },
+    ],
+    quote: {
+      text: "The opportunity to reshape how Americans build wealth through housing is just beginning.",
+      author: "Ankur Jain, Founder & CEO of Bilt",
+    },
+  },
+  {
+    title: "Cross River Dinner",
+    date: "November 2024",
+    slug: "cross-river-summit",
+    image: crossRiver7994,
+    galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7998, crossRiver8001],
+    blogTitle: "Cross River Founder Gilles Gade: Banking with Heart and Purpose",
+    intro: "The pioneer and arguably the most important company in fintech banking is Cross River Bank. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
+    sections: [
+      {
+        heading: "An Unconventional Path",
+        paragraphs: [
+          "Gilles Gade's path to banking is anything but conventional. Born and raised in Paris, he began his career in 1990 at Citi before building an impressive resume across some of Wall Street's most prestigious institutions, including Bear Stearns and Barclays.",
+          "But it was 2008, in the depths of the financial crisis, when Gilles made his most consequential decision: founding Cross River Bank.",
+        ],
+      },
+      {
+        heading: "Standing by Customers",
+        paragraphs: [
+          "At dinner, Gilles also shared some remarkable stories that illustrate Cross River's approach to banking. He spoke about backing customers during near-death moments, those critical junctures when other institutions would have walked away. He recounted the intense early days of COVID-19, when Cross River quickly pivoted to become one of the most prolific Paycheck Protection Program (PPP) lenders in the country.",
+        ],
+      },
+      {
+        heading: "The Story Behind the Name",
+        paragraphs: [
+          "The story behind Cross River's name itself reveals Gilles's thoughtfulness. While he didn't elaborate on the full origin story at dinner, he did share how the name came to be—an ancient biblical detail that reflects the same care and intention he brings to every aspect of the business.",
+        ],
+      },
+      {
+        heading: "Philanthropy as Strategy",
+        paragraphs: [
+          "What was most striking about the evening wasn't any particular business insight or industry trend—it was Gilles's unwavering commitment to charitable giving, even during the most challenging times. In an industry where philanthropy often takes a backseat during downturns, Cross River has made it central to their strategy.",
+          "Gilles shared that at Cross River, they have made charitable giving an integral part of their strategy. They believe their success is tied to the level of philanthropy and volunteerism they engage in, and does not depend on past performance. They do well when, and because, they do good. For Gilles, charity isn't something done out of the goodness of one's heart—it's the right thing to do. Period.",
+        ],
+      },
+      {
+        heading: "Banking with Purpose",
+        paragraphs: [
+          "As Cross River continues to shape the future of financial services through its technology and partnerships, it's clear that Gilles Gade's greatest innovation isn't just technical—it's showing an entire industry what banking with heart and purpose looks like.",
+        ],
+      },
+    ],
+    quote: {
+      text: "We do well when, and because, we do good. Charity isn't something done out of the goodness of one's heart—it's the right thing to do. Period.",
+      author: "Gilles Gade, Founder & CEO of Cross River Bank",
+    },
+  },
+  {
+    title: "MoneyLion Dinner",
+    date: "September 2024",
+    slug: "moneylion-leaders",
+    image: moneylion5013,
+    galleryImages: [moneylion4929, moneylion4934, moneylion4953, moneylion5019],
+    blogTitle: "MoneyLion Founder Dee Choubey: From Founding to IPO to Exit",
+    intro: "It is rare for a fintech founder to take a company all the way from founder to the public markets to an acquisition, but that is the story of Dee Choubey, founder of MoneyLion. At our September dinner, Dee shared insights from over a decade building one of fintech's most successful platforms.",
+    sections: [
+      {
+        heading: "From Wall Street to Fintech Pioneer",
+        paragraphs: [
+          "After more than a decade on Wall Street, including stints at Goldman Sachs, Citadel, and Barclays, Dee witnessed firsthand how traditional banking systematically failed everyday Americans. That frustration sparked MoneyLion's founding in 2013 with a clear mission: leverage AI and machine learning to reframe how people engage with their finances. What began as a digital lending platform evolved into a comprehensive ecosystem combining banking, investing, credit products, and personalized financial guidance in a single app.",
+        ],
+      },
+      {
+        heading: "Building a Social Media Powerhouse",
+        paragraphs: [
+          "MoneyLion was very early in its leverage of social media as an engagement tool. Dee explained the thinking here and how they were able to build their social media following to millions of consumers, the largest in all of fintech. Their partnership with YouTube star Mr. Beast broke new ground in financial services, introducing the MoneyLion Beast Games, and helped them expand their reach to new heights.",
+        ],
+      },
+      {
+        heading: "The SPAC Journey",
+        paragraphs: [
+          "MoneyLion went public via a SPAC merger with Fusion Acquisition Corp in September 2021, debuting on the NYSE under the ticker ML, proudly inheriting Merrill Lynch's former symbol. During our dinner, Dee discussed in detail the lessons learned from that SPAC journey. The process brought both opportunities and challenges, from navigating timing delays to understanding the importance of finding the right sponsor who truly understands both your business model and the capital markets. The experience reinforced that going public isn't just about raising capital, it's about finding partners aligned with your long-term vision.",
+        ],
+      },
+      {
+        heading: "The Power of a Great Team",
+        paragraphs: [
+          "Dee emphasized something that resonated throughout the evening: the critical importance of having a great founding team. MoneyLion's success, he stressed, came from assembling owner-operators who bought into the mission rather than simply showing up for a job. That dedication to the vision became MoneyLion's foundation through every pivot and challenge.",
+        ],
+      },
+      {
+        heading: "A New Chapter",
+        paragraphs: [
+          "The company's trajectory took another significant turn in December 2024 when Gen Digital announced its acquisition of MoneyLion. After reaching a record 2024 revenue of $546 million with 20.4 million customers, MoneyLion entered its next chapter, one that promises expanded opportunities while maintaining its core mission of financial empowerment.",
+          "For entrepreneurs in the room, Dee's journey offers a masterclass in persistence, strategic timing, and the power of building with people who genuinely care about the mission you're pursuing.",
+        ],
+      },
+    ],
+    quote: {
+      text: "MoneyLion's success came from assembling owner-operators who bought into the mission rather than simply showing up for a job.",
+      author: "Dee Choubey, Founder of MoneyLion",
+    },
+  },
+  {
+    title: "Bilt Fintech Forum",
+    date: "August 2024",
+    slug: "bilt-fintech-forum",
+    image: bilt083,
+    galleryImages: [bilt008, bilt011, bilt026, bilt042, bilt061, bilt076, bilt093],
+  },
+  {
+    title: "Cross River Innovators",
+    date: "July 2024",
+    slug: "cross-river-innovators",
+    image: crossRiver1006,
+    galleryImages: [crossRiver003, crossRiver004, crossRiver7976, crossRiver7994, crossRiver7998, crossRiver8001],
+  },
+];
+
+// Bento box images for community page
+export const bentoImages = [bilt026, bilt042, crossRiver7976, moneylion4953];

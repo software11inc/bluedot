@@ -1,0 +1,218 @@
+[
+  {
+    "id": "1",
+    "name": "Alex Simpson",
+    "title": "Advisor",
+    "image": "/assets/advisors/Alex_Simpson.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "2",
+    "name": "Ariel Boyman",
+    "title": "Advisor",
+    "image": "/assets/advisors/Ariel_Boyman.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "3",
+    "name": "Arjun Arora",
+    "title": "Advisor",
+    "image": "/assets/advisors/Arjun_Arora.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "4",
+    "name": "Asheet Mehta",
+    "title": "Advisor",
+    "image": "/assets/advisors/Asheet_Mehta.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "5",
+    "name": "Ashwin Shirvaikar",
+    "title": "Advisor",
+    "image": "/assets/advisors/Ashwin_Shirvaikar.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "6",
+    "name": "Brian Hughes",
+    "title": "Advisor",
+    "image": "/assets/advisors/Brian_Hughes.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "7",
+    "name": "Ciara Burnham",
+    "title": "Advisor",
+    "image": "/assets/advisors/Ciara_Burnham.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "8",
+    "name": "Colin Walsh",
+    "title": "Advisor",
+    "image": "/assets/advisors/Colin_Walsh.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "9",
+    "name": "David Boehmer",
+    "title": "Advisor",
+    "image": "/assets/advisors/David_Boehmer.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "10",
+    "name": "Harvey Hudes",
+    "title": "Advisor",
+    "image": "/assets/advisors/Harvey_Hudes.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "11",
+    "name": "James Peterson",
+    "title": "Advisor",
+    "image": "/assets/advisors/James_Peterson.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "12",
+    "name": "Jeff Holland",
+    "title": "Advisor",
+    "image": "/assets/advisors/Jeff_Holland.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "13",
+    "name": "Kirk Chapman",
+    "title": "Advisor",
+    "image": "/assets/advisors/Kirk_Chapman.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "14",
+    "name": "Marshall Lux",
+    "title": "Advisor",
+    "image": "/assets/advisors/Marshall_Lux.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "15",
+    "name": "Michael Heller",
+    "title": "Advisor",
+    "image": "/assets/advisors/Michael_Heller.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "16",
+    "name": "Mike Lincoln",
+    "title": "Advisor",
+    "image": "/assets/advisors/Mike_Lincoln.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "17",
+    "name": "Miles Reidy",
+    "title": "Advisor",
+    "image": "/assets/advisors/Miles_Reidy.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "18",
+    "name": "Oliver Goldstein",
+    "title": "Advisor",
+    "image": "/assets/advisors/Oliver_Goldstein.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "19",
+    "name": "Phil Goldfeder",
+    "title": "Advisor",
+    "image": "/assets/advisors/Phil_Goldfeder.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "20",
+    "name": "Princeton Graham",
+    "title": "Advisor",
+    "image": "/assets/advisors/Princeton_Graham.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "21",
+    "name": "Sanjay Sachdev",
+    "title": "Advisor",
+    "image": "/assets/advisors/Sanjay_Sachdev.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "22",
+    "name": "Stephen Mugford",
+    "title": "Advisor",
+    "image": "/assets/advisors/Stephen_Mugford.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "23",
+    "name": "Tom Brown",
+    "title": "Advisor",
+    "image": "/assets/advisors/Tom_Brown.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  },
+  {
+    "id": "24",
+    "name": "Tricia Kemp",
+    "title": "Advisor",
+    "image": "/assets/advisors/Tricia_Kemp.png",
+    "bio": "",
+    "logos": [],
+    "linkedin": ""
+  }
+]
