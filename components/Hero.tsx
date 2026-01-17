@@ -7,7 +7,7 @@ import TypeWriter from "./TypeWriter";
 
 export default function Hero() {
   return (
-    <section className="h-screen md:h-[80vh] flex flex-col pt-24 pb-12 bg-white">
+    <section className="h-screen flex flex-col pt-24 pb-12 bg-white">
       <div className="mx-auto max-w-7xl w-full h-full px-6 lg:px-8">
         <div className="relative w-full h-full">
           {/* The blue dot that expands into the banner */}
