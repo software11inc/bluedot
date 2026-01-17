@@ -13,44 +13,18 @@ export default function Advisors() {
   const [inView, setInView] = useState(false);
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
+  const [isTouching, setIsTouching] = useState(false);
 
   // Detect touch device
   useEffect(() => {
     setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
   }, []);
 
-  // Seamless infinite scroll using JS
-  useEffect(() => {
-    if (isTouchDevice || !carouselRef.current) return;
-
-    const carousel = carouselRef.current;
-    let animationId: number;
-    let position = 0;
-    const speed = 0.75; // pixels per frame (adjust for speed)
-
-    const animate = () => {
-      position += speed;
-      const halfWidth = carousel.scrollWidth / 2;
-
-      // Reset position seamlessly when we've scrolled past the first set
-      if (position >= halfWidth) {
-        position = 0;
-      }
-
-      carousel.style.transform = `translateX(-${position}px)`;
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationId);
-  }, [isTouchDevice]);
-
   // Touch handlers for mobile swipe
-  const [touchStart, setTouchStart] = useState(0);
-  const [scrollStart, setScrollStart] = useState(0);
-
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setIsTouching(true);
     setTouchStart(e.touches[0].clientX);
     if (carouselRef.current) {
       setScrollStart(carouselRef.current.scrollLeft);
@@ -62,6 +36,50 @@ export default function Advisors() {
     const touchDelta = touchStart - e.touches[0].clientX;
     carouselRef.current.scrollLeft = scrollStart + touchDelta;
   }, [touchStart, scrollStart]);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsTouching(false);
+  }, []);
+
+  // Seamless infinite scroll using JS
+  useEffect(() => {
+    if (!carouselRef.current) return;
+
+    const carousel = carouselRef.current;
+    let animationId: number;
+    let position = isTouchDevice ? carousel.scrollLeft : 0;
+    const speed = 0.75; // pixels per frame (adjust for speed)
+
+    const animate = () => {
+      // Pause auto-scroll while user is touching
+      if (isTouching) {
+        animationId = requestAnimationFrame(animate);
+        return;
+      }
+
+      position += speed;
+      const halfWidth = carousel.scrollWidth / 2;
+
+      // Reset position seamlessly when we've scrolled past the first set
+      if (position >= halfWidth) {
+        position = 0;
+        if (isTouchDevice) {
+          carousel.scrollLeft = 0;
+        }
+      }
+
+      if (isTouchDevice) {
+        carousel.scrollLeft = position;
+      } else {
+        carousel.style.transform = `translateX(-${position}px)`;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isTouchDevice, isTouching]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -134,6 +152,7 @@ export default function Advisors() {
             className={`flex ${isTouchDevice ? 'overflow-x-auto scrollbar-hide' : ''}`}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             style={isTouchDevice ? { scrollbarWidth: 'none', msOverflowStyle: 'none' } : {}}
           >
           {/* First set */}
