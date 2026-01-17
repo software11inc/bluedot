@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image, { StaticImageData } from "next/image";
 import ScrollFillText from "./ScrollFillText";
 
@@ -21,7 +21,58 @@ const logos: { alt: string; image: StaticImageData }[] = [
 
 export default function LogoCarousel() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+  }, []);
+
+  // Seamless infinite scroll using JS
+  useEffect(() => {
+    if (isTouchDevice || !carouselRef.current) return;
+
+    const carousel = carouselRef.current;
+    let animationId: number;
+    let position = 0;
+    const speed = 0.5; // pixels per frame
+
+    const animate = () => {
+      position += speed;
+      const halfWidth = carousel.scrollWidth / 2;
+
+      // Reset position seamlessly when we've scrolled past the first set
+      if (position >= halfWidth) {
+        position = 0;
+      }
+
+      carousel.style.transform = `translateX(-${position}px)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isTouchDevice]);
+
+  // Touch handlers for mobile swipe
+  const [touchStart, setTouchStart] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+    if (carouselRef.current) {
+      setScrollStart(carouselRef.current.scrollLeft);
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!carouselRef.current) return;
+    const touchDelta = touchStart - e.touches[0].clientX;
+    carouselRef.current.scrollLeft = scrollStart + touchDelta;
+  }, [touchStart, scrollStart]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,7 +95,7 @@ export default function LogoCarousel() {
     <section className="py-12 bg-white overflow-hidden animate-hero-content">
       {/* Section label with line */}
       <div ref={sectionRef} className="mx-auto max-w-7xl px-6 lg:px-8 mb-6">
-        <div className="w-1/2 pr-12">
+        <div className="w-full md:w-1/2 md:pr-12">
           <span
             className="text-sm md:text-base text-black tracking-wider uppercase"
             style={{ fontFamily: "var(--font-cartograph)", fontWeight: 500 }}
@@ -63,19 +114,25 @@ export default function LogoCarousel() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative flex items-center">
+        <div className="relative flex flex-col md:flex-row md:items-center flex-wrap">
           {/* Left column - heading with gradient overlay */}
-          <div className="relative z-10 w-1/2 pr-12 flex-shrink-0">
+          <div className="relative z-10 w-full md:w-1/2 md:pr-12 flex-shrink-0 mb-8 md:mb-0">
             <ScrollFillText className="text-4xl md:text-5xl font-sans">
               Investing in companies across the fintech landscape.
             </ScrollFillText>
-            {/* Gradient that extends over the carousel */}
-            <div className="absolute top-0 bottom-0 -right-24 w-24 bg-gradient-to-r from-white to-transparent" />
+            {/* Gradient that extends over the carousel - desktop only */}
+            <div className="hidden md:block absolute top-0 bottom-0 -right-24 w-24 bg-gradient-to-r from-white to-transparent" />
           </div>
 
           {/* Right column - logo carousel */}
-          <div className="flex-1 overflow-hidden">
-            <div className="flex animate-logo-scroll">
+          <div className="w-full md:flex-1 overflow-hidden">
+            <div
+              ref={carouselRef}
+              className={`flex ${isTouchDevice ? 'overflow-x-auto scrollbar-hide' : ''}`}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              style={isTouchDevice ? { scrollbarWidth: 'none', msOverflowStyle: 'none' } : {}}
+            >
               {/* First set of logos */}
               {logos.map((logo, i) => (
                 <div

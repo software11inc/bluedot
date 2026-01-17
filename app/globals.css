@@ -111,7 +111,7 @@ html {
 }
 
 .animate-advisor-scroll {
-  animation: advisor-scroll 40s linear infinite;
+  animation: advisor-scroll 32s linear infinite;
 }
 
 @keyframes slide-in-right {
@@ -125,4 +125,89 @@ html {
 
 .animate-slide-in-right {
   animation: slide-in-right 0.3s ease-out forwards;
+}
+
+/* Touch-friendly: Pause carousel animations on hover for better UX */
+@media (hover: hover) {
+  .animate-logo-scroll:hover,
+  .animate-advisor-scroll:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Mobile/Touch devices: Disable auto-scroll animation for manual swipe */
+@media (hover: none) and (pointer: coarse) {
+  .carousel-touch-scroll {
+    animation: none !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .carousel-touch-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-dot-expand,
+  .animate-nav-slide-down,
+  .animate-hero-content,
+  .animate-page-content,
+  .animate-dot-pulse-delayed,
+  .animate-dot-pulse,
+  .animate-logo-scroll,
+  .animate-advisor-scroll,
+  .animate-slide-in-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Minimum tap target sizes */
+.tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Hide scrollbar for touch-scrollable carousels */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

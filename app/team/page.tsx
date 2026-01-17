@@ -70,30 +70,44 @@ export default function TeamPage() {
   }, []);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      if (!teamSectionRef.current) return;
+      // Use requestAnimationFrame to throttle for mobile performance
+      if (rafId) return;
 
-      const section = teamSectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top;
-      const sectionHeight = rect.height;
-      const viewportHeight = window.innerHeight;
-
-      // Calculate progress through the section
-      if (sectionTop < viewportHeight && sectionTop > -sectionHeight + viewportHeight) {
-        const scrollProgress = (viewportHeight - sectionTop) / (sectionHeight);
-        const newIndex = Math.min(
-          Math.floor(scrollProgress * teamMembers.length),
-          teamMembers.length - 1
-        );
-        if (newIndex >= 0) {
-          setActiveIndex(newIndex);
+      rafId = requestAnimationFrame(() => {
+        if (!teamSectionRef.current) {
+          rafId = null;
+          return;
         }
-      }
+
+        const section = teamSectionRef.current;
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const sectionHeight = rect.height;
+        const viewportHeight = window.innerHeight;
+
+        // Calculate progress through the section
+        if (sectionTop < viewportHeight && sectionTop > -sectionHeight + viewportHeight) {
+          const scrollProgress = (viewportHeight - sectionTop) / (sectionHeight);
+          const newIndex = Math.min(
+            Math.floor(scrollProgress * teamMembers.length),
+            teamMembers.length - 1
+          );
+          if (newIndex >= 0) {
+            setActiveIndex(newIndex);
+          }
+        }
+        rafId = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
@@ -224,7 +238,7 @@ export default function TeamPage() {
                 <button
                   key={speciality}
                   onClick={() => setSelectedSpeciality(speciality)}
-                  className={`px-4 py-2 text-sm font-sans rounded-full transition-all duration-200 ${
+                  className={`px-4 py-3 text-sm font-sans rounded-full transition-all duration-200 touch-manipulation min-h-[44px] ${
                     selectedSpeciality === speciality
                       ? "bg-[#1C39BB] text-white"
                       : "bg-gray-100 text-[#575757] hover:bg-gray-200"
@@ -281,7 +295,7 @@ export default function TeamPage() {
 
         {/* Drawer */}
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-md md:max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
             selectedAdvisor ? "translate-x-0" : "translate-x-full"
           }`}
         >

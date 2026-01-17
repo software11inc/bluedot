@@ -356,7 +356,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "CFO Stack Solutions", return: -3, color: "#059669", isDashed: true })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">(3%)</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">(3%)</span>
                   <div className="w-full h-[20px] border-2 border-dashed border-[#059669] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -365,7 +365,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "GRC", return: 25, color: "#1C39BB" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">25%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">25%</span>
                   <div className="w-full h-[32px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -374,7 +374,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Healthcare", return: 38, color: "#1C39BB" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">38%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">38%</span>
                   <div className="w-full h-[48px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -383,7 +383,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Payments", return: 50, color: "#1C39BB" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">50%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">50%</span>
                   <div className="w-full h-[64px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -392,7 +392,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "S&P 500", return: 54, color: "#93C5FD", isDashed: true })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">54%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">54%</span>
                   <div className="w-full h-[70px] border-2 border-dashed border-[#93C5FD] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -401,7 +401,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "NASDAQ Complete", return: 69, color: "#6B7280" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">69%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">69%</span>
                   <div className="w-full h-[88px] bg-[#6B7280] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -410,7 +410,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Capital Markets", return: 75, color: "#F59E0B" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">75%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">75%</span>
                   <div className="w-full h-[96px] bg-[#F59E0B] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -419,7 +419,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Vertical SaaS / Embedded Finance", return: 77, color: "#6B7280" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">77%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">77%</span>
                   <div className="w-full h-[100px] bg-[#6B7280] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -428,7 +428,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Mortgage / PropTech", return: 80, color: "#EAB308" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">80%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">80%</span>
                   <div className="w-full h-[104px] bg-[#EAB308] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -437,7 +437,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Banking / Lending", return: 193, color: "#2563EB" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">193%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">193%</span>
                   <div className="w-full h-[240px] bg-[#2563EB] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -446,7 +446,7 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Insurtech", return: 209, color: "#7C3AED" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">209%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">209%</span>
                   <div className="w-full h-[260px] bg-[#7C3AED] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
 
@@ -455,25 +455,25 @@ export default function ResearchPage() {
                   className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Blockchain / Crypto", return: 264, color: "#DB2777" })}
                 >
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-[#575757] mb-1">264%</span>
+                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">264%</span>
                   <div className="w-full h-[320px] bg-[#DB2777] rounded-sm group-hover:opacity-80 transition-opacity" />
                 </div>
               </div>
 
               {/* Labels row */}
               <div className="flex gap-2 sm:gap-3 md:gap-4 pt-2">
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">CFO Stack<br/>Solutions</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757]">GRC</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757]">Healthcare</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757]">Payments</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757]">S&P 500</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">NASDAQ<br/>Complete</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">Capital<br/>Markets</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">Vertical SaaS/<br/>Embedded<br/>Finance</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">Mortgage/<br/>PropTech</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">Banking/<br/>Lending</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757]">Insurtech</span>
-                <span className="flex-1 text-[7px] sm:text-[9px] md:text-[11px] text-center text-[#575757] leading-tight">Blockchain/<br/>Crypto</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">CFO Stack<br/>Solutions</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">GRC</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Healthcare</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Payments</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">S&P 500</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">NASDAQ<br/>Complete</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Capital<br/>Markets</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Vertical SaaS/<br/>Embedded<br/>Finance</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Mortgage/<br/>PropTech</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Banking/<br/>Lending</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Insurtech</span>
+                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Blockchain/<br/>Crypto</span>
               </div>
             </div>
           </div>
@@ -488,11 +488,11 @@ export default function ResearchPage() {
             className="absolute inset-0 bg-black/50"
             onClick={() => setSelectedTombstone(null)}
           />
-          <div className="relative w-full max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
-            <div className="p-8">
+          <div className="relative w-full max-w-full sm:max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
+            <div className="p-4 sm:p-8 pb-safe">
               <button
                 onClick={() => setSelectedTombstone(null)}
-                className="absolute top-6 right-6 text-[#575757] hover:text-black z-10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[#575757] hover:text-black z-10 p-2 -m-2 touch-manipulation"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -755,11 +755,11 @@ export default function ResearchPage() {
             className="absolute inset-0 bg-black/50"
             onClick={() => setSelectedTreemapCompany(null)}
           />
-          <div className="relative w-full max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
-            <div className="p-8">
+          <div className="relative w-full max-w-full sm:max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
+            <div className="p-4 sm:p-8 pb-safe">
               <button
                 onClick={() => setSelectedTreemapCompany(null)}
-                className="absolute top-6 right-6 text-[#575757] hover:text-black z-10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[#575757] hover:text-black z-10 p-2 -m-2 touch-manipulation"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -962,11 +962,11 @@ export default function ResearchPage() {
             className="absolute inset-0 bg-black/50"
             onClick={() => setSelectedSector(null)}
           />
-          <div className="relative w-full max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
-            <div className="p-8">
+          <div className="relative w-full max-w-full sm:max-w-md bg-white h-full overflow-y-auto animate-slide-in-right">
+            <div className="p-4 sm:p-8 pb-safe">
               <button
                 onClick={() => setSelectedSector(null)}
-                className="absolute top-6 right-6 text-[#575757] hover:text-black z-10"
+                className="absolute top-4 right-4 sm:top-6 sm:right-6 text-[#575757] hover:text-black z-10 p-2 -m-2 touch-manipulation"
               >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

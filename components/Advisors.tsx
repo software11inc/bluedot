@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import linkButton from "@/app/assets/link-button.svg";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
@@ -9,15 +9,66 @@ import { advisors, Advisor } from "@/data/advisors";
 
 export default function Advisors() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device
+  useEffect(() => {
+    setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+  }, []);
+
+  // Seamless infinite scroll using JS
+  useEffect(() => {
+    if (isTouchDevice || !carouselRef.current) return;
+
+    const carousel = carouselRef.current;
+    let animationId: number;
+    let position = 0;
+    const speed = 0.75; // pixels per frame (adjust for speed)
+
+    const animate = () => {
+      position += speed;
+      const halfWidth = carousel.scrollWidth / 2;
+
+      // Reset position seamlessly when we've scrolled past the first set
+      if (position >= halfWidth) {
+        position = 0;
+      }
+
+      carousel.style.transform = `translateX(-${position}px)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
+  }, [isTouchDevice]);
+
+  // Touch handlers for mobile swipe
+  const [touchStart, setTouchStart] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+    if (carouselRef.current) {
+      setScrollStart(carouselRef.current.scrollLeft);
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!carouselRef.current) return;
+    const touchDelta = touchStart - e.touches[0].clientX;
+    carouselRef.current.scrollLeft = scrollStart + touchDelta;
+  }, [touchStart, scrollStart]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.disconnect(); // Only animate once
+          observer.disconnect();
         }
       },
       { threshold: 0.2 }
@@ -75,10 +126,16 @@ export default function Advisors() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="relative overflow-hidden">
           {/* Gradient fades */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          <div className="flex animate-advisor-scroll">
+          <div
+            ref={carouselRef}
+            className={`flex ${isTouchDevice ? 'overflow-x-auto scrollbar-hide' : ''}`}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            style={isTouchDevice ? { scrollbarWidth: 'none', msOverflowStyle: 'none' } : {}}
+          >
           {/* First set */}
           {advisors.map((advisor, i) => (
             <div
@@ -154,7 +211,7 @@ export default function Advisors() {
 
         {/* Drawer */}
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-md md:max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
             selectedAdvisor ? "translate-x-0" : "translate-x-full"
           }`}
         >

@@ -9,6 +9,7 @@ export default function FeaturedSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   // Fade in on scroll, reset when scrolled above viewport
@@ -33,11 +34,17 @@ export default function FeaturedSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-rotate every 3 seconds
+  // Auto-rotate every 5 seconds (slowed down)
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 3) % dinnerSeries.length);
-    }, 3000);
+      setIsAnimating(true);
+      // Small delay to let exit animation start
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 3) % dinnerSeries.length);
+        // Reset animation state after transition
+        setTimeout(() => setIsAnimating(false), 500);
+      }, 100);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
@@ -51,8 +58,8 @@ export default function FeaturedSection() {
 
   return (
     <section ref={sectionRef} className="py-24 bg-white">
-      <div className={`mx-auto max-w-7xl px-6 lg:px-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
-        <div className="bg-gradient-to-br from-[#1C39BB] to-[#0f2178] rounded-3xl p-8 md:p-12">
+      <div className={`mx-auto max-w-7xl px-0 md:px-6 lg:px-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
+        <div className="bg-gradient-to-br from-[#1C39BB] to-[#0f2178] rounded-none md:rounded-3xl p-6 md:p-12">
           {/* Row 1 - Headline and Image */}
           <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
             {/* Left - Headline */}
@@ -65,10 +72,10 @@ export default function FeaturedSection() {
                 <div className="h-[1px] bg-white/30 mt-4" />
               </div>
 
-              <h2 className="font-display text-4xl md:text-5xl text-white">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-5xl text-white">
                 Building a community across our ecosystem of LPs, advisors and portfolio companies
               </h2>
-              <p className="text-white/70 text-lg mt-4 leading-relaxed">
+              <p className="text-white/70 text-base md:text-lg mt-4 leading-relaxed">
                 Intimate gatherings that bring together founders, investors, and industry leaders.<br />
                 Real conversations that shape the future of fintech.
               </p>
@@ -110,12 +117,19 @@ export default function FeaturedSection() {
           </div>
 
           {/* Row 2 - Dinner Series Carousel */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
             {visibleItems.map((item, i) => (
               <Link
                 key={`${currentIndex}-${i}`}
                 href={`/dinner-series/${item.slug}`}
-                className="bg-white/10 rounded-xl p-6 hover:bg-white/20 transition-colors cursor-pointer block"
+                className={`bg-white/10 rounded-xl p-6 hover:bg-white/20 transition-all cursor-pointer block
+                  ${isAnimating
+                    ? 'opacity-0 translate-y-4 md:opacity-100 md:translate-y-0'
+                    : 'opacity-100 translate-y-0'
+                  }
+                  duration-400 ease-out
+                `}
+                style={{ transitionDelay: `${i * 75}ms` }}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -132,15 +146,24 @@ export default function FeaturedSection() {
           </div>
 
           {/* Pagination dots */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-1 mt-6">
             {Array.from({ length: Math.ceil(dinnerSeries.length / 3) }).map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentIndex(i * 3)}
-                className={`w-2 h-2 rounded-full transition-colors ${
+                onClick={() => {
+                  setIsAnimating(true);
+                  setTimeout(() => {
+                    setCurrentIndex(i * 3);
+                    setTimeout(() => setIsAnimating(false), 500);
+                  }, 100);
+                }}
+                className="p-3 -m-1 touch-manipulation"
+                aria-label={`Go to slide ${i + 1}`}
+              >
+                <span className={`block w-2 h-2 rounded-full transition-colors ${
                   Math.floor(currentIndex / 3) === i ? "bg-white" : "bg-white/30"
-                }`}
-              />
+                }`} />
+              </button>
             ))}
           </div>
         </div>
