@@ -15,37 +15,58 @@ import aaronVermut from "@/app/assets/team/Aaron_Vermut.png";
 import peterRenton from "@/app/assets/team/Peter Renton.jpeg";
 import rachaelLee from "@/app/assets/team/Rachael_Lee.png";
 
+// Import team logos
+import logoQED from "@/app/assets/team-logos/qed.jpeg";
+import logoJPM from "@/app/assets/team-logos/JPM_logo_2008_DIGITAL_B_Black.png";
+import logoProsper from "@/app/assets/team-logos/Prosper.png";
+import logoRobinhood from "@/app/assets/team-logos/Robinhood.png";
+import logoWellsFargo from "@/app/assets/team-logos/Wells_Fargo.png";
+import logoNEA from "@/app/assets/team-logos/NEA.png";
+import logoBox from "@/app/assets/team-logos/box.png";
+import logoEarnest from "@/app/assets/team-logos/earnest.png";
+import logoStanford from "@/app/assets/team-logos/Stanford.jpeg";
+import logoWellsGroup from "@/app/assets/team-logos/Wells_group.png";
+import logoKPMG from "@/app/assets/team-logos/KPMG.png";
+
 // Team member data
-const teamMembers: { name: string; title: string; bio: string; image: StaticImageData }[] = [
+const teamMembers: { name: string; title: string; bio: string; image: StaticImageData; linkedin?: string; logos?: StaticImageData[] }[] = [
   {
     name: "Sahej Suri",
-    title: "Managing Partner",
-    bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Founder & Managing Partner",
+    bio: "Sahej is the Founder and Managing Partner of Blue Dot Investors. Previously, Sahej worked at QED Investors, a fintech specialist fund where he supported the firm's founder, Nigel Morris. Before QED, he was an investment professional at TPG, where he focused on late-stage growth equity investments in fintech. Sahej started his career at J.P. Morgan in the Financial Institutions Group.\n\nSahej has spent his entire career at the intersection of financial services and technology, primarily focused on growth equity and late-stage businesses. Beyond investing, he is passionate about fintech's role in improving financial health and reducing inequality.\n\nSelect current and previous investments & portfolio company coverage include: Albert, April, ClearScore, CoverDash, Current, DriveWealth, Forage, Kraken, Mission Lane, Varo and xpertSea.\n\nOutside of work, Sahej enjoys traveling, meditation & spirituality, and the Brooklyn Nets. He lives in New York.",
     image: sahejSuri,
-  },
-  {
-    name: "Aaron Jatana",
-    title: "Partner",
-    bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: aaronJatana,
+    linkedin: "https://www.linkedin.com/in/sahejsuri/",
+    logos: [logoQED, logoJPM],
   },
   {
     name: "Aaron Vermut",
-    title: "Partner",
-    bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    title: "Operating Partner",
+    bio: "Aaron is an Operating Partner at Blue Dot Investors. Aaron was CEO of Prosper Marketplace, guiding the company through a period of rapid growth and operational transformation. Before that, he co-founded Merlin Securities, an early fintech platform providing technology, trading, and operational solutions to hedge funds. Merlin was acquired by Wells Fargo, where Aaron became Managing Director and head of Prime Services, leading the integration into Wells Fargo Securities. Earlier in his career, Aaron invested in software and infrastructure companies at New Enterprise Associates. Aaron serves as a Senior Consultant to Robinhood.\n\nOutside of work, Aaron is an avid cyclist and skier, a lifelong science-fiction reader, and a fluent German speaker. He lives in Kelly, Wyoming, with his family.",
     image: aaronVermut,
+    linkedin: "https://www.linkedin.com/in/vermut/",
+    logos: [logoProsper, logoRobinhood, logoWellsFargo, logoNEA],
+  },
+  {
+    name: "Rachael Lee",
+    title: "Chief of Staff",
+    bio: "Rachael is Chief of Staff at Blue Dot Investors. In her role, she works closely with the team on execution, internal systems, and strategic initiatives. She brings operating experience from Earnest, Box, and Alchemist Accelerator. She holds a BA in Political Science and an MA in Media & Technology from Stanford.",
+    image: rachaelLee,
+    linkedin: "https://www.linkedin.com/in/rachael-lee-455786107/",
+    logos: [logoBox, logoEarnest, logoStanford],
+  },
+  {
+    name: "Aaron Jatana",
+    title: "CFO & COO, Fractional",
+    bio: "Aaron leads Blue Dot's financial and operations on a fractional basis. As a Director in the CFO Practice at Wells Group of New York, Aaron specializes in financial planning and analysis with a strong focus on venture capital and private equity funds. Prior to joining Wells Group of New York, Aaron began his career at KPMG, where he worked in the Audit practice, serving clients across the asset management and financial services sectors.",
+    image: aaronJatana,
+    linkedin: "https://www.linkedin.com/in/aaronjatana/",
+    logos: [logoWellsGroup, logoKPMG],
   },
   {
     name: "Peter Renton",
     title: "Principal",
     bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     image: peterRenton,
-  },
-  {
-    name: "Rachael Lee",
-    title: "Associate",
-    bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: rachaelLee,
   },
 ];
 
@@ -178,9 +199,37 @@ export default function TeamPage() {
                         <p className="font-mono text-sm text-[#1C39BB] uppercase tracking-wider mb-6">
                           {member.title}
                         </p>
-                        <p className="font-sans text-lg text-[#575757]/80 leading-relaxed">
+                        <p className="font-sans text-lg text-[#575757]/80 leading-relaxed whitespace-pre-line">
                           {member.bio}
                         </p>
+
+                        {/* Logos */}
+                        {member.logos && member.logos.length > 0 && (
+                          <div className="mt-6">
+                            <div className="flex flex-wrap gap-8 items-center">
+                              {member.logos.map((logo, logoIndex) => (
+                                <div key={logoIndex} className="h-[42px] flex items-center justify-center">
+                                  <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* LinkedIn */}
+                        {member.linkedin && (
+                          <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors mt-4"
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn
+                          </a>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -214,7 +263,7 @@ export default function TeamPage() {
         </section>
 
         {/* Advisors section - grid layout */}
-        <section className="py-24 bg-white">
+        <section id="advisors" className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* Section label with line */}
             <div className="mb-6">
@@ -342,18 +391,11 @@ export default function TeamPage() {
 
                 {/* Logos */}
                 {selectedAdvisor.logos && selectedAdvisor.logos.length > 0 && (
-                  <div className="mb-8">
-                    <p className="font-mono text-xs text-[#575757]/60 uppercase tracking-wider mb-4">
-                      Associated With
-                    </p>
-                    <div className="flex flex-wrap gap-4">
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-8 items-center">
                       {selectedAdvisor.logos.map((logo, i) => (
-                        <div key={i} className="h-8 px-4 bg-gray-100 rounded flex items-center justify-center">
-                          {typeof logo === 'string' && logo ? (
-                            <Image src={logo} alt="" width={80} height={32} className="h-6 w-auto object-contain" />
-                          ) : (
-                            <span className="text-gray-400 text-xs">Logo</span>
-                          )}
+                        <div key={i} className="h-[42px] flex items-center justify-center">
+                          <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
                         </div>
                       ))}
                     </div>
@@ -366,12 +408,12 @@ export default function TeamPage() {
                     href={selectedAdvisor.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#1C39BB] font-sans font-medium hover:opacity-80 transition-opacity"
+                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
-                    Connect on LinkedIn
+                    LinkedIn
                   </a>
                 )}
               </div>

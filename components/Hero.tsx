@@ -3,6 +3,7 @@
 import Image from "next/image";
 import dotGroup from "@/app/assets/dot-group-1-vertical.svg";
 import splitDot from "@/app/assets/split-dot.svg";
+import logo from "@/app/assets/blue-dot-logo.svg";
 import TypeWriter from "./TypeWriter";
 
 export default function Hero() {
@@ -12,6 +13,14 @@ export default function Hero() {
         <div className="relative w-full h-full">
           {/* The blue dot that expands into the banner */}
           <div className="absolute bg-[#1C39BB] animate-dot-expand overflow-hidden">
+            {/* White logo in center of initial dot - fades out on expand */}
+            <Image
+              src={logo}
+              alt=""
+              className="animate-logo-fade-out brightness-0 invert"
+              height={60}
+            />
+
             {/* Dot group decoration */}
             <div className="absolute top-8 left-1/2 -translate-x-1/2 animate-dot-pulse-delayed">
               <Image src={dotGroup} alt="" className="h-40 w-auto" />
@@ -25,7 +34,7 @@ export default function Hero() {
                   <TypeWriter text="Fintech Secondaries" delay={60} startDelay={2000} />
                 </h1>
                 <p className="text-xl md:text-2xl text-white/80">
-                  late stage investing
+                  And Late Stage Investing
                 </p>
               </div>
 

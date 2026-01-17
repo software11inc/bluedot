@@ -33,7 +33,7 @@ export default function Header({ animate = true }: { animate?: boolean }) {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/">
-            <Image src={logo} alt="Blue Dot" height={32} />
+            <Image src={logo} alt="Blue Dot" height={37} />
           </Link>
 
           {/* Desktop navigation */}

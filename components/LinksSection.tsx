@@ -56,9 +56,10 @@ export default function LinksSection() {
               }`}
             />
           </div>
-          <ScrollFillText className="font-sans text-3xl md:text-4xl lg:text-5xl">
-            Learn more about our team and our community
-          </ScrollFillText>
+          <ScrollFillText
+            text="Learn more about our team and our community"
+            className="font-sans text-3xl md:text-4xl lg:text-5xl"
+          />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">

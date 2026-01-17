@@ -140,7 +140,19 @@ export default function FeaturedSection() {
                 <div className="h-[1px] bg-white/30 my-3" />
 
                 {/* Title */}
-                <h3 className="text-white font-medium text-lg">{item.title}</h3>
+                <h3 className="text-white font-medium text-lg">{item.blogTitle || item.title}</h3>
+
+                {/* Logo */}
+                {item.logo && (
+                  <div className="mt-4">
+                    <Image
+                      src={item.logo}
+                      alt=""
+                      height={24}
+                      className="object-contain brightness-0 invert opacity-60"
+                    />
+                  </div>
+                )}
               </Link>
             ))}
           </div>

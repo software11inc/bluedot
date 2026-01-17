@@ -131,11 +131,12 @@ export default function Advisors() {
 
       {/* Headline */}
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-12">
-        <ScrollFillText className="text-4xl md:text-5xl font-sans max-w-2xl">
-          Working alongside a deep network of Fintech Specialists.
-        </ScrollFillText>
-        <a href="#community" className="inline-flex items-center gap-2 mt-6 text-[#1C39BB] font-sans font-medium hover:opacity-80 transition-opacity">
-          Our Community
+        <ScrollFillText
+          text="Working alongside a deep network of Fintech Specialists."
+          className="text-4xl md:text-5xl font-sans max-w-2xl"
+        />
+        <a href="/team#advisors" className="inline-flex items-center gap-2 mt-6 text-[#1C39BB] font-sans font-medium hover:opacity-80 transition-opacity">
+          Our Advisors
           <Image src={linkButton} alt="" />
         </a>
       </div>

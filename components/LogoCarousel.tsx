@@ -12,11 +12,11 @@ import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
 import coverdashLogo from "@/app/assets/main-logos/coverdash.png";
 
 const logos: { alt: string; image: StaticImageData }[] = [
-  { alt: "Klarna", image: klarnaLogo },
   { alt: "Albert", image: albertLogo },
-  { alt: "Forage", image: forageLogo },
-  { alt: "DriveWealth", image: drivewealthLogo },
   { alt: "Coverdash", image: coverdashLogo },
+  { alt: "DriveWealth", image: drivewealthLogo },
+  { alt: "Forage", image: forageLogo },
+  { alt: "Klarna", image: klarnaLogo },
 ];
 
 export default function LogoCarousel() {
@@ -135,9 +135,10 @@ export default function LogoCarousel() {
         <div className="relative flex flex-col md:flex-row md:items-center flex-wrap">
           {/* Left column - heading with gradient overlay */}
           <div className="relative z-10 w-full md:w-1/2 md:pr-12 flex-shrink-0 mb-8 md:mb-0">
-            <ScrollFillText className="text-4xl md:text-5xl font-sans">
-              Investing in companies across the fintech landscape.
-            </ScrollFillText>
+            <ScrollFillText
+              text="Investing in companies across the fintech landscape."
+              className="text-4xl md:text-5xl font-sans max-w-lg"
+            />
             {/* Gradient that extends over the carousel - desktop only */}
             <div className="hidden md:block absolute top-0 bottom-0 -right-24 w-24 bg-gradient-to-r from-white to-transparent" />
           </div>

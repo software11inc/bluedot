@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 
 interface ScrollFillTextProps {
-  children: React.ReactNode;
+  text: string;
   className?: string;
 }
 
-export default function ScrollFillText({ children, className = "" }: ScrollFillTextProps) {
+export default function ScrollFillText({ text, className = "" }: ScrollFillTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [fillPercent, setFillPercent] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,12 +23,12 @@ export default function ScrollFillText({ children, className = "" }: ScrollFillT
       const endPoint = windowHeight * 0.3;
 
       if (rect.top >= startPoint) {
-        setFillPercent(0);
+        setProgress(0);
       } else if (rect.top <= endPoint) {
-        setFillPercent(100);
+        setProgress(1);
       } else {
-        const progress = (startPoint - rect.top) / (startPoint - endPoint);
-        setFillPercent(Math.min(100, Math.max(0, progress * 100)));
+        const prog = (startPoint - rect.top) / (startPoint - endPoint);
+        setProgress(Math.min(1, Math.max(0, prog)));
       }
     };
 
@@ -38,21 +38,33 @@ export default function ScrollFillText({ children, className = "" }: ScrollFillT
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Split text into characters, preserving spaces
+  const characters = text.split("");
+
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
-      {/* Gray text (background layer) */}
-      <div className="text-gray-300">
-        {children}
-      </div>
-      {/* Black text (foreground layer, clipped) */}
-      <div
-        className="absolute inset-0 text-[#575757] overflow-hidden"
-        style={{ width: `${fillPercent}%` }}
-      >
-        <div style={{ width: containerRef.current?.offsetWidth || 'auto' }}>
-          {children}
-        </div>
-      </div>
+    <div ref={containerRef} className={className}>
+      {characters.map((char, index) => {
+        // Calculate fill for this character based on its position in the string
+        const charProgress = index / (characters.length - 1 || 1);
+        const isFilled = progress >= charProgress;
+
+        // Use a regular space span that can wrap
+        if (char === " ") {
+          return <span key={index}> </span>;
+        }
+
+        return (
+          <span
+            key={index}
+            className="transition-colors duration-150"
+            style={{
+              color: isFilled ? "#575757" : "#d1d5db",
+            }}
+          >
+            {char}
+          </span>
+        );
+      })}
     </div>
   );
 }

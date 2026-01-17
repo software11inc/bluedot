@@ -6,10 +6,20 @@ html {
   scroll-behavior: smooth;
 }
 
+::selection {
+  background-color: #1C39BB;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #1C39BB;
+  color: white;
+}
+
 @keyframes dot-expand {
   0%, 71% {
-    width: 120px;
-    height: 120px;
+    width: 276px;
+    height: 276px;
     border-radius: 9999px;
   }
   100% {
@@ -17,6 +27,30 @@ html {
     height: 100%;
     border-radius: 6px;
   }
+}
+
+@keyframes logo-fade-out {
+  0%, 60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  85% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+.animate-logo-fade-out {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: logo-fade-out 2s ease-in-out forwards;
+  pointer-events: none;
 }
 
 .animate-dot-expand {

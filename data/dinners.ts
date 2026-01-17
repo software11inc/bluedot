@@ -28,6 +28,9 @@ import moneylion4953 from "@/app/assets/dinners/Moneylion Dinner/DSC04953.jpg";
 import moneylion5013 from "@/app/assets/dinners/Moneylion Dinner/DSC05013.jpg";
 import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.jpg";
 
+// Import logos
+import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
+
 export interface BlogSection {
   heading?: string;
   paragraphs: string[];
@@ -39,6 +42,7 @@ export interface DinnerEvent {
   slug: string;
   image: StaticImageData;
   galleryImages: StaticImageData[];
+  logo?: StaticImageData;
   // Optional custom blog content
   blogTitle?: string;
   intro?: string;
@@ -48,54 +52,8 @@ export interface DinnerEvent {
 
 export const dinnerSeries: DinnerEvent[] = [
   {
-    title: "Bilt Dinner",
-    date: "December 2024",
-    slug: "bilt-rewards-dinner",
-    image: bilt061,
-    galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
-    blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
-    intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
-    sections: [
-      {
-        heading: "Born to Build",
-        paragraphs: [
-          "Ankur grew up immersed in entrepreneurship. His father left Microsoft to found InfoSpace when Ankur was six, and he spent afternoons in startup offices absorbing the business-building process. By eleven, he'd launched his first company. That early exposure instilled a conviction: technology could solve real problems affecting everyday people. After stints founding Humin (acquired by Tinder) and establishing Kairos as a venture studio, Ankur identified an enormous gap: Americans spend over $500 billion annually on rent with zero rewards or a path to homeownership.",
-        ],
-      },
-      {
-        heading: "Building Three Companies at Once",
-        paragraphs: [
-          "Ankur shared the challenges of building really three companies at once: a credit card program, a payments platform, and a merchant rewards network. The complexity behind this architecture is staggering. After a 2018 conversation with real estate magnate Barry Sternlicht revealed how profitable airline and hotel loyalty programs are, Ankur realized rent represented an even larger opportunity. But building it proved nearly impossible.",
-        ],
-      },
-      {
-        heading: "The Early Days",
-        paragraphs: [
-          "The early days tested every assumption. Landlords initially refused to fund the rewards program despite loving the concept. This forced Bilt to create its own loyalty currency, which in hindsight was actually a breakthrough that made the economics work. Then came 18 months petitioning the FHA, Fannie Mae, and Treasury Department to approve using rewards points toward home down payments, a use case regulators had never contemplated. Rejections piled up before approval finally came in October 2019. Meanwhile, Ankur assembled partners including Mastercard, Wells Fargo, and major property owners representing millions of rental units. Each partnership required solving unprecedented technical and regulatory challenges.",
-        ],
-      },
-      {
-        heading: "Pandemic Breakthrough",
-        paragraphs: [
-          "It wasn't until the pandemic that Bilt was able to start gaining traction with landlords. With the economy grinding to a halt, suddenly the big landlords were more open to new ideas to boost tenant retention.",
-        ],
-      },
-      {
-        heading: "What's Next",
-        paragraphs: [
-          "While providing few details, Ankur teased the release of Bilt for homeowners that will be launching in Q1 2026, which will move them beyond the rental market. Ankur's north star? In ten years, Bilt becomes the central financial platform for residential living, from renting to homeownership and every transaction in between.",
-          "Despite the late hour, everyone in the room remained fully engaged as Ankur shared how Bilt has become such a transformational company. His message was clear: the opportunity to reshape how Americans build wealth through housing is just beginning.",
-        ],
-      },
-    ],
-    quote: {
-      text: "The opportunity to reshape how Americans build wealth through housing is just beginning.",
-      author: "Ankur Jain, Founder & CEO of Bilt",
-    },
-  },
-  {
     title: "Cross River Dinner",
-    date: "November 2024",
+    date: "December 2024",
     slug: "cross-river-summit",
     image: crossRiver7994,
     galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7998, crossRiver8001],
@@ -138,6 +96,52 @@ export const dinnerSeries: DinnerEvent[] = [
     quote: {
       text: "We do well when, and because, we do good. Charity isn't something done out of the goodness of one's heart—it's the right thing to do. Period.",
       author: "Gilles Gade, Founder & CEO of Cross River Bank",
+    },
+  },
+  {
+    title: "Bilt Dinner",
+    date: "November 2024",
+    slug: "bilt-rewards-dinner",
+    image: bilt061,
+    galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
+    blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
+    intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
+    sections: [
+      {
+        heading: "Born to Build",
+        paragraphs: [
+          "Ankur grew up immersed in entrepreneurship. His father left Microsoft to found InfoSpace when Ankur was six, and he spent afternoons in startup offices absorbing the business-building process. By eleven, he'd launched his first company. That early exposure instilled a conviction: technology could solve real problems affecting everyday people. After stints founding Humin (acquired by Tinder) and establishing Kairos as a venture studio, Ankur identified an enormous gap: Americans spend over $500 billion annually on rent with zero rewards or a path to homeownership.",
+        ],
+      },
+      {
+        heading: "Building Three Companies at Once",
+        paragraphs: [
+          "Ankur shared the challenges of building really three companies at once: a credit card program, a payments platform, and a merchant rewards network. The complexity behind this architecture is staggering. After a 2018 conversation with real estate magnate Barry Sternlicht revealed how profitable airline and hotel loyalty programs are, Ankur realized rent represented an even larger opportunity. But building it proved nearly impossible.",
+        ],
+      },
+      {
+        heading: "The Early Days",
+        paragraphs: [
+          "The early days tested every assumption. Landlords initially refused to fund the rewards program despite loving the concept. This forced Bilt to create its own loyalty currency, which in hindsight was actually a breakthrough that made the economics work. Then came 18 months petitioning the FHA, Fannie Mae, and Treasury Department to approve using rewards points toward home down payments, a use case regulators had never contemplated. Rejections piled up before approval finally came in October 2019. Meanwhile, Ankur assembled partners including Mastercard, Wells Fargo, and major property owners representing millions of rental units. Each partnership required solving unprecedented technical and regulatory challenges.",
+        ],
+      },
+      {
+        heading: "Pandemic Breakthrough",
+        paragraphs: [
+          "It wasn't until the pandemic that Bilt was able to start gaining traction with landlords. With the economy grinding to a halt, suddenly the big landlords were more open to new ideas to boost tenant retention.",
+        ],
+      },
+      {
+        heading: "What's Next",
+        paragraphs: [
+          "While providing few details, Ankur teased the release of Bilt for homeowners that will be launching in Q1 2026, which will move them beyond the rental market. Ankur's north star? In ten years, Bilt becomes the central financial platform for residential living, from renting to homeownership and every transaction in between.",
+          "Despite the late hour, everyone in the room remained fully engaged as Ankur shared how Bilt has become such a transformational company. His message was clear: the opportunity to reshape how Americans build wealth through housing is just beginning.",
+        ],
+      },
+    ],
+    quote: {
+      text: "The opportunity to reshape how Americans build wealth through housing is just beginning.",
+      author: "Ankur Jain, Founder & CEO of Bilt",
     },
   },
   {
@@ -187,18 +191,55 @@ export const dinnerSeries: DinnerEvent[] = [
     },
   },
   {
-    title: "Bilt Fintech Forum",
-    date: "August 2024",
-    slug: "bilt-fintech-forum",
+    title: "DriveWealth Dinner",
+    date: "June 2024",
+    slug: "drivewealth-dinner",
     image: bilt083,
-    galleryImages: [bilt008, bilt011, bilt026, bilt042, bilt061, bilt076, bilt093],
-  },
-  {
-    title: "Cross River Innovators",
-    date: "July 2024",
-    slug: "cross-river-innovators",
-    image: crossRiver1006,
-    galleryImages: [crossRiver003, crossRiver004, crossRiver7976, crossRiver7994, crossRiver7998, crossRiver8001],
+    galleryImages: [bilt008, bilt011, bilt026, bilt042],
+    logo: drivewealthLogo,
+    blogTitle: "DriveWealth's Michael Blaugrund and Venu Palaparthi: Democratizing Investing for the World",
+    intro: "Before fractional shares became table stakes, before every neobank offered investing, there was DriveWealth. Founded in 2012, DriveWealth pioneered the infrastructure that would eventually power investing for hundreds of millions of people worldwide. We hosted CEO Michael Blaugrund and COO Venu Palaparthi for an intimate dinner where they shared the journey of building the rails that democratized access to the stock market.",
+    sections: [
+      {
+        heading: "The Vision Before Its Time",
+        paragraphs: [
+          "Michael and Venu painted a picture of DriveWealth's founding vision: the infrastructure powering brokerage was built for a different era. It was expensive, slow, and designed for wealthy clients making large trades. The rest of the world was locked out.",
+          "DriveWealth was founded with a radical premise: build cloud-native brokerage infrastructure from scratch that could handle fractional shares, real-time trading, and seamless API integration. At the time, most thought it was crazy. Fractional shares? Who would want to buy $5 of Amazon stock?",
+        ],
+      },
+      {
+        heading: "Building the Picks and Shovels",
+        paragraphs: [
+          "Michael discussed the strategic decision to build B2B infrastructure rather than a consumer app. While it would have been tempting to chase the direct-to-consumer opportunity, the real leverage came from powering other companies. Today, DriveWealth's infrastructure powers investing features for Revolut, Stake, Hatch, and dozens of other platforms across 150+ countries.",
+          "Venu dove into the challenges of building enterprise infrastructure. Unlike consumer apps where you can iterate quickly, enterprise clients demand bulletproof reliability. A bug doesn't just affect your app—it affects millions of users across dozens of partner platforms. He described building a culture of engineering excellence that could meet these demands.",
+        ],
+      },
+      {
+        heading: "Going Global",
+        paragraphs: [
+          "One of DriveWealth's most significant achievements is bringing U.S. market access to investors worldwide. Venu explained how they navigated the complex web of international regulations to enable someone in Australia, Europe, or South America to buy fractional shares of U.S. stocks as easily as someone in New York.",
+          "This global expansion required not just technical innovation but deep regulatory expertise. Each country presented unique challenges around KYC, tax reporting, and securities law. DriveWealth built a compliance infrastructure as sophisticated as its trading technology.",
+        ],
+      },
+      {
+        heading: "The Embedded Finance Revolution",
+        paragraphs: [
+          "Michael reflected on how DriveWealth helped catalyze the broader embedded finance movement. When they started, the idea that a non-financial company would offer investing seemed far-fetched. Now it's expected. Every super app, every neobank, every fintech platform wants to offer their users the ability to invest.",
+          "This shift validated DriveWealth's original thesis but also attracted competition. Michael discussed how they've maintained their edge through continuous innovation—launching crypto trading, building out retirement account infrastructure, and expanding into new asset classes.",
+        ],
+      },
+      {
+        heading: "What's Next for Democratized Investing",
+        paragraphs: [
+          "Looking ahead, both Michael and Venu see enormous runway remaining. Despite the progress, most of the world's population still lacks access to modern investment infrastructure. Emerging markets represent a massive opportunity, as do new asset classes and investment products.",
+          "As the evening concluded, they left us with a powerful observation: the democratization of investing isn't just about access to stocks. It's about giving everyone the tools to build long-term wealth. DriveWealth's mission—to make investing accessible to everyone—is still just getting started.",
+        ],
+      },
+    ],
+    quote: {
+      text: "We didn't just want to build a better brokerage. We wanted to rebuild the entire infrastructure of investing from the ground up—and make it accessible to everyone.",
+      author: "Michael Blaugrund, CEO of DriveWealth",
+    },
   },
 ];
 
