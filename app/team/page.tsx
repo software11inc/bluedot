@@ -4,9 +4,10 @@ import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image, { StaticImageData } from "next/image";
-import splitDot from "@/app/assets/split-dot.svg";
+import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
+import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 import TypeWriter from "@/components/TypeWriter";
-import { advisors, specialities, Advisor } from "@/data/advisors";
+import { advisors, Advisor } from "@/data/advisors";
 
 // Import team images
 import sahejSuri from "@/app/assets/team/sahej_suri.png";
@@ -74,13 +75,7 @@ export default function TeamPage() {
   const [lineVisible, setLineVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
-  const [selectedSpeciality, setSelectedSpeciality] = useState("All");
   const teamSectionRef = useRef<HTMLDivElement>(null);
-
-  // Filter advisors by speciality
-  const filteredAdvisors = selectedSpeciality === "All"
-    ? advisors
-    : advisors.filter((a) => a.speciality === selectedSpeciality);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -143,7 +138,7 @@ export default function TeamPage() {
               <div className="w-full h-full flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 md:py-12 animate-page-content">
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
-                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[320px] md:max-w-[500px]">
+                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[380px] md:max-w-[580px]">
                     <TypeWriter text="Led by Fintech experts with deep sector expertise" delay={40} startDelay={300} />
                   </h1>
                 </div>
@@ -164,8 +159,9 @@ export default function TeamPage() {
                 </div>
 
                 {/* Right column */}
-                <div className="md:self-end">
-                  <Image src={splitDot} alt="" className="md:ml-auto" />
+                <div className="md:self-end flex flex-col items-end gap-6 -translate-y-[15%]">
+                  <Image src={dotGroupHero} alt="" className="md:ml-auto animate-dot-pulse" />
+                  <HeroCirclesAnimated className="md:ml-auto" />
                 </div>
               </div>
             </div>
@@ -277,30 +273,13 @@ export default function TeamPage() {
             </div>
 
             {/* Headline */}
-            <h2 className="text-4xl md:text-5xl font-sans text-[#575757] max-w-2xl mb-8">
+            <h2 className="text-4xl md:text-5xl font-sans text-[#575757] max-w-2xl mb-12">
               Working alongside a deep network of Fintech Specialists.
             </h2>
 
-            {/* Speciality filter */}
-            <div className="flex flex-wrap gap-2 mb-12">
-              {specialities.map((speciality) => (
-                <button
-                  key={speciality}
-                  onClick={() => setSelectedSpeciality(speciality)}
-                  className={`px-4 py-3 text-sm font-sans rounded-full transition-all duration-200 touch-manipulation min-h-[44px] ${
-                    selectedSpeciality === speciality
-                      ? "bg-[#1C39BB] text-white"
-                      : "bg-gray-100 text-[#575757] hover:bg-gray-200"
-                  }`}
-                >
-                  {speciality}
-                </button>
-              ))}
-            </div>
-
             {/* Advisors grid - 4 per row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {filteredAdvisors.map((advisor, i) => (
+              {advisors.map((advisor, i) => (
                 <div
                   key={i}
                   className="cursor-pointer group"
@@ -344,7 +323,7 @@ export default function TeamPage() {
 
         {/* Drawer */}
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-md md:max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-sm md:max-w-md bg-white shadow-2xl transition-transform duration-300 ease-out ${
             selectedAdvisor ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -353,39 +332,45 @@ export default function TeamPage() {
               {/* Close button */}
               <button
                 onClick={() => setSelectedAdvisor(null)}
-                className="absolute top-6 right-6 z-10 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/30 hover:bg-black/50 rounded-full transition-colors"
               >
-                <svg className="w-6 h-6 text-[#575757]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
 
-              {/* Image */}
-              <div className="aspect-[4/3] bg-gray-200 w-full">
+              {/* Image with overlay */}
+              <div className="aspect-square bg-gray-200 w-full relative">
                 <Image
                   src={selectedAdvisor.image}
                   alt={selectedAdvisor.name}
-                  width={600}
-                  height={450}
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover"
                 />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                {/* Name and info over image */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h2 className="font-display text-2xl text-white mb-1">
+                    {selectedAdvisor.name}
+                  </h2>
+                  <div className="flex items-center gap-2">
+                    <p className="font-mono text-xs text-white/80 uppercase tracking-wider">
+                      {selectedAdvisor.title}
+                    </p>
+                    {selectedAdvisor.speciality && (
+                      <span className="inline-block px-2 py-0.5 text-xs font-sans bg-white/20 text-white rounded-full">
+                        {selectedAdvisor.speciality}
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Content */}
               <div className="p-8">
-                <h2 className="font-display text-3xl text-[#575757] mb-1">
-                  {selectedAdvisor.name}
-                </h2>
-                <p className="font-mono text-sm text-[#1C39BB] uppercase tracking-wider mb-2">
-                  {selectedAdvisor.title}
-                </p>
-                {selectedAdvisor.speciality && (
-                  <span className="inline-block px-3 py-1 text-xs font-sans bg-gray-100 text-[#575757] rounded-full">
-                    {selectedAdvisor.speciality}
-                  </span>
-                )}
-
-                <p className="font-sans text-[#575757]/80 leading-relaxed mb-8 mt-6">
+                <p className="font-sans text-[#575757]/80 leading-relaxed mb-8">
                   {selectedAdvisor.bio}
                 </p>
 

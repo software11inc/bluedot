@@ -5,7 +5,9 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import splitDot from "@/app/assets/split-dot.svg";
+import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
+import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
+import TypeWriter from "@/components/TypeWriter";
 import linkArrow from "@/app/assets/link-button.svg";
 import { dinnerSeries, bentoImages } from "@/data/dinners";
 
@@ -43,7 +45,7 @@ export default function CommunityPage() {
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
                   <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB]">
-                    Our<br />Community
+                    <TypeWriter text="Our Community" delay={40} startDelay={300} />
                   </h1>
                 </div>
 
@@ -63,8 +65,9 @@ export default function CommunityPage() {
                 </div>
 
                 {/* Right column */}
-                <div className="md:self-end">
-                  <Image src={splitDot} alt="" className="md:ml-auto" />
+                <div className="md:self-end flex flex-col items-end gap-6 -translate-y-[15%]">
+                  <Image src={dotGroupHero} alt="" className="md:ml-auto animate-dot-pulse" />
+                  <HeroCirclesAnimated className="md:ml-auto" />
                 </div>
               </div>
             </div>
@@ -182,8 +185,18 @@ export default function CommunityPage() {
                     />
                     {/* Overlay with title */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-6">
+                      {event.logo && (
+                        <div className="mb-3 h-6">
+                          <Image
+                            src={event.logo}
+                            alt=""
+                            height={24}
+                            className="h-6 w-auto max-w-[120px] object-contain brightness-0 invert opacity-80"
+                          />
+                        </div>
+                      )}
                       <h3 className="font-sans font-medium text-white text-xl mb-1">
-                        {event.title}
+                        {event.blogTitle || event.title}
                       </h3>
                       <p className="font-mono text-white/70 text-sm uppercase tracking-wider">
                         {event.date}

@@ -27,14 +27,8 @@ export default function TypeWriter({ text, delay = 50, startDelay = 2000 }: Type
 
   return (
     <>
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          className={`transition-opacity duration-100 ${i < displayedChars ? "opacity-100" : "opacity-0"}`}
-        >
-          {char}
-        </span>
-      ))}
+      <span>{text.slice(0, displayedChars)}</span>
+      <span className="opacity-0">{text.slice(displayedChars)}</span>
     </>
   );
 }

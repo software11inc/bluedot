@@ -231,7 +231,7 @@ export default function Advisors() {
 
         {/* Drawer */}
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-md md:max-w-xl bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 h-full w-full max-w-full sm:max-w-sm md:max-w-md bg-white shadow-2xl transition-transform duration-300 ease-out ${
             selectedAdvisor ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -240,64 +240,55 @@ export default function Advisors() {
               {/* Close button */}
               <button
                 onClick={() => setSelectedAdvisor(null)}
-                className="absolute top-6 right-6 z-10 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 bg-black/30 hover:bg-black/50 rounded-full transition-colors"
               >
-                <svg className="w-6 h-6 text-[#575757]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
 
-              {/* Image */}
-              <div className="aspect-[4/3] bg-gray-200 w-full">
-                {selectedAdvisor.image ? (
-                  <Image
-                    src={selectedAdvisor.image}
-                    alt={selectedAdvisor.name}
-                    width={600}
-                    height={450}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                    </svg>
+              {/* Image with overlay */}
+              <div className="aspect-square bg-gray-200 w-full relative">
+                <Image
+                  src={selectedAdvisor.image}
+                  alt={selectedAdvisor.name}
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                {/* Name and info over image */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h2 className="font-display text-2xl text-white mb-1">
+                    {selectedAdvisor.name}
+                  </h2>
+                  <div className="flex items-center gap-2">
+                    <p className="font-mono text-xs text-white/80 uppercase tracking-wider">
+                      {selectedAdvisor.title}
+                    </p>
+                    {selectedAdvisor.speciality && (
+                      <span className="inline-block px-2 py-0.5 text-xs font-sans bg-white/20 text-white rounded-full">
+                        {selectedAdvisor.speciality}
+                      </span>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
 
               {/* Content */}
               <div className="p-8">
-                <h2 className="font-display text-3xl text-[#575757] mb-1">
-                  {selectedAdvisor.name}
-                </h2>
-                <p className="font-mono text-sm text-[#1C39BB] uppercase tracking-wider mb-2">
-                  {selectedAdvisor.title}
-                </p>
-                {selectedAdvisor.speciality && (
-                  <span className="inline-block px-3 py-1 text-xs font-sans bg-gray-100 text-[#575757] rounded-full">
-                    {selectedAdvisor.speciality}
-                  </span>
-                )}
-
-                <p className="font-sans text-[#575757]/80 leading-relaxed mb-8 mt-6">
+                <p className="font-sans text-[#575757]/80 leading-relaxed mb-8">
                   {selectedAdvisor.bio}
                 </p>
 
                 {/* Logos */}
                 {selectedAdvisor.logos && selectedAdvisor.logos.length > 0 && (
-                  <div className="mb-8">
-                    <p className="font-mono text-xs text-[#575757]/60 uppercase tracking-wider mb-4">
-                      Associated With
-                    </p>
-                    <div className="flex flex-wrap gap-4">
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-8 items-center">
                       {selectedAdvisor.logos.map((logo, i) => (
-                        <div key={i} className="h-8 px-4 bg-gray-100 rounded flex items-center justify-center">
-                          {typeof logo === 'string' && logo ? (
-                            <Image src={logo} alt="" width={80} height={32} className="h-6 w-auto object-contain" />
-                          ) : (
-                            <span className="text-gray-400 text-xs">Logo</span>
-                          )}
+                        <div key={i} className="h-[42px] flex items-center justify-center">
+                          <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
                         </div>
                       ))}
                     </div>
@@ -310,12 +301,12 @@ export default function Advisors() {
                     href={selectedAdvisor.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#1C39BB] font-sans font-medium hover:opacity-80 transition-opacity"
+                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                     </svg>
-                    Connect on LinkedIn
+                    LinkedIn
                   </a>
                 )}
               </div>

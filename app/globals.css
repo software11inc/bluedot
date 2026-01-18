@@ -122,6 +122,38 @@ html {
   animation: dot-pulse 2s ease-in-out infinite;
 }
 
+@keyframes circle-slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes circle-slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-circle-left {
+  opacity: 0;
+  animation: circle-slide-left 0.6s ease-out 0.5s forwards;
+}
+
+.animate-circle-right {
+  opacity: 0;
+  animation: circle-slide-right 0.6s ease-out 0.7s forwards;
+}
+
 @keyframes logo-scroll {
   0% {
     transform: translateX(0);
@@ -208,7 +240,9 @@ html {
   .animate-dot-pulse,
   .animate-logo-scroll,
   .animate-advisor-scroll,
-  .animate-slide-in-right {
+  .animate-slide-in-right,
+  .animate-circle-left,
+  .animate-circle-right {
     animation: none;
     opacity: 1;
     transform: none;

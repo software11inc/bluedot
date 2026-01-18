@@ -7,7 +7,6 @@ import { dinnerSeries } from "@/data/dinners";
 
 export default function FeaturedSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -89,13 +88,11 @@ export default function FeaturedSection() {
 
             {/* Right - Rotating Image */}
             <div className="aspect-[4/3] bg-white/10 rounded-2xl overflow-hidden relative">
-              {visibleItems.map((event, i) => {
-                const activeIndex = hoveredIndex !== null ? hoveredIndex : 0;
-                return (
+              {visibleItems.map((event, i) => (
                   <div
                     key={`${currentIndex}-${event.slug}`}
                     className={`absolute inset-0 transition-opacity duration-500 ${
-                      i === activeIndex ? "opacity-100" : "opacity-0"
+                      i === 0 ? "opacity-100" : "opacity-0"
                     }`}
                   >
                     <Image
@@ -111,8 +108,7 @@ export default function FeaturedSection() {
                       <h3 className="text-white text-xl font-medium mt-1">{event.title}</h3>
                     </div>
                   </div>
-                );
-              })}
+              ))}
             </div>
           </div>
 
@@ -122,16 +118,14 @@ export default function FeaturedSection() {
               <Link
                 key={`${currentIndex}-${i}`}
                 href={`/dinner-series/${item.slug}`}
-                className={`bg-white/10 rounded-xl p-6 hover:bg-white/20 transition-all cursor-pointer block
+                className={`bg-white/10 rounded-xl p-6 block
                   ${isAnimating
                     ? 'opacity-0 translate-y-4 md:opacity-100 md:translate-y-0'
                     : 'opacity-100 translate-y-0'
                   }
-                  duration-400 ease-out
+                  transition-all duration-400 ease-out
                 `}
                 style={{ transitionDelay: `${i * 75}ms` }}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
                 {/* Date */}
                 <p className="text-white/60 text-sm">{item.date}</p>
@@ -144,12 +138,13 @@ export default function FeaturedSection() {
 
                 {/* Logo */}
                 {item.logo && (
-                  <div className="mt-4">
+                  <div className="mt-4 h-6 flex items-center">
                     <Image
                       src={item.logo}
                       alt=""
+                      width={120}
                       height={24}
-                      className="object-contain brightness-0 invert opacity-60"
+                      className="h-6 w-auto max-w-[120px] object-contain brightness-0 invert opacity-60"
                     />
                   </div>
                 )}

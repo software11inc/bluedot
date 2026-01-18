@@ -31,6 +31,8 @@ import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.jpg";
 // Import logos
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
 import crossRiverLogo from "@/app/assets/crossriver-logo.png";
+import moneylionLogo from "@/app/assets/moneylion-logo.png";
+import biltLogo from "@/app/assets/Bilt_Rewards_logo.svg.png";
 
 export interface BlogSection {
   heading?: string;
@@ -106,6 +108,7 @@ export const dinnerSeries: DinnerEvent[] = [
     slug: "bilt-rewards-dinner",
     image: bilt061,
     galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
+    logo: biltLogo,
     blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
     intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
     sections: [
@@ -152,6 +155,7 @@ export const dinnerSeries: DinnerEvent[] = [
     slug: "moneylion-leaders",
     image: moneylion5013,
     galleryImages: [moneylion4929, moneylion4934, moneylion4953, moneylion5019],
+    logo: moneylionLogo,
     blogTitle: "MoneyLion Founder Dee Choubey: From Founding to IPO to Exit",
     intro: "It is rare for a fintech founder to take a company all the way from founder to the public markets to an acquisition, but that is the story of Dee Choubey, founder of MoneyLion. At our September dinner, Dee shared insights from over a decade building one of fintech's most successful platforms.",
     sections: [
@@ -199,7 +203,7 @@ export const dinnerSeries: DinnerEvent[] = [
     image: bilt083,
     galleryImages: [bilt008, bilt011, bilt026, bilt042],
     logo: drivewealthLogo,
-    blogTitle: "DriveWealth's Michael Blaugrund and Venu Palaparthi: Democratizing Investing for the World",
+    blogTitle: "DriveWealth: Democratizing Investing for the World",
     intro: "Before fractional shares became table stakes, before every neobank offered investing, there was DriveWealth. Founded in 2012, DriveWealth pioneered the infrastructure that would eventually power investing for hundreds of millions of people worldwide. We hosted CEO Michael Blaugrund and COO Venu Palaparthi for an intimate dinner where they shared the journey of building the rails that democratized access to the stock market.",
     sections: [
       {

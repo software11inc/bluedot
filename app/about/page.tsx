@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TypeWriter from "@/components/TypeWriter";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
+import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
 
 export default function AboutPage() {
   const [networkVisible, setNetworkVisible] = useState(false);
@@ -50,8 +51,9 @@ export default function AboutPage() {
       <Header animate={false} />
       <main className="pt-24">
         {/* Main statement - Full width impact */}
-        <section className="py-24 bg-white min-h-[60vh] flex items-center">
+        <section className="py-16 mb-12 bg-white min-h-[60vh] flex items-center">
           <div className="mx-auto max-w-7xl w-full px-6 lg:px-8">
+            <HeroCirclesAnimated className="mb-6 w-14" />
             <h1 className="font-display text-4xl md:text-6xl text-[#1C39BB] leading-tight mb-8 max-w-4xl">
               <TypeWriter
                 text="A fintech specialist investment firm focused on late-stage secondaries and special situations investing."
@@ -100,7 +102,7 @@ export default function AboutPage() {
                 },
                 {
                   number: "03",
-                  title: "Growth Capital",
+                  title: "Growth Investing",
                   description: "Backing category-defining fintech companies poised for continued expansion and market leadership.",
                 },
               ].map((item, idx) => (

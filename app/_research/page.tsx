@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Treemap from "@/components/Treemap";
 import Image from "next/image";
-import splitDot from "@/app/assets/split-dot.svg";
+import heroCircles from "@/app/assets/hero-circles-color.svg";
+import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 
 // Type for live stock price data
 interface StockPriceData {
@@ -209,8 +210,9 @@ export default function ResearchPage() {
                   </div>
                 </div>
 
-                <div className="md:self-end">
-                  <Image src={splitDot} alt="" className="md:ml-auto" />
+                <div className="md:self-end flex flex-col items-end gap-6 -translate-y-[15%]">
+                  <Image src={dotGroupHero} alt="" className="md:ml-auto" />
+                  <Image src={heroCircles} alt="" className="md:ml-auto" />
                 </div>
               </div>
             </div>
