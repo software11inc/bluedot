@@ -60,6 +60,17 @@ export default function DinnerContent({ slug }: { slug: string }) {
                   <p className="font-sans text-lg text-[#575757]/80">
                     {event.intro || "An exclusive gathering bringing together fintech leaders for an evening of connection and conversation."}
                   </p>
+                  {/* Logo */}
+                  {event.logo && (
+                    <div className="mt-6">
+                      <Image
+                        src={event.logo}
+                        alt=""
+                        height={40}
+                        className="object-contain opacity-60"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Right column - Hero image */}

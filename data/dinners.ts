@@ -30,6 +30,7 @@ import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.jpg";
 
 // Import logos
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
+import crossRiverLogo from "@/app/assets/crossriver-logo.png";
 
 export interface BlogSection {
   heading?: string;
@@ -57,6 +58,7 @@ export const dinnerSeries: DinnerEvent[] = [
     slug: "cross-river-summit",
     image: crossRiver7994,
     galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7998, crossRiver8001],
+    logo: crossRiverLogo,
     blogTitle: "Cross River Founder Gilles Gade: Banking with Heart and Purpose",
     intro: "The pioneer and arguably the most important company in fintech banking is Cross River Bank. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
     sections: [
