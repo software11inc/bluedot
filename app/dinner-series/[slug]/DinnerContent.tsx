@@ -279,18 +279,42 @@ export default function DinnerContent({ slug }: { slug: string }) {
               </div>
             )}
 
-            {/* CTA */}
-            <div className="bg-gray-50 rounded-lg p-8 text-center">
-              <p className="font-sans text-lg text-[#575757] mb-4">
-                Interested in attending a future dinner series event?
-              </p>
-              <a
-                href="/contact"
-                className="inline-block font-mono text-sm text-[#1C39BB] uppercase tracking-wider hover:opacity-80 transition-opacity"
-              >
-                Get in Touch &rarr;
-              </a>
-            </div>
+            {/* Related Posts */}
+            {(() => {
+              const otherEvents = dinnerSeries.filter(e => e.slug !== slug).slice(0, 2);
+              if (otherEvents.length === 0) return null;
+              return (
+                <div>
+                  <h3 className="font-display text-2xl text-[#575757] mb-6">
+                    More from our Dinner Series
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {otherEvents.map((relatedEvent) => (
+                      <a
+                        key={relatedEvent.slug}
+                        href={`/dinner-series/${relatedEvent.slug}`}
+                        className="group block"
+                      >
+                        <div className="aspect-[4/3] bg-gray-100 rounded-lg overflow-hidden mb-3 relative">
+                          <Image
+                            src={relatedEvent.image}
+                            alt={relatedEvent.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <p className="font-mono text-xs text-[#1C39BB] uppercase tracking-wider mb-1">
+                          {relatedEvent.date}
+                        </p>
+                        <h4 className="font-sans font-medium text-[#575757] group-hover:text-[#1C39BB] transition-colors">
+                          {relatedEvent.blogTitle || relatedEvent.title}
+                        </h4>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </section>
       </main>
