@@ -71,10 +71,14 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
   },
 ];
 
+// Type for selected person in drawer (team member or advisor)
+type TeamMember = typeof teamMembers[number];
+
 export default function TeamPage() {
   const [lineVisible, setLineVisible] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
+  const [selectedTeamMember, setSelectedTeamMember] = useState<TeamMember | null>(null);
   const teamSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -168,10 +172,64 @@ export default function TeamPage() {
           </div>
         </section>
 
-        {/* Team members - scroll triggered */}
+        {/* Team members - Mobile cards */}
+        <section className="md:hidden py-12 bg-white">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="flex flex-col gap-8">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="flex flex-col">
+                  {/* Photo */}
+                  <div
+                    className="aspect-[4/5] bg-gray-100 mb-4 overflow-hidden cursor-pointer"
+                    onClick={() => setSelectedTeamMember(member)}
+                  >
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={400}
+                      height={500}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Name */}
+                  <h3 className="font-display text-2xl text-[#575757] mb-1">
+                    {member.name}
+                  </h3>
+                  {/* Title */}
+                  <p className="font-mono text-xs text-[#1C39BB] uppercase tracking-wider mb-2">
+                    {member.title}
+                  </p>
+                  {/* LinkedIn */}
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors mb-3"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      LinkedIn
+                    </a>
+                  )}
+                  {/* Read More button */}
+                  <button
+                    onClick={() => setSelectedTeamMember(member)}
+                    className="text-sm font-sans text-[#1C39BB] hover:text-[#1C39BB]/80 transition-colors text-left"
+                  >
+                    Read More &rarr;
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Team members - Desktop scroll triggered */}
         <section
           ref={teamSectionRef}
-          className="relative bg-white"
+          className="relative bg-white hidden md:block"
           style={{ height: `${teamMembers.length * 100}vh` }}
         >
           <div className="sticky top-0 h-screen flex items-center">
@@ -295,7 +353,6 @@ export default function TeamPage() {
                     />
                   </div>
                   <h3 className="font-sans font-medium text-[#575757] text-sm group-hover:text-[#1C39BB] transition-colors">{advisor.name}</h3>
-                  <p className="font-sans text-[#575757]/60 text-xs">{advisor.title}</p>
                   {advisor.speciality && (
                     <span className="inline-block mt-2 px-2 py-0.5 text-xs font-sans bg-gray-100 text-[#575757]/80 rounded">
                       {advisor.speciality}
@@ -391,6 +448,97 @@ export default function TeamPage() {
                 {selectedAdvisor.linkedin && (
                   <a
                     href={selectedAdvisor.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Team Member Drawer (mobile only) */}
+      <div
+        className={`fixed inset-0 z-50 transition-opacity duration-300 md:hidden ${
+          selectedTeamMember ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/50"
+          onClick={() => setSelectedTeamMember(null)}
+        />
+
+        {/* Drawer */}
+        <div
+          className={`absolute right-0 top-0 h-full w-full max-w-full bg-white shadow-2xl transition-transform duration-300 ease-out ${
+            selectedTeamMember ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {selectedTeamMember && (
+            <div className="h-full overflow-y-auto">
+              {/* Close button */}
+              <button
+                onClick={() => setSelectedTeamMember(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-black/30 hover:bg-black/50 rounded-full transition-colors"
+              >
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Image with overlay */}
+              <div className="aspect-square bg-gray-200 w-full relative">
+                <Image
+                  src={selectedTeamMember.image}
+                  alt={selectedTeamMember.name}
+                  width={400}
+                  height={400}
+                  className="w-full h-full object-cover"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                {/* Name and info over image */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h2 className="font-display text-2xl text-white mb-1">
+                    {selectedTeamMember.name}
+                  </h2>
+                  <p className="font-mono text-xs text-white/80 uppercase tracking-wider">
+                    {selectedTeamMember.title}
+                  </p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-8">
+                <p className="font-sans text-[#575757]/80 leading-relaxed mb-8 whitespace-pre-line">
+                  {selectedTeamMember.bio}
+                </p>
+
+                {/* Logos */}
+                {selectedTeamMember.logos && selectedTeamMember.logos.length > 0 && (
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-6 items-center">
+                      {selectedTeamMember.logos.map((logo, i) => (
+                        <div key={i} className="h-[36px] flex items-center justify-center">
+                          <Image src={logo} alt="" width={144} height={42} className="h-[36px] w-auto object-contain grayscale opacity-60" />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* LinkedIn */}
+                {selectedTeamMember.linkedin && (
+                  <a
+                    href={selectedTeamMember.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"

@@ -137,7 +137,7 @@ export default function LogoCarousel() {
           <div className="relative z-10 w-full md:w-1/2 md:pr-12 flex-shrink-0 mb-8 md:mb-0">
             <ScrollFillText
               text="Investing in companies across the fintech landscape."
-              className="text-4xl md:text-5xl font-sans max-w-lg"
+              className="text-4xl md:text-5xl font-display max-w-lg"
             />
             {/* Gradient that extends over the carousel - desktop only */}
             <div className="hidden md:block absolute top-0 bottom-0 -right-24 w-24 bg-gradient-to-r from-white to-transparent" />

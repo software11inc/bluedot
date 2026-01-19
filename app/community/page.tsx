@@ -37,15 +37,15 @@ export default function CommunityPage() {
       <Header animate={false} />
       <main className="pt-24">
         {/* Hero section - same layout as team page */}
-        <section className="min-h-[60vh] flex flex-col pb-12 bg-white">
+        <section className="min-h-[50vh] flex flex-col pb-8 bg-white">
           <div className="mx-auto max-w-7xl w-full h-full px-6 lg:px-8">
             <div className="relative w-full h-full">
               {/* Content */}
               <div className="w-full h-full flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 md:py-12 animate-page-content">
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
-                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB]">
-                    <TypeWriter text="Our Community" delay={40} startDelay={300} />
+                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[420px] md:max-w-[650px]">
+                    <TypeWriter text="Building connections across our ecosystem" delay={40} startDelay={300} />
                   </h1>
                 </div>
 
@@ -75,11 +75,11 @@ export default function CommunityPage() {
         </section>
 
         {/* Bento box section */}
-        <section className="pt-12 pb-24 bg-white">
+        <section className="pt-6 pb-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            {/* Centered headline */}
-            <h2 className="text-3xl md:text-5xl font-sans text-[#575757] text-center mb-16">
-              Building connections across the fintech ecosystem
+            {/* Section title */}
+            <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-8 text-center">
+              The Blue Dot Dinner Series
             </h2>
 
             {/* Bento grid - 1 left, 2 middle, 1 right */}

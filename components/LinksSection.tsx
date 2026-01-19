@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import linkArrow from "@/app/assets/link-button.svg";
+import verticalDots from "@/app/assets/vertical-dots-4.svg";
 import ScrollFillText from "./ScrollFillText";
 
 export default function LinksSection() {
@@ -35,18 +36,18 @@ export default function LinksSection() {
   }, []);
 
   const links = [
-    { label: "Our Team", href: "/team" },
-    { label: "Community", href: "/community" },
-    { label: "Research", href: "/research" },
+    { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
+    { label: "Community", subheader: "Join our network of fintech leaders", href: "/community" },
+    { label: "Research", subheader: "Insights and analysis from our team", href: "/research" },
   ];
 
   return (
     <section ref={sectionRef} className="py-24 bg-white">
       <div className={`mx-auto max-w-7xl px-6 lg:px-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
         {/* Section label and Headline */}
-        <div className="mb-12">
+        <div className="mb-12 relative">
           <span className="font-mono text-sm md:text-base text-[#575757] tracking-wider uppercase">
-            04 About Us
+            05 Learn More
           </span>
           <div className="relative h-[1px] mt-4 mb-8">
             <div className="absolute inset-0 bg-gray-200" />
@@ -57,9 +58,16 @@ export default function LinksSection() {
             />
           </div>
           <ScrollFillText
-            text="Learn more about our team and our community"
-            className="font-sans text-3xl md:text-4xl lg:text-5xl"
+            text="Learn more about our team"
+            className="font-display text-3xl md:text-4xl lg:text-5xl"
           />
+          <ScrollFillText
+            text="and our community"
+            className="font-display text-3xl md:text-4xl lg:text-5xl"
+          />
+          <div className="absolute left-0 top-full mt-10">
+            <Image src={verticalDots} alt="" className="h-36 w-auto" />
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -74,13 +82,17 @@ export default function LinksSection() {
                 href={link.href}
                 className="flex items-center justify-between group py-4 border-b border-gray-200 last:border-b-0"
               >
-                <span className="font-sans text-2xl md:text-3xl text-[#575757] group-hover:text-[#1C39BB] transition-colors">
-                  {link.label}
-                </span>
+                <div>
+                  <span className="font-display text-2xl md:text-3xl text-[#575757] group-hover:text-[#1C39BB] transition-colors block">
+                    {link.label}
+                  </span>
+                  <span className="font-sans text-sm md:text-base text-[#575757]/60">
+                    {link.subheader}
+                  </span>
+                </div>
                 <Image
                   src={linkArrow}
                   alt=""
-                  className="opacity-0 group-hover:opacity-100 transition-opacity"
                 />
               </Link>
             ))}

@@ -58,7 +58,7 @@ export default function ScrollFillText({ text, className = "" }: ScrollFillTextP
             key={index}
             className="transition-colors duration-150"
             style={{
-              color: isFilled ? "#575757" : "#d1d5db",
+              color: isFilled ? "#1C39BB" : "#d1d5db",
             }}
           >
             {char}

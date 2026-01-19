@@ -88,26 +88,25 @@ export default function FeaturedSection() {
 
             {/* Right - Rotating Image */}
             <div className="aspect-[4/3] bg-white/10 rounded-2xl overflow-hidden relative">
-              {visibleItems.map((event, i) => (
-                  <div
-                    key={`${currentIndex}-${event.slug}`}
-                    className={`absolute inset-0 transition-opacity duration-500 ${
-                      i === 0 ? "opacity-100" : "opacity-0"
-                    }`}
-                  >
-                    <Image
-                      src={event.image}
-                      alt={event.title}
-                      fill
-                      className="object-cover"
-                    />
-                    {/* Gradient overlay with event name */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <p className="text-white/60 text-sm font-mono uppercase tracking-wider">{event.date}</p>
-                      <h3 className="text-white text-xl font-medium mt-1">{event.title}</h3>
-                    </div>
+              {dinnerSeries.map((event, i) => (
+                <div
+                  key={event.slug}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    i === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                  }`}
+                >
+                  <Image
+                    src={event.image}
+                    alt={event.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-white/60 text-sm font-mono uppercase tracking-wider">{event.date}</p>
+                    <h3 className="text-white text-xl font-medium mt-1">{event.title}</h3>
                   </div>
+                </div>
               ))}
             </div>
           </div>

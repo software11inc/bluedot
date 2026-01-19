@@ -133,7 +133,7 @@ export default function Advisors() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-12">
         <ScrollFillText
           text="Working alongside a deep network of Fintech Specialists."
-          className="text-4xl md:text-5xl font-sans max-w-2xl"
+          className="text-4xl md:text-5xl font-display max-w-2xl"
         />
         <a href="/team#advisors" className="inline-flex items-center gap-2 mt-6 text-[#1C39BB] font-sans font-medium hover:opacity-80 transition-opacity">
           Our Advisors
@@ -181,7 +181,6 @@ export default function Advisors() {
                 )}
               </div>
               <h3 className="font-sans font-medium text-[#575757] text-sm group-hover:text-[#1C39BB] transition-colors">{advisor.name}</h3>
-              <p className="font-sans text-[#575757]/60 text-xs">{advisor.title}</p>
             </div>
           ))}
           {/* Duplicate for seamless loop */}
@@ -209,7 +208,6 @@ export default function Advisors() {
                 )}
               </div>
               <h3 className="font-sans font-medium text-[#575757] text-sm group-hover:text-[#1C39BB] transition-colors">{advisor.name}</h3>
-              <p className="font-sans text-[#575757]/60 text-xs">{advisor.title}</p>
             </div>
           ))}
           </div>

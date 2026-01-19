@@ -39,11 +39,11 @@ export default function Hero() {
               </div>
 
               {/* Bottom left label */}
-              <div className="absolute bottom-20 md:bottom-24 left-8 md:left-12">
-                <span className="font-mono text-sm md:text-base text-white/60 tracking-wider uppercase">
+              <div className="hidden md:block absolute bottom-24 left-12">
+                <span className="font-mono text-base text-white/60 tracking-wider uppercase">
                   00 Sub-Sector Specialists
                 </span>
-                <div className="absolute left-0 top-full mt-2 h-[1px] bg-white/40 w-[calc(100%+2rem)] md:w-[calc(100%+4rem)] -ml-8 md:-ml-12" />
+                <div className="absolute left-0 top-full mt-2 h-[1px] bg-white/40 w-[calc(100%+4rem)] -ml-12" />
               </div>
 
               {/* Right column */}
