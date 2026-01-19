@@ -13,7 +13,7 @@ import { advisors, Advisor } from "@/data/advisors";
 import sahejSuri from "@/app/assets/team/sahej_suri.png";
 import aaronJatana from "@/app/assets/Aaron_Jatana.png";
 import aaronVermut from "@/app/assets/team/Aaron_Vermut.png";
-import peterRenton from "@/app/assets/team/Peter Renton.jpeg";
+import peterRenton from "@/app/assets/peter-renton.png";
 import rachaelLee from "@/app/assets/team/Rachael_Lee.png";
 
 // Import team logos
@@ -66,7 +66,7 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
   {
     name: "Peter Renton",
     title: "Principal",
-    bio: "Bio text goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    bio: "Peter is the CEO of Renton & Co, LLC, a consulting firm specializing in fintech media, events and thought leadership. He was formerly the co-founder and chairman of Fintech Nexus, a fintech media and events company that produced 31 large-scale events worldwide. The events business was sold to Fintech Meetup in 2023 and the media business was sold to COMMAND, a PR firm, in 2024.\n\nSince July 2024, Peter has been an independent fintech media and events consultant, working with select fintech startups and helping to produce 5+ small events a year. Peter has been writing about fintech since 2010, with over 2,500 articles published. He is the author and creator of the Fintech One-on-One Podcast, the first and longest-running fintech interview series, with almost 600 episodes.\n\nOver the last decade, Peter has also conducted more than 750 live interviews and panel discussions and produced over 1,800 fintech newsletters.",
     image: peterRenton,
   },
 ];
@@ -243,8 +243,8 @@ export default function TeamPage() {
                         key={index}
                         className={`transition-all duration-500 ${
                           index === activeIndex
-                            ? "opacity-100 translate-y-0"
-                            : "opacity-0 translate-y-8 absolute inset-0"
+                            ? "opacity-100 translate-y-0 pointer-events-auto"
+                            : "opacity-0 translate-y-8 absolute inset-0 pointer-events-none"
                         }`}
                       >
                         <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-2">
@@ -290,7 +290,7 @@ export default function TeamPage() {
                 </div>
 
                 {/* Right - Photo */}
-                <div className="h-full">
+                <div className="h-full bg-gray-50">
                   <div className="relative w-full h-full">
                     {teamMembers.map((member, index) => (
                       <div
