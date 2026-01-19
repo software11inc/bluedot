@@ -1,11 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/app/assets/blue-dot-logo.svg";
+import VerticalDotsAnimated from "./VerticalDotsAnimated";
+import DotsClusterAnimated from "./DotsClusterAnimated";
+import DotsRowAnimated from "./DotsRowAnimated";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1C39BB] py-16">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <footer className="bg-[#1C39BB] py-16 relative overflow-hidden">
+      {/* Vertical dots decoration - top right */}
+      <div className="absolute top-8 right-8 md:right-16 opacity-60">
+        <VerticalDotsAnimated className="h-32 md:h-40 w-auto" inverted />
+      </div>
+
+      {/* Dot cluster - bottom left */}
+      <div className="hidden md:block absolute bottom-12 left-12 opacity-40">
+        <DotsClusterAnimated className="w-28 h-auto" inverted />
+      </div>
+
+      {/* Dot row - top left */}
+      <div className="hidden md:block absolute top-12 left-1/3 opacity-30">
+        <DotsRowAnimated className="w-24 h-auto" inverted />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
         <div className="grid md:grid-cols-2 gap-12 md:gap-24">
           {/* Left - Logo */}
           <div>

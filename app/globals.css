@@ -122,6 +122,19 @@ html {
   animation: dot-pulse 2s ease-in-out infinite;
 }
 
+@keyframes dot-wave {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-dot-wave {
+  animation: dot-wave 2s ease-in-out infinite;
+}
+
 @keyframes circle-slide-left {
   0% {
     opacity: 0;
@@ -238,6 +251,7 @@ html {
   .animate-page-content,
   .animate-dot-pulse-delayed,
   .animate-dot-pulse,
+  .animate-dot-wave,
   .animate-logo-scroll,
   .animate-advisor-scroll,
   .animate-slide-in-right,

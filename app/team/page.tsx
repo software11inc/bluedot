@@ -11,7 +11,7 @@ import { advisors, Advisor } from "@/data/advisors";
 
 // Import team images
 import sahejSuri from "@/app/assets/team/sahej_suri.png";
-import aaronJatana from "@/app/assets/team/Aaron_Jatana.png";
+import aaronJatana from "@/app/assets/Aaron_Jatana.png";
 import aaronVermut from "@/app/assets/team/Aaron_Vermut.png";
 import peterRenton from "@/app/assets/team/Peter Renton.jpeg";
 import rachaelLee from "@/app/assets/team/Rachael_Lee.png";
