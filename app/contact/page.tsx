@@ -26,10 +26,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:hello@bluedotcapital.com"
+                      href="mailto:contact@bluedotinvestors.com"
                       className="font-sans text-lg text-[#575757] hover:text-[#1C39BB] transition-colors"
                     >
-                      hello@bluedotcapital.com
+                      contact@bluedotinvestors.com
                     </a>
                   </div>
 

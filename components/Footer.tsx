@@ -80,8 +80,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="h-[1px] bg-white/20 mt-12 mb-6" />
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <a href="mailto:contact@bluedot.com" className="text-white/60 text-sm hover:text-white/80 transition-colors">
-            contact@bluedot.com
+          <a href="mailto:contact@bluedotinvestors.com" className="text-white/60 text-sm hover:text-white/80 transition-colors">
+            contact@bluedotinvestors.com
           </a>
           <p className="text-white/60 text-sm">
             &copy; {new Date().getFullYear()} Blue Dot. All rights reserved.

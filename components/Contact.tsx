@@ -20,10 +20,10 @@ export default function Contact() {
                 Share your deck and let&apos;s explore how we can partner.
               </p>
               <a
-                href="mailto:founders@bluedot.vc"
+                href="mailto:contact@bluedotinvestors.com"
                 className="text-primary-400 hover:text-primary-300 font-medium"
               >
-                founders@bluedot.vc
+                contact@bluedotinvestors.com
               </a>
             </div>
             <div className="bg-gray-800 p-6 rounded-xl">
@@ -34,10 +34,10 @@ export default function Contact() {
                 Learn more about our fund and investment strategy.
               </p>
               <a
-                href="mailto:lp@bluedot.vc"
+                href="mailto:contact@bluedotinvestors.com"
                 className="text-primary-400 hover:text-primary-300 font-medium"
               >
-                lp@bluedot.vc
+                contact@bluedotinvestors.com
               </a>
             </div>
           </div>
