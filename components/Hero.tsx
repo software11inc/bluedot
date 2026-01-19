@@ -42,8 +42,8 @@ export default function Hero() {
             <div className="w-full h-full flex flex-col md:flex-row md:items-center justify-between gap-8 p-8 md:p-12 animate-hero-content">
               {/* Left column */}
               <div className="mt-auto md:mt-0">
-                <h1 className="font-display text-5xl md:text-7xl text-white mb-1 max-w-[280px] md:max-w-[400px]">
-                  <TypeWriter text="Fintech Secondaries" delay={60} startDelay={2000} />
+                <h1 className="font-display text-5xl md:text-7xl mb-1 max-w-[280px] md:max-w-[400px]">
+                  <TypeWriter text="Fintech Secondaries" delay={60} startDelay={2000} baseColor="text-white/40" activeColor="text-white" />
                 </h1>
                 <p className="text-xl md:text-2xl text-white/80">
                   And Late Stage Investing

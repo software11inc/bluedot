@@ -54,7 +54,7 @@ export default function AboutPage() {
         <section className="py-16 mb-12 bg-white min-h-[60vh] flex items-center">
           <div className="mx-auto max-w-7xl w-full px-6 lg:px-8">
             <HeroCirclesAnimated className="mb-6 w-14" />
-            <h1 className="font-display text-4xl md:text-6xl text-[#1C39BB] leading-tight mb-8 max-w-4xl">
+            <h1 className="font-display text-4xl md:text-6xl leading-tight mb-8 max-w-4xl">
               <TypeWriter
                 text="A fintech specialist investment firm focused on late-stage secondaries and special situations investing."
                 delay={30}

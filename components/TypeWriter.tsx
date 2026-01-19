@@ -6,9 +6,17 @@ interface TypeWriterProps {
   text: string;
   delay?: number;
   startDelay?: number;
+  baseColor?: string;
+  activeColor?: string;
 }
 
-export default function TypeWriter({ text, delay = 50, startDelay = 2000 }: TypeWriterProps) {
+export default function TypeWriter({
+  text,
+  delay = 50,
+  startDelay = 2000,
+  baseColor = "text-gray-300",
+  activeColor = "text-[#1C39BB]"
+}: TypeWriterProps) {
   const [displayedChars, setDisplayedChars] = useState(0);
   const [started, setStarted] = useState(false);
 
@@ -27,8 +35,8 @@ export default function TypeWriter({ text, delay = 50, startDelay = 2000 }: Type
 
   return (
     <>
-      <span>{text.slice(0, displayedChars)}</span>
-      <span className="opacity-0">{text.slice(displayedChars)}</span>
+      <span className={activeColor}>{text.slice(0, displayedChars)}</span>
+      <span className={baseColor}>{text.slice(displayedChars)}</span>
     </>
   );
 }

@@ -142,7 +142,7 @@ export default function TeamPage() {
               <div className="w-full h-full flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 md:py-12 animate-page-content">
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
-                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[380px] md:max-w-[580px]">
+                  <h1 className="font-display text-5xl md:text-7xl max-w-[380px] md:max-w-[580px]">
                     <TypeWriter text="Led by Fintech experts with deep sector expertise" delay={40} startDelay={300} />
                   </h1>
                 </div>
