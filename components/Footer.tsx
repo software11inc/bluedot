@@ -4,6 +4,7 @@ import logo from "@/app/assets/blue-dot-logo.svg";
 import VerticalDotsAnimated from "./VerticalDotsAnimated";
 import DotsClusterAnimated from "./DotsClusterAnimated";
 import DotsRowAnimated from "./DotsRowAnimated";
+import { dinnerSeries } from "@/data/dinners";
 
 export default function Footer() {
   return (
@@ -61,15 +62,15 @@ export default function Footer() {
                 Community
               </Link>
               <div className="space-y-2">
-                <Link href="/community#dinner-series" className="text-white/60 text-sm hover:text-white/80 transition-colors block">
-                  NYC Fintech Leaders
-                </Link>
-                <Link href="/community#dinner-series" className="text-white/60 text-sm hover:text-white/80 transition-colors block">
-                  SF Banking Summit
-                </Link>
-                <Link href="/community#dinner-series" className="text-white/60 text-sm hover:text-white/80 transition-colors block">
-                  Miami Payments Dinner
-                </Link>
+                {dinnerSeries.slice(0, 3).map((event) => (
+                  <Link
+                    key={event.slug}
+                    href={`/dinner-series/${event.slug}`}
+                    className="text-white/60 text-sm hover:text-white/80 transition-colors block"
+                  >
+                    {event.title}
+                  </Link>
+                ))}
               </div>
             </div>
 
