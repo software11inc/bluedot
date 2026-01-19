@@ -130,77 +130,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Advisor Network - Creative section */}
+        {/* Advisor Network section */}
         <section ref={networkRef} className="py-32 bg-white relative overflow-hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              {/* Left - Visual element */}
+            <div className="max-w-2xl">
               <div
-                className={`relative transition-all duration-1000 ${
+                className={`transition-all duration-1000 ${
                   networkVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
-                }`}
-              >
-                {/* Abstract network visualization */}
-                <div className="aspect-square relative">
-                  {/* Central dot */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-[#1C39BB] rounded-full" />
-
-                  {/* Orbiting elements */}
-                  {[...Array(8)].map((_, i) => {
-                    const angle = (i * 45) * (Math.PI / 180);
-                    const radius = 120;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-                    return (
-                      <div
-                        key={i}
-                        className={`absolute top-1/2 left-1/2 transition-all duration-1000`}
-                        style={{
-                          transform: networkVisible
-                            ? `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
-                            : "translate(-50%, -50%)",
-                          transitionDelay: `${i * 100}ms`,
-                        }}
-                      >
-                        <div className={`w-4 h-4 rounded-full ${i % 2 === 0 ? 'bg-[#1C39BB]' : 'bg-[#1C39BB]/40'}`} />
-                      </div>
-                    );
-                  })}
-
-                  {/* Outer ring elements */}
-                  {[...Array(12)].map((_, i) => {
-                    const angle = (i * 30) * (Math.PI / 180);
-                    const radius = 180;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-                    return (
-                      <div
-                        key={`outer-${i}`}
-                        className={`absolute top-1/2 left-1/2 transition-all duration-1000`}
-                        style={{
-                          transform: networkVisible
-                            ? `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
-                            : "translate(-50%, -50%)",
-                          transitionDelay: `${800 + i * 50}ms`,
-                        }}
-                      >
-                        <div className="w-2 h-2 rounded-full bg-[#1C39BB]/20" />
-                      </div>
-                    );
-                  })}
-
-                  {/* Connecting lines (decorative) */}
-                  <svg className="absolute inset-0 w-full h-full" style={{ opacity: networkVisible ? 0.1 : 0, transition: 'opacity 1s ease-out 0.5s' }}>
-                    <circle cx="50%" cy="50%" r="120" fill="none" stroke="#1C39BB" strokeWidth="1" strokeDasharray="4 4" />
-                    <circle cx="50%" cy="50%" r="180" fill="none" stroke="#1C39BB" strokeWidth="1" strokeDasharray="4 4" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Right - Content */}
-              <div
-                className={`transition-all duration-1000 delay-300 ${
-                  networkVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
                 }`}
               >
                 <span className="font-mono text-sm text-[#1C39BB] tracking-wider uppercase mb-4 block">

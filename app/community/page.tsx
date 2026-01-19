@@ -9,6 +9,7 @@ import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
 import linkArrow from "@/app/assets/link-button.svg";
 import { dinnerSeries, bentoImages } from "@/data/dinners";
+import LinksSection from "@/components/LinksSection";
 
 export default function CommunityPage() {
   const [lineVisible, setLineVisible] = useState(false);
@@ -51,7 +52,7 @@ export default function CommunityPage() {
                 {/* Bottom left label */}
                 <div className="absolute -bottom-8 md:-bottom-10 left-0">
                   <span className="font-mono text-sm md:text-base text-black tracking-wider uppercase">
-                    04 Community
+                    01 Community
                   </span>
                   <div className="absolute left-0 top-full mt-2 h-[1px] w-[calc(100%+100vw)] -ml-[100vw]">
                     <div className="absolute inset-0 bg-gray-200" />
@@ -135,7 +136,7 @@ export default function CommunityPage() {
                 className="text-sm md:text-base text-black tracking-wider uppercase"
                 style={{ fontFamily: "var(--font-cartograph)", fontWeight: 500 }}
               >
-                05 Dinner Series
+                02 Dinner Series
               </span>
               <div className="h-[1px] bg-gray-200 mt-4" />
             </div>
@@ -207,6 +208,16 @@ export default function CommunityPage() {
             </div>
           </div>
         </section>
+
+        <LinksSection
+          customLinks={[
+            { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
+            { label: "About Us", subheader: "Learn more about Blue Dot Investors", href: "/about" },
+            { label: "Research", subheader: "Insights and analysis from our team", href: "/research" },
+          ]}
+          sectionNumber="03"
+          className="pt-8 pb-24 bg-white"
+        />
       </main>
       <Footer />
     </>

@@ -56,7 +56,7 @@ export interface DinnerEvent {
 export const dinnerSeries: DinnerEvent[] = [
   {
     title: "Cross River Dinner",
-    date: "December 2024",
+    date: "December 2025",
     slug: "cross-river-summit",
     image: crossRiver7994,
     galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7998, crossRiver8001],
@@ -104,7 +104,7 @@ export const dinnerSeries: DinnerEvent[] = [
   },
   {
     title: "Bilt Dinner",
-    date: "November 2024",
+    date: "November 2025",
     slug: "bilt-rewards-dinner",
     image: bilt061,
     galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
@@ -151,7 +151,7 @@ export const dinnerSeries: DinnerEvent[] = [
   },
   {
     title: "MoneyLion Dinner",
-    date: "September 2024",
+    date: "September 2025",
     slug: "moneylion-leaders",
     image: moneylion5013,
     galleryImages: [moneylion4929, moneylion4934, moneylion4953, moneylion5019],
@@ -186,7 +186,7 @@ export const dinnerSeries: DinnerEvent[] = [
       {
         heading: "A New Chapter",
         paragraphs: [
-          "The company's trajectory took another significant turn in December 2024 when Gen Digital announced its acquisition of MoneyLion. After reaching a record 2024 revenue of $546 million with 20.4 million customers, MoneyLion entered its next chapter, one that promises expanded opportunities while maintaining its core mission of financial empowerment.",
+          "The company's trajectory took another significant turn in December 2025 when Gen Digital announced its acquisition of MoneyLion. After reaching a record 2025 revenue of $546 million with 20.4 million customers, MoneyLion entered its next chapter, one that promises expanded opportunities while maintaining its core mission of financial empowerment.",
           "For entrepreneurs in the room, Dee's journey offers a masterclass in persistence, strategic timing, and the power of building with people who genuinely care about the mission you're pursuing.",
         ],
       },
@@ -198,7 +198,7 @@ export const dinnerSeries: DinnerEvent[] = [
   },
   {
     title: "DriveWealth Dinner",
-    date: "June 2024",
+    date: "June 2025",
     slug: "drivewealth-dinner",
     image: bilt083,
     galleryImages: [bilt008, bilt011, bilt026, bilt042],

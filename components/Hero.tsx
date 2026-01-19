@@ -5,8 +5,9 @@ import splitDot from "@/app/assets/split-dot.svg";
 import logo from "@/app/assets/blue-dot-logo.svg";
 import TypeWriter from "./TypeWriter";
 import VerticalDotsAnimated from "./VerticalDotsAnimated";
-import DotsClusterAnimated from "./DotsClusterAnimated";
-import DotsRowAnimated from "./DotsRowAnimated";
+import CenterDotsAnimated from "./CenterDotsAnimated";
+import BottomLeftDotsAnimated from "./BottomLeftDotsAnimated";
+import TopLeftDotsAnimated from "./TopLeftDotsAnimated";
 
 export default function Hero() {
   return (
@@ -23,19 +24,24 @@ export default function Hero() {
               height={60}
             />
 
-            {/* Dot group decoration - top center */}
-            <div className="absolute top-8 left-1/2 -translate-x-1/2 animate-hero-content" style={{ animationDelay: '2s' }}>
+            {/* Dot group decoration - top right */}
+            <div className="absolute top-8 right-8 md:right-16 animate-hero-content" style={{ animationDelay: '2s' }}>
               <VerticalDotsAnimated className="h-40 w-auto" inverted />
             </div>
 
-            {/* Dot cluster - bottom right */}
-            <div className="hidden md:block absolute bottom-8 right-8 animate-hero-content opacity-50" style={{ animationDelay: '2.2s' }}>
-              <DotsClusterAnimated className="w-24 h-auto" inverted />
+            {/* Top left dots */}
+            <div className="hidden md:block absolute top-8 left-8 animate-hero-content" style={{ animationDelay: '2.1s' }}>
+              <TopLeftDotsAnimated className="w-28 h-auto" inverted />
             </div>
 
-            {/* Dot row - bottom left area */}
-            <div className="hidden md:block absolute bottom-32 left-8 animate-hero-content opacity-40" style={{ animationDelay: '2.4s' }}>
-              <DotsRowAnimated className="w-20 h-auto" inverted />
+            {/* Center dots */}
+            <div className="hidden md:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-hero-content" style={{ animationDelay: '2.2s' }}>
+              <CenterDotsAnimated className="w-32 h-auto" inverted />
+            </div>
+
+            {/* Bottom left dots */}
+            <div className="hidden md:block absolute -bottom-1 left-8 animate-hero-content" style={{ animationDelay: '2.4s' }}>
+              <BottomLeftDotsAnimated className="w-12 h-auto" inverted />
             </div>
 
             {/* Content inside the blue box */}

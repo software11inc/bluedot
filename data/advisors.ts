@@ -62,6 +62,7 @@ import logoTreliant from "@/app/assets/team-logos/Treliant.png";
 import logoEvercore from "@/app/assets/team-logos/Evercore.jpeg";
 import logoAllianceBernstein from "@/app/assets/team-logos/Alliance_Bernstein.png";
 import logoLiquidLP from "@/app/assets/team-logos/Liquid_LP.png";
+import logoOpenstock from "@/app/assets/team-logos/openstock-logo.webp";
 import logoTata from "@/app/assets/team-logos/tata.png";
 import logoPrincipal from "@/app/assets/team-logos/principal.png";
 import logoShinsei from "@/app/assets/team-logos/Shinsei_Bank.png";
@@ -294,7 +295,7 @@ export const advisors: Advisor[] = [
     title: "Advisor",
     image: alexSimpson,
     bio: "Alex Simpson is the co-founder and CEO of LiquidLP, building liquidity solutions for private-market investors. A South Africa-born entrepreneur with 15+ years in fintech and three exits, he also invests and advises across the ecosystem, specializing in LP loans and private-fund NAV lending for family offices and RIAs. He is a quiet achiever and deeply relationship-driven.",
-    logos: [logoLiquidLP],
+    logos: [logoOpenstock, logoLiquidLP],
     linkedin: "https://www.linkedin.com/in/alsimpson1/",
     speciality: "Liquidity",
   },

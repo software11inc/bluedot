@@ -6,6 +6,11 @@ import linkButton from "@/app/assets/link-button.svg";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
 import ScrollFillText from "./ScrollFillText";
 import { advisors, Advisor } from "@/data/advisors";
+import logoPaulHastings from "@/app/assets/team-logos/paul-hastings@logotyp.us.png";
+import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
+import logoDiscover from "@/app/assets/team-logos/Discover.png";
+import logoCapitalOne from "@/app/assets/team-logos/capital-one@logotyp.us.png";
+import logoShinsei from "@/app/assets/team-logos/Shinsei_Bank.png";
 
 export default function Advisors() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -283,12 +288,39 @@ export default function Advisors() {
                 {/* Logos */}
                 {selectedAdvisor.logos && selectedAdvisor.logos.length > 0 && (
                   <div className="mb-6">
-                    <div className="flex flex-wrap gap-8 items-center">
-                      {selectedAdvisor.logos.map((logo, i) => (
-                        <div key={i} className="h-[42px] flex items-center justify-center">
-                          <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
-                        </div>
-                      ))}
+                    <div className={`flex flex-wrap items-center ${["Ariel Boyman", "Phil Goldfeder", "Oliver Goldstein", "Sanjay Sachdev"].includes(selectedAdvisor.name) ? "gap-4" : "gap-8"}`}>
+                      {selectedAdvisor.logos.map((logo, i) => {
+                        const isArielBoyman = selectedAdvisor.name === "Ariel Boyman";
+                        const isPhilGoldfeder = selectedAdvisor.name === "Phil Goldfeder";
+                        const isPaulHastings = logo === logoPaulHastings;
+                        const isSoFi = logo === logoSoFi;
+                        const isDiscover = logo === logoDiscover;
+                        const isCapitalOne = logo === logoCapitalOne;
+                        if (isPaulHastings || isSoFi) {
+                          return (
+                            <div key={i} className="h-[42px] flex items-center justify-center">
+                              <Image src={logo} alt="" width={168} height={50} className="w-[140px] h-auto object-contain grayscale opacity-60" />
+                            </div>
+                          );
+                        }
+                        if (isCapitalOne) {
+                          return (
+                            <div key={i} className="h-[42px] flex items-center justify-center">
+                              <Image src={logo} alt="" width={168} height={50} className="w-[160px] h-auto object-contain grayscale opacity-60" />
+                            </div>
+                          );
+                        }
+                        const isOliverGoldstein = selectedAdvisor.name === "Oliver Goldstein";
+                        const isSanjay = selectedAdvisor.name === "Sanjay Sachdev";
+                        const isColinWalsh = selectedAdvisor.name === "Colin Walsh";
+                        const isShinsei = logo === logoShinsei;
+                        const height = isArielBoyman ? "h-[56px]" : isColinWalsh ? "h-[56px]" : isOliverGoldstein ? "h-[24px]" : isPhilGoldfeder ? "h-[32px]" : isDiscover ? "h-[28px]" : (isSanjay || isShinsei) ? "h-[28px]" : "h-[42px]";
+                        return (
+                          <div key={i} className={`${height} flex items-center justify-center`}>
+                            <Image src={logo} alt="" width={168} height={50} className={`${height} w-auto object-contain grayscale opacity-60`} />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}

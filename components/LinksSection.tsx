@@ -7,7 +7,13 @@ import linkArrow from "@/app/assets/link-button.svg";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
 import ScrollFillText from "./ScrollFillText";
 
-export default function LinksSection() {
+interface LinksSectionProps {
+  customLinks?: { label: string; subheader: string; href: string }[];
+  className?: string;
+  sectionNumber?: string;
+}
+
+export default function LinksSection({ customLinks, className, sectionNumber = "05" }: LinksSectionProps) {
   const [lineVisible, setLineVisible] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,19 +41,21 @@ export default function LinksSection() {
     return () => observer.disconnect();
   }, []);
 
-  const links = [
+  const defaultLinks = [
     { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
     { label: "Community", subheader: "Join our network of fintech leaders", href: "/community" },
     { label: "Research", subheader: "Insights and analysis from our team", href: "/research" },
   ];
 
+  const links = customLinks || defaultLinks;
+
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
+    <section ref={sectionRef} className={className || "py-24 bg-white"}>
       <div className={`mx-auto max-w-7xl px-6 lg:px-8 transition-opacity duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`}>
         {/* Section label and Headline */}
         <div className="mb-12 relative">
           <span className="font-mono text-sm md:text-base text-[#575757] tracking-wider uppercase">
-            05 Learn More
+            {sectionNumber} Learn More
           </span>
           <div className="relative h-[1px] mt-4 mb-8">
             <div className="absolute inset-0 bg-gray-200" />

@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/app/assets/blue-dot-logo.svg";
 import VerticalDotsAnimated from "./VerticalDotsAnimated";
-import DotsClusterAnimated from "./DotsClusterAnimated";
-import DotsRowAnimated from "./DotsRowAnimated";
+import TopLeftDotsAnimated from "./TopLeftDotsAnimated";
+import CenterDotsAnimated from "./CenterDotsAnimated";
+import BottomLeftDotsAnimated from "./BottomLeftDotsAnimated";
 import { dinnerSeries } from "@/data/dinners";
 
 export default function Footer() {
@@ -14,18 +15,19 @@ export default function Footer() {
         <VerticalDotsAnimated className="h-32 md:h-40 w-auto" inverted />
       </div>
 
-      {/* Dot cluster - bottom left */}
-      <div className="hidden md:block absolute bottom-12 left-12 opacity-40">
-        <DotsClusterAnimated className="w-28 h-auto" inverted />
+
+      {/* Center dots */}
+      <div className="hidden md:block absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60">
+        <CenterDotsAnimated className="w-32 h-auto" inverted />
       </div>
 
-      {/* Dot row - top left */}
-      <div className="hidden md:block absolute top-12 left-1/3 opacity-30">
-        <DotsRowAnimated className="w-24 h-auto" inverted />
+      {/* Bottom left dots */}
+      <div className="hidden md:block absolute -bottom-1 left-8 opacity-60">
+        <BottomLeftDotsAnimated className="w-12 h-auto" inverted />
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-24">
+        <div className="flex flex-col md:flex-row md:justify-between gap-12 md:gap-24">
           {/* Left - Logo */}
           <div>
             <Image
@@ -33,10 +35,13 @@ export default function Footer() {
               alt="Blue Dot"
               className="h-10 w-auto brightness-0 invert"
             />
+            <div className="hidden md:block mt-8 opacity-60">
+              <TopLeftDotsAnimated className="w-28 h-auto" inverted />
+            </div>
           </div>
 
           {/* Right - Navigation Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-[auto_auto_auto] gap-8 md:gap-12">
             <div>
               <Link href="/about" className="text-white font-medium hover:text-white/80 transition-colors">
                 About
@@ -66,7 +71,7 @@ export default function Footer() {
                   <Link
                     key={event.slug}
                     href={`/dinner-series/${event.slug}`}
-                    className="text-white/60 text-sm hover:text-white/80 transition-colors block"
+                    className="text-white/60 text-sm hover:text-white/80 transition-colors block whitespace-nowrap"
                   >
                     {event.title}
                   </Link>

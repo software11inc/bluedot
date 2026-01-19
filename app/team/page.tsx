@@ -18,6 +18,7 @@ import rachaelLee from "@/app/assets/team/Rachael_Lee.png";
 // Import team logos
 import logoQED from "@/app/assets/team-logos/qed.jpeg";
 import logoJPM from "@/app/assets/team-logos/JPM_logo_2008_DIGITAL_B_Black.png";
+import logoTPG from "@/app/assets/team-logos/TPG_Capital_logo.svg.png";
 import logoProsper from "@/app/assets/team-logos/Prosper.png";
 import logoRobinhood from "@/app/assets/team-logos/Robinhood.png";
 import logoWellsFargo from "@/app/assets/team-logos/Wells_Fargo.png";
@@ -27,6 +28,11 @@ import logoEarnest from "@/app/assets/team-logos/earnest.png";
 import logoStanford from "@/app/assets/team-logos/Stanford.jpeg";
 import logoWellsGroup from "@/app/assets/team-logos/Wells_group.png";
 import logoKPMG from "@/app/assets/team-logos/KPMG.png";
+import logoPaulHastings from "@/app/assets/team-logos/paul-hastings@logotyp.us.png";
+import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
+import logoDiscover from "@/app/assets/team-logos/Discover.png";
+import logoCapitalOne from "@/app/assets/team-logos/capital-one@logotyp.us.png";
+import logoShinsei from "@/app/assets/team-logos/Shinsei_Bank.png";
 
 // Team member data
 const teamMembers: { name: string; title: string; bio: string; image: StaticImageData; linkedin?: string; logos?: StaticImageData[] }[] = [
@@ -36,12 +42,12 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
     bio: "Sahej is the Founder and Managing Partner of Blue Dot Investors. Previously, Sahej worked at QED Investors, a fintech specialist fund where he supported the firm's founder, Nigel Morris. Before QED, he was an investment professional at TPG, where he focused on late-stage growth equity investments in fintech. Sahej started his career at J.P. Morgan in the Financial Institutions Group.\n\nSahej has spent his entire career at the intersection of financial services and technology, primarily focused on growth equity and late-stage businesses. Beyond investing, he is passionate about fintech's role in improving financial health and reducing inequality.\n\nSelect current and previous investments & portfolio company coverage include: Albert, April, ClearScore, CoverDash, Current, DriveWealth, Forage, Kraken, Mission Lane, Varo and xpertSea.\n\nOutside of work, Sahej enjoys traveling, meditation & spirituality, and the Brooklyn Nets. He lives in New York.",
     image: sahejSuri,
     linkedin: "https://www.linkedin.com/in/sahejsuri/",
-    logos: [logoQED, logoJPM],
+    logos: [logoQED, logoTPG, logoJPM],
   },
   {
     name: "Aaron Vermut",
     title: "Operating Partner",
-    bio: "Aaron is an Operating Partner at Blue Dot Investors. Aaron was CEO of Prosper Marketplace, guiding the company through a period of rapid growth and operational transformation. Before that, he co-founded Merlin Securities, an early fintech platform providing technology, trading, and operational solutions to hedge funds. Merlin was acquired by Wells Fargo, where Aaron became Managing Director and head of Prime Services, leading the integration into Wells Fargo Securities. Earlier in his career, Aaron invested in software and infrastructure companies at New Enterprise Associates. Aaron serves as a Senior Consultant to Robinhood.\n\nOutside of work, Aaron is an avid cyclist and skier, a lifelong science-fiction reader, and a fluent German speaker. He lives in Kelly, Wyoming, with his family.",
+    bio: "Aaron is an Operating Partner at Blue Dot Investors. Aaron was CEO of Prosper Marketplace, guiding the company through a period of rapid growth and operational transformation. Before that, he co-founded Merlin Securities, an early fintech platform providing technology, trading, and operational solutions to hedge funds. Merlin was acquired by Wells Fargo, where Aaron became Managing Director and head of Prime Services, leading the integration into Wells Fargo Securities. Earlier in his career, Aaron invested in software and infrastructure companies at New Enterprise Associates. Aaron served as a senior consultant to Robinhood.\n\nOutside of work, Aaron is an avid cyclist and skier, a lifelong science-fiction reader, and a fluent German speaker. He lives in Kelly, Wyoming, with his family.",
     image: aaronVermut,
     linkedin: "https://www.linkedin.com/in/vermut/",
     logos: [logoProsper, logoRobinhood, logoWellsFargo, logoNEA],
@@ -52,7 +58,7 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
     bio: "Rachael is Chief of Staff at Blue Dot Investors. In her role, she works closely with the team on execution, internal systems, and strategic initiatives. She brings operating experience from Earnest, Box, and Alchemist Accelerator. She holds a BA in Political Science and an MA in Media & Technology from Stanford.",
     image: rachaelLee,
     linkedin: "https://www.linkedin.com/in/rachael-lee-455786107/",
-    logos: [logoBox, logoEarnest, logoStanford],
+    logos: [logoEarnest, logoBox, logoStanford],
   },
   {
     name: "Aaron Jatana",
@@ -259,12 +265,32 @@ export default function TeamPage() {
                         {/* Logos */}
                         {member.logos && member.logos.length > 0 && (
                           <div className="mt-6">
-                            <div className="flex flex-wrap gap-8 items-center">
-                              {member.logos.map((logo, logoIndex) => (
-                                <div key={logoIndex} className="h-[42px] flex items-center justify-center">
-                                  <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
-                                </div>
-                              ))}
+                            <div className={`flex flex-wrap items-center ${member.name === "James Peterson" ? "gap-4" : "gap-8"}`}>
+                              {member.logos.map((logo, logoIndex) => {
+                                const isRobinhood = logo === logoRobinhood;
+                                const isCapitalOne = logo === logoCapitalOne;
+                                if (isCapitalOne) {
+                                  return (
+                                    <div key={logoIndex} className="h-[42px] flex items-center justify-center">
+                                      <Image src={logo} alt="" width={168} height={50} className="w-[160px] h-auto object-contain grayscale opacity-60" />
+                                    </div>
+                                  );
+                                }
+                                return (
+                                  <div key={logoIndex} className="h-[42px] flex items-center justify-center">
+                                    <Image
+                                      src={logo}
+                                      alt=""
+                                      width={168}
+                                      height={50}
+                                      className={isRobinhood
+                                        ? "w-[120px] h-auto object-contain grayscale opacity-60"
+                                        : "h-[42px] w-auto object-contain grayscale opacity-60"
+                                      }
+                                    />
+                                  </div>
+                                );
+                              })}
                             </div>
                           </div>
                         )}
@@ -433,12 +459,39 @@ export default function TeamPage() {
                 {/* Logos */}
                 {selectedAdvisor.logos && selectedAdvisor.logos.length > 0 && (
                   <div className="mb-6">
-                    <div className="flex flex-wrap gap-8 items-center">
-                      {selectedAdvisor.logos.map((logo, i) => (
-                        <div key={i} className="h-[42px] flex items-center justify-center">
-                          <Image src={logo} alt="" width={168} height={50} className="h-[42px] w-auto object-contain grayscale opacity-60" />
-                        </div>
-                      ))}
+                    <div className={`flex flex-wrap items-center ${["Ariel Boyman", "Phil Goldfeder", "Oliver Goldstein", "Sanjay Sachdev"].includes(selectedAdvisor.name) ? "gap-4" : "gap-8"}`}>
+                      {selectedAdvisor.logos.map((logo, i) => {
+                        const isArielBoyman = selectedAdvisor.name === "Ariel Boyman";
+                        const isPhilGoldfeder = selectedAdvisor.name === "Phil Goldfeder";
+                        const isOliverGoldstein = selectedAdvisor.name === "Oliver Goldstein";
+                        const isPaulHastings = logo === logoPaulHastings;
+                        const isSoFi = logo === logoSoFi;
+                        const isDiscover = logo === logoDiscover;
+                        const isCapitalOne = logo === logoCapitalOne;
+                        if (isPaulHastings || isSoFi) {
+                          return (
+                            <div key={i} className="h-[42px] flex items-center justify-center">
+                              <Image src={logo} alt="" width={168} height={50} className="w-[140px] h-auto object-contain grayscale opacity-60" />
+                            </div>
+                          );
+                        }
+                        if (isCapitalOne) {
+                          return (
+                            <div key={i} className="h-[42px] flex items-center justify-center">
+                              <Image src={logo} alt="" width={168} height={50} className="w-[160px] h-auto object-contain grayscale opacity-60" />
+                            </div>
+                          );
+                        }
+                        const isSanjay = selectedAdvisor.name === "Sanjay Sachdev";
+                        const isColinWalsh = selectedAdvisor.name === "Colin Walsh";
+                        const isShinsei = logo === logoShinsei;
+                        const height = isArielBoyman ? "h-[56px]" : isColinWalsh ? "h-[56px]" : isOliverGoldstein ? "h-[24px]" : isPhilGoldfeder ? "h-[32px]" : isDiscover ? "h-[28px]" : (isSanjay || isShinsei) ? "h-[28px]" : "h-[42px]";
+                        return (
+                          <div key={i} className={`${height} flex items-center justify-center`}>
+                            <Image src={logo} alt="" width={168} height={50} className={`${height} w-auto object-contain grayscale opacity-60`} />
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 )}
