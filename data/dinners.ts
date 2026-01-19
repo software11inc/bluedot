@@ -1,32 +1,32 @@
 import { StaticImageData } from "next/image";
 
 // Import dinner images - Bilt Dinner
-import bilt008 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 008.jpg";
-import bilt009 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 009.jpg";
-import bilt011 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 011.jpg";
-import bilt013 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 013.jpg";
-import bilt026 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 026.jpg";
-import bilt042 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 042.jpg";
-import bilt061 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 061.jpg";
-import bilt076 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 076.jpg";
-import bilt083 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 083.jpg";
-import bilt093 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 093.jpg";
+import bilt008 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 008.webp";
+import bilt009 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 009.webp";
+import bilt011 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 011.webp";
+import bilt013 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 013.webp";
+import bilt026 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 026.webp";
+import bilt042 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 042.webp";
+import bilt061 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 061.webp";
+import bilt076 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 076.webp";
+import bilt083 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 083.webp";
+import bilt093 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 093.webp";
 
 // Import dinner images - Cross River Dinner
-import crossRiver003 from "@/app/assets/dinners/Cross river Dinner/IMG_0003.jpg";
-import crossRiver004 from "@/app/assets/dinners/Cross river Dinner/IMG_0004.jpg";
-import crossRiver1006 from "@/app/assets/dinners/Cross river Dinner/IMG_1006.jpeg";
-import crossRiver7976 from "@/app/assets/dinners/Cross river Dinner/IMG_7976.jpg";
-import crossRiver7994 from "@/app/assets/dinners/Cross river Dinner/IMG_7994.jpg";
-import crossRiver7998 from "@/app/assets/dinners/Cross river Dinner/IMG_7998.jpeg";
-import crossRiver8001 from "@/app/assets/dinners/Cross river Dinner/IMG_8001.jpeg";
+import crossRiver003 from "@/app/assets/dinners/Cross river Dinner/IMG_0003.webp";
+import crossRiver004 from "@/app/assets/dinners/Cross river Dinner/IMG_0004.webp";
+import crossRiver1006 from "@/app/assets/dinners/Cross river Dinner/IMG_1006.webp";
+import crossRiver7976 from "@/app/assets/dinners/Cross river Dinner/IMG_7976.webp";
+import crossRiver7994 from "@/app/assets/dinners/Cross river Dinner/IMG_7994.webp";
+import crossRiver7998 from "@/app/assets/dinners/Cross river Dinner/IMG_7998.webp";
+import crossRiver8001 from "@/app/assets/dinners/Cross river Dinner/IMG_8001.webp";
 
 // Import dinner images - Moneylion Dinner
-import moneylion4929 from "@/app/assets/dinners/Moneylion Dinner/DSC04929.jpg";
-import moneylion4934 from "@/app/assets/dinners/Moneylion Dinner/DSC04934.jpg";
-import moneylion4953 from "@/app/assets/dinners/Moneylion Dinner/DSC04953.jpg";
-import moneylion5013 from "@/app/assets/dinners/Moneylion Dinner/DSC05013.jpg";
-import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.jpg";
+import moneylion4929 from "@/app/assets/dinners/Moneylion Dinner/DSC04929.webp";
+import moneylion4934 from "@/app/assets/dinners/Moneylion Dinner/DSC04934.webp";
+import moneylion4953 from "@/app/assets/dinners/Moneylion Dinner/DSC04953.webp";
+import moneylion5013 from "@/app/assets/dinners/Moneylion Dinner/DSC05013.webp";
+import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.webp";
 
 // Import logos
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
