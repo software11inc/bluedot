@@ -17,7 +17,7 @@ export default function CommunityPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLineVisible(true);
-    }, 500);
+    }, 250);
 
     return () => clearTimeout(timer);
   }, []);
@@ -128,7 +128,7 @@ export default function CommunityPage() {
 
         {/* Dinner Series section */}
         <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 animate-page-content-delayed">
             {/* Section label with line */}
             <div className="mb-6">
               <span

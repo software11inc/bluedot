@@ -96,6 +96,12 @@ html {
 }
 
 .animate-page-content {
+  animation: hero-content 0.6s ease-out 0.15s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-page-content-delayed {
   animation: hero-content 0.6s ease-out 0.3s forwards;
   opacity: 0;
   transform: translateY(30px);
