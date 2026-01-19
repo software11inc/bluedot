@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
-import TypeWriter from "@/components/TypeWriter";
 import linkArrow from "@/app/assets/link-button.svg";
 import { dinnerSeries, bentoImages } from "@/data/dinners";
 
@@ -45,7 +44,7 @@ export default function CommunityPage() {
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
                   <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[420px] md:max-w-[650px]">
-                    <TypeWriter text="Building connections across our ecosystem" delay={40} startDelay={300} />
+                    Building connections across our ecosystem
                   </h1>
                 </div>
 

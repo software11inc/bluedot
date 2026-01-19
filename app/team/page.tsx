@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import Image, { StaticImageData } from "next/image";
 import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
 import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
-import TypeWriter from "@/components/TypeWriter";
 import { advisors, Advisor } from "@/data/advisors";
 
 // Import team images
@@ -143,7 +142,7 @@ export default function TeamPage() {
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
                   <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[380px] md:max-w-[580px]">
-                    <TypeWriter text="Led by Fintech experts with deep sector expertise" delay={40} startDelay={300} />
+                    Led by Fintech experts with deep sector expertise
                   </h1>
                 </div>
 
