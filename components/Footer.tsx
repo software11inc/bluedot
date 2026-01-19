@@ -62,7 +62,7 @@ export default function Footer() {
                 Community
               </Link>
               <div className="space-y-2">
-                {dinnerSeries.slice(0, 3).map((event) => (
+                {dinnerSeries.map((event) => (
                   <Link
                     key={event.slug}
                     href={`/dinner-series/${event.slug}`}
@@ -74,13 +74,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div>
-              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors">
-                Contact
-              </Link>
             </div>
-
-          </div>
         </div>
 
         {/* Bottom bar */}

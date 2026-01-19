@@ -244,18 +244,12 @@ export default function AboutPage() {
               <p className="text-lg text-[#575757]/80 leading-relaxed mb-8">
                 Through our <span className="text-[#1C39BB] font-medium">dinner series</span> and thought leadership initiatives, we create opportunities for founders, investors, and industry leaders to connect and share insights on the future of fintech disruption.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex justify-center">
                 <Link
                   href="/community"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#1C39BB] text-white rounded-lg font-medium hover:bg-[#0f2178] transition-colors"
                 >
                   Explore Our Community
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#1C39BB] text-[#1C39BB] rounded-lg font-medium hover:bg-[#1C39BB]/5 transition-colors"
-                >
-                  Get in Touch
                 </Link>
               </div>
             </div>
