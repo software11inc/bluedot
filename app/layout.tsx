@@ -46,6 +46,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
   description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+  metadataBase: new URL("https://bluedotinvestors.com"),
   openGraph: {
     title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
     description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Blue Dot Investors",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://bluedotinvestors.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Blue Dot Investors",
@@ -65,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
     description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
-    images: ["/og-image.png"],
+    images: ["https://bluedotinvestors.com/og-image.png"],
   },
 };
 
