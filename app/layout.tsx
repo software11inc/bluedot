@@ -44,8 +44,29 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Blue Dot | Venture Fund",
-  description: "Investing in founders building the future",
+  title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
+  description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+  openGraph: {
+    title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
+    description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+    url: "https://bluedotinvestors.com",
+    siteName: "Blue Dot Investors",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Blue Dot Investors",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
+    description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
