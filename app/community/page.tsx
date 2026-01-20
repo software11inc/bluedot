@@ -213,7 +213,6 @@ export default function CommunityPage() {
           customLinks={[
             { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
             { label: "About Us", subheader: "Learn more about Blue Dot Investors", href: "/about" },
-            { label: "Research", subheader: "Insights and analysis from our team", href: "/research" },
           ]}
           sectionNumber="03"
           className="pt-8 pb-24 bg-white"
