@@ -79,6 +79,11 @@ export default function Footer() {
               </div>
             </div>
 
+            <div>
+              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors">
+                Contact Us
+              </Link>
+            </div>
             </div>
         </div>
 

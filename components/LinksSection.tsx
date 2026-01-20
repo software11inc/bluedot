@@ -66,11 +66,7 @@ export default function LinksSection({ customLinks, className, sectionNumber = "
             />
           </div>
           <ScrollFillText
-            text="Learn more about our team"
-            className="font-display text-3xl md:text-4xl lg:text-5xl"
-          />
-          <ScrollFillText
-            text="and our community"
+            text="Learn more about our team and our community"
             className="font-display text-3xl md:text-4xl lg:text-5xl"
           />
           <div className="absolute left-0 top-full mt-10">
