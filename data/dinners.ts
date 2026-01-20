@@ -13,12 +13,14 @@ import bilt093 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 093.webp";
 
 // Import dinner images - Cross River Dinner
 import crossRiver003 from "@/app/assets/dinners/Cross river Dinner/IMG_0003.webp";
-import crossRiver004 from "@/app/assets/dinners/Cross river Dinner/IMG_0004.webp";
 import crossRiver1006 from "@/app/assets/dinners/Cross river Dinner/IMG_1006.webp";
+import crossRiver7960 from "@/app/assets/dinners/Cross river Dinner/IMG_7960.webp";
 import crossRiver7976 from "@/app/assets/dinners/Cross river Dinner/IMG_7976.webp";
-import crossRiver7994 from "@/app/assets/dinners/Cross river Dinner/IMG_7994.webp";
+import crossRiver7982 from "@/app/assets/dinners/Cross river Dinner/IMG_7982.webp";
+import crossRiver7983 from "@/app/assets/dinners/Cross river Dinner/IMG_7983.webp";
 import crossRiver7998 from "@/app/assets/dinners/Cross river Dinner/IMG_7998.webp";
-import crossRiver8001 from "@/app/assets/dinners/Cross river Dinner/IMG_8001.webp";
+import crossRiver8023 from "@/app/assets/dinners/Cross river Dinner/IMG_8023.webp";
+import crossRiver8030 from "@/app/assets/dinners/Cross river Dinner/IMG_8030.webp";
 
 // Import dinner images - Moneylion Dinner
 import moneylion4869 from "@/app/assets/dinners/Moneylion Dinner/DSC04869.webp";
@@ -68,7 +70,7 @@ export const dinnerSeries: DinnerEvent[] = [
     date: "December 2025",
     slug: "cross-river-summit",
     image: crossRiver7998,
-    galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7994, crossRiver8001],
+    galleryImages: [crossRiver003, crossRiver1006, crossRiver7960, crossRiver7976, crossRiver7982, crossRiver7983, crossRiver8023, crossRiver8030],
     logo: crossRiverLogo,
     blogTitle: "Cross River Founder Gilles Gade: Banking with Heart and Purpose",
     intro: "The pioneer and arguably the most important company in fintech banking is Cross River Bank. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
