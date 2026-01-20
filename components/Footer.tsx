@@ -41,13 +41,7 @@ export default function Footer() {
           </div>
 
           {/* Right - Navigation Links */}
-          <div className="grid grid-cols-2 md:grid-cols-[auto_auto_auto] gap-8 md:gap-12">
-            <div>
-              <Link href="/about" className="text-white font-medium hover:text-white/80 transition-colors">
-                About
-              </Link>
-            </div>
-
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
             <div>
               <Link href="/team" className="text-white font-medium hover:text-white/80 transition-colors block mb-3">
                 Team
@@ -79,12 +73,15 @@ export default function Footer() {
               </div>
             </div>
 
-            <div>
-              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors">
+            <div className="space-y-3">
+              <Link href="/about" className="text-white font-medium hover:text-white/80 transition-colors block">
+                About
+              </Link>
+              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors block">
                 Contact Us
               </Link>
             </div>
-            </div>
+          </div>
         </div>
 
         {/* Bottom bar */}

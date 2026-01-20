@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import linkArrow from "@/app/assets/link-button.svg";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
+import horizontalDots from "@/app/assets/dot-group-hero-horizontal.svg";
 import ScrollFillText from "./ScrollFillText";
 
 interface LinksSectionProps {
@@ -67,10 +68,11 @@ export default function LinksSection({ customLinks, className, sectionNumber = "
           </div>
           <ScrollFillText
             text="Learn more about our team and our community"
-            className="font-display text-3xl md:text-4xl lg:text-5xl"
+            className="font-display text-3xl md:text-4xl lg:text-5xl md:max-w-2xl"
           />
           <div className="absolute left-0 top-full mt-10">
-            <Image src={verticalDots} alt="" className="h-36 w-auto" />
+            <Image src={horizontalDots} alt="" className="md:hidden w-24 h-auto" />
+            <Image src={verticalDots} alt="" className="hidden md:block h-36 w-auto" />
           </div>
         </div>
 

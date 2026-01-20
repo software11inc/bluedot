@@ -86,12 +86,21 @@ export default function TeamPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedAdvisor, setSelectedAdvisor] = useState<Advisor | null>(null);
   const [selectedTeamMember, setSelectedTeamMember] = useState<TeamMember | null>(null);
+  const [teamSectionVisible, setTeamSectionVisible] = useState(false);
   const teamSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLineVisible(true);
     }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTeamSectionVisible(true);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -180,7 +189,11 @@ export default function TeamPage() {
         </section>
 
         {/* Team members - Mobile cards */}
-        <section className="md:hidden py-12 bg-white">
+        <section
+          className={`md:hidden py-12 bg-white transition-all duration-700 ${
+            teamSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
+        >
           <div className="mx-auto max-w-7xl px-6">
             <div className="flex flex-col gap-8">
               {teamMembers.map((member, index) => (
@@ -236,7 +249,9 @@ export default function TeamPage() {
         {/* Team members - Desktop scroll triggered */}
         <section
           ref={teamSectionRef}
-          className="relative bg-white hidden md:block"
+          className={`relative bg-white hidden md:block transition-all duration-700 ${
+            teamSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
           style={{ height: `${teamMembers.length * 100}vh` }}
         >
           <div className="sticky top-0 h-screen flex items-center">

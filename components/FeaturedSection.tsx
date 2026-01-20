@@ -9,7 +9,10 @@ export default function FeaturedSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const mobileCardRef = useRef<HTMLAnchorElement>(null);
+  const [cardHeight, setCardHeight] = useState(0);
 
   // Fade in on scroll, reset when scrolled above viewport
   useEffect(() => {
@@ -33,26 +36,53 @@ export default function FeaturedSection() {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-rotate every 5 seconds (slowed down)
+  // Measure card height on mount and when visible
+  useEffect(() => {
+    const measure = () => {
+      if (mobileCardRef.current) {
+        setCardHeight(mobileCardRef.current.offsetHeight);
+      }
+    };
+    measure();
+    // Re-measure after a short delay to ensure content is rendered
+    const timer = setTimeout(measure, 100);
+    return () => clearTimeout(timer);
+  }, [isVisible]);
+
+  // Auto-rotate every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
-      // Small delay to let exit animation start
+      // After animation completes, instantly reset position and update index
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 3) % dinnerSeries.length);
-        // Reset animation state after transition
-        setTimeout(() => setIsAnimating(false), 500);
-      }, 100);
+        setIsResetting(true);
+        setIsAnimating(false);
+        setCurrentIndex((prev) => (prev + 1) % dinnerSeries.length);
+        // Re-enable transitions after the reset
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setIsResetting(false);
+          });
+        });
+      }, 500);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Get current 3 items to display
+  // Get current 3 items to display (desktop)
   const visibleItems = [
     dinnerSeries[currentIndex % dinnerSeries.length],
     dinnerSeries[(currentIndex + 1) % dinnerSeries.length],
     dinnerSeries[(currentIndex + 2) % dinnerSeries.length],
+  ];
+
+  // Get 4 items for mobile vertical carousel (3 visible + 1 incoming)
+  const mobileItems = [
+    dinnerSeries[currentIndex % dinnerSeries.length],
+    dinnerSeries[(currentIndex + 1) % dinnerSeries.length],
+    dinnerSeries[(currentIndex + 2) % dinnerSeries.length],
+    dinnerSeries[(currentIndex + 3) % dinnerSeries.length],
   ];
 
   return (
@@ -111,20 +141,13 @@ export default function FeaturedSection() {
             </div>
           </div>
 
-          {/* Row 2 - Dinner Series Carousel */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 overflow-hidden">
+          {/* Row 2 - Dinner Series Carousel - Desktop */}
+          <div className="hidden md:grid md:grid-cols-3 gap-4">
             {visibleItems.map((item, i) => (
               <Link
                 key={`${currentIndex}-${i}`}
                 href={`/dinner-series/${item.slug}`}
-                className={`bg-white/10 rounded-xl p-6 block
-                  ${isAnimating
-                    ? 'opacity-0 translate-y-4 md:opacity-100 md:translate-y-0'
-                    : 'opacity-100 translate-y-0'
-                  }
-                  transition-all duration-400 ease-out
-                `}
-                style={{ transitionDelay: `${i * 75}ms` }}
+                className="bg-white/10 rounded-xl p-6 block transition-all duration-500 ease-out"
               >
                 {/* Date */}
                 <p className="text-white/60 text-sm">{item.date}</p>
@@ -151,23 +174,69 @@ export default function FeaturedSection() {
             ))}
           </div>
 
+          {/* Row 2 - Dinner Series Carousel - Mobile Vertical */}
+          <div
+            className="md:hidden overflow-hidden relative"
+            style={{ height: cardHeight > 0 ? `${(cardHeight + 16) * 3 - 16}px` : '500px' }}
+          >
+            <div
+              className={`flex flex-col gap-4 ${
+                isResetting ? '' : 'transition-transform duration-500 ease-out'
+              }`}
+              style={{
+                transform: isAnimating ? `translateY(-${cardHeight + 16}px)` : 'translateY(0)'
+              }}
+            >
+              {mobileItems.map((item, i) => (
+                <Link
+                  ref={i === 0 ? mobileCardRef : undefined}
+                  key={item.slug}
+                  href={`/dinner-series/${item.slug}`}
+                  className={`bg-white/10 rounded-xl p-6 block flex-shrink-0 ${
+                    isResetting ? '' : 'transition-opacity duration-500'
+                  } ${
+                    isAnimating && i === 0 ? 'opacity-0' : 'opacity-100'
+                  }`}
+                >
+                  {/* Date */}
+                  <p className="text-white/60 text-sm">{item.date}</p>
+
+                  {/* Line */}
+                  <div className="h-[1px] bg-white/30 my-3" />
+
+                  {/* Title */}
+                  <h3 className="text-white font-medium text-lg">{item.blogTitle || item.title}</h3>
+
+                  {/* Logo */}
+                  {item.logo && (
+                    <div className="mt-4 h-6 flex items-center">
+                      <Image
+                        src={item.logo}
+                        alt=""
+                        width={120}
+                        height={24}
+                        className="h-6 w-auto max-w-[120px] object-contain brightness-0 invert opacity-60"
+                      />
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           {/* Pagination dots */}
           <div className="flex justify-center gap-1 mt-6">
-            {Array.from({ length: Math.ceil(dinnerSeries.length / 3) }).map((_, i) => (
+            {dinnerSeries.map((_, i) => (
               <button
                 key={i}
                 onClick={() => {
-                  setIsAnimating(true);
-                  setTimeout(() => {
-                    setCurrentIndex(i * 3);
-                    setTimeout(() => setIsAnimating(false), 500);
-                  }, 100);
+                  setCurrentIndex(i);
                 }}
                 className="p-3 -m-1 touch-manipulation"
                 aria-label={`Go to slide ${i + 1}`}
               >
                 <span className={`block w-2 h-2 rounded-full transition-colors ${
-                  Math.floor(currentIndex / 3) === i ? "bg-white" : "bg-white/30"
+                  currentIndex === i ? "bg-white" : "bg-white/30"
                 }`} />
               </button>
             ))}
