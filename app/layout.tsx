@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import "./globals.css";
 
 const lyonDisplay = localFont({
@@ -77,6 +78,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-4FDLQPLBBE"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4FDLQPLBBE');
+          `}
+        </Script>
+      </head>
       <body className={`${lyonDisplay.variable} ${newGrotesk.variable} ${cartograph.variable} font-sans antialiased`}>
         {children}
       </body>
