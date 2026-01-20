@@ -73,7 +73,7 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
   {
     name: "Peter Renton",
     title: "Head of Community",
-    bio: "Peter is the CEO of Renton & Co, LLC, a consulting firm specializing in fintech media, events and thought leadership. He was formerly the co-founder and chairman of Fintech Nexus, a fintech media and events company that produced 31 large-scale events worldwide. The events business was sold to Fintech Meetup in 2023 and the media business was sold to COMMAND, a PR firm, in 2024.\n\nSince July 2024, Peter has been an independent fintech media and events consultant, working with select fintech startups and helping to produce 5+ small events a year. Peter has been writing about fintech since 2010, with over 2,500 articles published. He is the author and creator of the Fintech One-on-One Podcast, the first and longest-running fintech interview series, with almost 600 episodes.\n\nOver the last decade, Peter has also conducted more than 750 live interviews and panel discussions and produced over 1,800 fintech newsletters.",
+    bio: "Peter leads community for Blue Dot Investors.",
     image: peterRenton,
   },
 ];
