@@ -6,7 +6,9 @@ import Footer from "@/components/Footer";
 import Image, { StaticImageData } from "next/image";
 import HeroCirclesAnimated from "@/components/HeroCirclesAnimated";
 import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
-import { advisors, Advisor } from "@/data/advisors";
+import { advisors as allAdvisors, Advisor } from "@/data/advisors";
+
+const advisors = allAdvisors.filter(a => !a.hidden);
 
 // Import team images
 import sahejSuri from "@/app/assets/team/sahej_suri.png";

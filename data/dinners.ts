@@ -1,14 +1,13 @@
 import { StaticImageData } from "next/image";
 
 // Import dinner images - Bilt Dinner
+import biltMain from "@/app/assets/dinners/Bilt Dinner/main-bilt.webp";
 import bilt008 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 008.webp";
 import bilt009 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 009.webp";
 import bilt011 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 011.webp";
 import bilt013 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 013.webp";
 import bilt026 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 026.webp";
-import bilt042 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 042.webp";
 import bilt061 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 061.webp";
-import bilt076 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 076.webp";
 import bilt083 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 083.webp";
 import bilt093 from "@/app/assets/dinners/Bilt Dinner/V_Rachael Lee - 093.webp";
 
@@ -22,11 +21,21 @@ import crossRiver7998 from "@/app/assets/dinners/Cross river Dinner/IMG_7998.web
 import crossRiver8001 from "@/app/assets/dinners/Cross river Dinner/IMG_8001.webp";
 
 // Import dinner images - Moneylion Dinner
+import moneylion4869 from "@/app/assets/dinners/Moneylion Dinner/DSC04869.webp";
+import moneylion4872 from "@/app/assets/dinners/Moneylion Dinner/DSC04872.webp";
+import moneylion4884 from "@/app/assets/dinners/Moneylion Dinner/DSC04884.webp";
 import moneylion4929 from "@/app/assets/dinners/Moneylion Dinner/DSC04929.webp";
 import moneylion4934 from "@/app/assets/dinners/Moneylion Dinner/DSC04934.webp";
 import moneylion4953 from "@/app/assets/dinners/Moneylion Dinner/DSC04953.webp";
 import moneylion5013 from "@/app/assets/dinners/Moneylion Dinner/DSC05013.webp";
-import moneylion5019 from "@/app/assets/dinners/Moneylion Dinner/DSC05019.webp";
+
+// Import dinner images - DriveWealth Dinner
+import drivewealth340 from "@/app/assets/dinners/Drivewealth/DSC00340.webp";
+import drivewealth421 from "@/app/assets/dinners/Drivewealth/DSC00421.webp";
+import drivewealth473 from "@/app/assets/dinners/Drivewealth/DSC00473.webp";
+import drivewealth509 from "@/app/assets/dinners/Drivewealth/DSC00509.webp";
+import drivewealth584 from "@/app/assets/dinners/Drivewealth/DSC00584.webp";
+import drivewealth589 from "@/app/assets/dinners/Drivewealth/DSC00589.webp";
 
 // Import logos
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
@@ -58,8 +67,8 @@ export const dinnerSeries: DinnerEvent[] = [
     title: "Cross River Dinner",
     date: "December 2025",
     slug: "cross-river-summit",
-    image: crossRiver7994,
-    galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7998, crossRiver8001],
+    image: crossRiver7998,
+    galleryImages: [crossRiver003, crossRiver004, crossRiver1006, crossRiver7976, crossRiver7994, crossRiver8001],
     logo: crossRiverLogo,
     blogTitle: "Cross River Founder Gilles Gade: Banking with Heart and Purpose",
     intro: "The pioneer and arguably the most important company in fintech banking is Cross River Bank. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
@@ -106,8 +115,8 @@ export const dinnerSeries: DinnerEvent[] = [
     title: "Bilt Dinner",
     date: "November 2025",
     slug: "bilt-rewards-dinner",
-    image: bilt061,
-    galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt042, bilt076, bilt083, bilt093],
+    image: biltMain,
+    galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt083],
     logo: biltLogo,
     blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
     intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
@@ -153,8 +162,8 @@ export const dinnerSeries: DinnerEvent[] = [
     title: "MoneyLion Dinner",
     date: "September 2025",
     slug: "moneylion-leaders",
-    image: moneylion5013,
-    galleryImages: [moneylion4929, moneylion4934, moneylion4953, moneylion5019],
+    image: moneylion4953,
+    galleryImages: [moneylion4869, moneylion4872, moneylion4884, moneylion4929, moneylion4934, moneylion5013],
     logo: moneylionLogo,
     blogTitle: "MoneyLion Founder Dee Choubey: From Founding to IPO to Exit",
     intro: "It is rare for a fintech founder to take a company all the way from founder to the public markets to an acquisition, but that is the story of Dee Choubey, founder of MoneyLion. At our September dinner, Dee shared insights from over a decade building one of fintech's most successful platforms.",
@@ -200,8 +209,8 @@ export const dinnerSeries: DinnerEvent[] = [
     title: "DriveWealth Dinner",
     date: "June 2025",
     slug: "drivewealth-dinner",
-    image: bilt083,
-    galleryImages: [bilt008, bilt011, bilt026, bilt042],
+    image: drivewealth584,
+    galleryImages: [drivewealth340, drivewealth421, drivewealth473, drivewealth509, drivewealth589],
     logo: drivewealthLogo,
     blogTitle: "DriveWealth: Democratizing Investing for the World",
     intro: "Before fractional shares became table stakes, before every neobank offered investing, there was DriveWealth. Founded in 2012, DriveWealth pioneered the infrastructure that would eventually power investing for hundreds of millions of people worldwide. We hosted CEO Michael Blaugrund and COO Venu Palaparthi for an intimate dinner where they shared the journey of building the rails that democratized access to the stock market.",
@@ -249,5 +258,5 @@ export const dinnerSeries: DinnerEvent[] = [
   },
 ];
 
-// Bento box images for community page
-export const bentoImages = [bilt026, bilt042, crossRiver7976, moneylion4953];
+// Bento box images for community page (main image from each dinner)
+export const bentoImages = [moneylion4953, bilt083, crossRiver7976, moneylion4869];

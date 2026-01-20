@@ -5,7 +5,9 @@ import Image from "next/image";
 import linkButton from "@/app/assets/link-button.svg";
 import verticalDots from "@/app/assets/vertical-dots-4.svg";
 import ScrollFillText from "./ScrollFillText";
-import { advisors, Advisor } from "@/data/advisors";
+import { advisors as allAdvisors, Advisor } from "@/data/advisors";
+
+const advisors = allAdvisors.filter(a => !a.hidden);
 import logoPaulHastings from "@/app/assets/team-logos/paul-hastings@logotyp.us.png";
 import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
 import logoDiscover from "@/app/assets/team-logos/Discover.png";

@@ -104,7 +104,7 @@ export default function FeaturedSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <p className="text-white/60 text-sm font-mono uppercase tracking-wider">{event.date}</p>
-                    <h3 className="text-white text-xl font-medium mt-1">{event.title}</h3>
+                    <h3 className="text-white text-xl font-medium mt-1">{event.blogTitle || event.title}</h3>
                   </div>
                 </div>
               ))}

@@ -281,14 +281,14 @@ export default function DinnerContent({ slug }: { slug: string }) {
 
             {/* Related Posts */}
             {(() => {
-              const otherEvents = dinnerSeries.filter(e => e.slug !== slug).slice(0, 2);
+              const otherEvents = dinnerSeries.filter(e => e.slug !== slug);
               if (otherEvents.length === 0) return null;
               return (
                 <div>
                   <h3 className="font-display text-2xl text-[#575757] mb-6">
                     More from our Dinner Series
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {otherEvents.map((relatedEvent) => (
                       <a
                         key={relatedEvent.slug}

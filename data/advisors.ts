@@ -89,6 +89,7 @@ export interface Advisor {
   logos: StaticImageData[];
   linkedin: string;
   speciality: string;
+  hidden?: boolean;
 }
 
 export const advisors: Advisor[] = [
@@ -154,6 +155,7 @@ export const advisors: Advisor[] = [
     logos: [logoAFC, logoBloomberg, logoCrossRiver, logoNYState],
     linkedin: "https://www.linkedin.com/in/philgoldfeder/",
     speciality: "Regulatory",
+    hidden: true,
   },
   {
     name: "Oliver Goldstein",
@@ -163,6 +165,7 @@ export const advisors: Advisor[] = [
     logos: [logoWarburgPincus, logoPineBrook],
     linkedin: "https://www.linkedin.com/in/oliver-goldstein-97974b14/",
     speciality: "PE Investing",
+    hidden: true,
   },
   {
     name: "Princeton Graham",
@@ -208,6 +211,7 @@ export const advisors: Advisor[] = [
     logos: [logoAffirm, logoBCG, logoDiscover, logoHSBC],
     linkedin: "https://www.linkedin.com/in/bdhughes17/",
     speciality: "Identity & Fraud",
+    hidden: true,
   },
   {
     name: "Tricia Kemp",
@@ -217,6 +221,7 @@ export const advisors: Advisor[] = [
     logos: [logoOak],
     linkedin: "https://www.linkedin.com/in/patriciafkemp/",
     speciality: "Payments",
+    hidden: true,
   },
   {
     name: "Mike Lincoln",
@@ -226,6 +231,7 @@ export const advisors: Advisor[] = [
     logos: [logoCooley],
     linkedin: "https://www.linkedin.com/in/mike-lincoln-b5262/",
     speciality: "Legal",
+    hidden: true,
   },
   {
     name: "Marshall Lux",
@@ -235,6 +241,7 @@ export const advisors: Advisor[] = [
     logos: [logoMcKinsey, logoBCG, logoJPM],
     linkedin: "https://www.linkedin.com/in/marshall-lux-b05537120/",
     speciality: "Strategy",
+    hidden: true,
   },
   {
     name: "Asheet Mehta",

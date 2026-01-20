@@ -17,11 +17,11 @@ export default function AboutPage() {
   const focusRef = useRef<HTMLDivElement>(null);
 
   // Delay body text appearance until after typewriter finishes
-  // Headline: 103 chars × 30ms delay + 300ms start = ~3400ms
+  // Headline: 103 chars × 15ms delay + 200ms start = ~1750ms
   useEffect(() => {
     const timer = setTimeout(() => {
       setBodyVisible(true);
-    }, 3500);
+    }, 1800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -57,8 +57,8 @@ export default function AboutPage() {
             <h1 className="font-display text-4xl md:text-6xl text-[#1C39BB] leading-tight mb-8 max-w-4xl">
               <TypeWriter
                 text="A fintech specialist investment firm focused on late-stage secondaries and special situations investing."
-                delay={30}
-                startDelay={300}
+                delay={15}
+                startDelay={200}
               />
             </h1>
             <p
