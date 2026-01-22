@@ -8,6 +8,8 @@ import Image from "next/image";
 import heroCircles from "@/app/assets/hero-circles-color.svg";
 import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 
+const API_BASE = "https://blue-dot-api.william-b0e.workers.dev";
+
 // Type for live stock price data
 interface StockPriceData {
   symbol: string;
@@ -26,8 +28,6 @@ interface FintechMarketCap {
   name: string;
   sector: string;
   marketCap: number;
-  price: number;
-  dailyChange: number;
   color: string;
 }
 
@@ -103,6 +103,13 @@ export default function ResearchPage() {
     isDashed?: boolean;
   } | null>(null);
 
+  const treemapPrice = selectedTreemapCompany
+    ? companyDetails?.quote?.c ?? null
+    : null;
+  const treemapDailyChange = selectedTreemapCompany
+    ? companyDetails?.quote?.dp ?? null
+    : null;
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLineVisible(true);
@@ -111,47 +118,58 @@ export default function ResearchPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Fetch live stock prices
+  // Fetch all initial data in parallel for faster load
   useEffect(() => {
-    async function fetchPrices() {
+    async function fetchAllData() {
       try {
-        const res = await fetch("/api/stock-prices");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        const json = JSON.parse(text);
-        setStockPrices(json.data || []);
-      } catch (error) {
-        console.error("Error fetching stock prices:", error);
-      } finally {
+        const [pricesRes, marketCapsRes] = await Promise.allSettled([
+          fetch(`${API_BASE}/stock-prices`),
+          fetch(`${API_BASE}/fintech-marketcaps`),
+        ]);
+
+        // Handle stock prices
+        if (pricesRes.status === 'fulfilled' && pricesRes.value.ok) {
+          const json = await pricesRes.value.json();
+          console.log('Stock prices loaded:', json.data?.length);
+          setStockPrices(json.data || []);
+        } else {
+          console.error('Stock prices failed:', pricesRes);
+        }
         setLoadingPrices(false);
-      }
-    }
 
-    fetchPrices();
-
-    // Refresh every 60 seconds
-    const interval = setInterval(fetchPrices, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Fetch fintech market caps for treemap
-  useEffect(() => {
-    async function fetchMarketCaps() {
-      try {
-        const res = await fetch("/api/fintech-marketcaps");
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const text = await res.text();
-        const json = JSON.parse(text);
-        setMarketCaps(json.data || []);
-        setTotalMarketCap(json.totalMarketCap || 0);
+        // Handle market caps
+        if (marketCapsRes.status === 'fulfilled' && marketCapsRes.value.ok) {
+          const json = await marketCapsRes.value.json();
+          console.log('Market caps loaded:', json.data?.length);
+          setMarketCaps(json.data || []);
+          setTotalMarketCap(json.totalMarketCap || 0);
+        } else {
+          console.error('Market caps failed:', marketCapsRes);
+        }
+        setLoadingMarketCaps(false);
       } catch (error) {
-        console.error("Error fetching market caps:", error);
-      } finally {
+        console.error('fetchAllData error:', error);
+        setLoadingPrices(false);
         setLoadingMarketCaps(false);
       }
     }
 
-    fetchMarketCaps();
+    fetchAllData();
+
+    // Refresh prices every 2 minutes (data is cached on worker anyway)
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch(`${API_BASE}/stock-prices`);
+        if (res.ok) {
+          const json = await res.json();
+          setStockPrices(json.data || []);
+        }
+      } catch (error) {
+        console.error("Error refreshing stock prices:", error);
+      }
+    }, 120000);
+
+    return () => clearInterval(interval);
   }, []);
 
   // Fetch company details when a tombstone or treemap company is selected
@@ -165,7 +183,7 @@ export default function ResearchPage() {
     async function fetchDetails() {
       setLoadingDetails(true);
       try {
-        const res = await fetch(`/api/company-details/${symbol}`);
+        const res = await fetch(`${API_BASE}/company-details/${symbol}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const text = await res.text();
         const data = JSON.parse(text);
@@ -350,12 +368,13 @@ export default function ResearchPage() {
             </div>
 
             {/* Sector Returns Bar Chart */}
-            <div>
-              {/* Bars container - bottom aligned */}
-              <div className="flex items-end gap-2 sm:gap-3 md:gap-4 border-b border-gray-300">
+            <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0">
+              <div>
+                {/* Bars container - bottom aligned */}
+                <div className="flex w-max sm:w-full items-end gap-2 sm:gap-3 md:gap-4 border-b border-gray-300">
                 {/* CFO Stack Solutions - (3%) */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "CFO Stack Solutions", return: -3, color: "#059669", isDashed: true })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">(3%)</span>
@@ -364,7 +383,7 @@ export default function ResearchPage() {
 
                 {/* GRC - 25% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "GRC", return: 25, color: "#1C39BB" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">25%</span>
@@ -373,7 +392,7 @@ export default function ResearchPage() {
 
                 {/* Healthcare - 38% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Healthcare", return: 38, color: "#1C39BB" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">38%</span>
@@ -382,7 +401,7 @@ export default function ResearchPage() {
 
                 {/* Payments - 50% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Payments", return: 50, color: "#1C39BB" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">50%</span>
@@ -391,7 +410,7 @@ export default function ResearchPage() {
 
                 {/* S&P 500 - 54% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "S&P 500", return: 54, color: "#93C5FD", isDashed: true })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">54%</span>
@@ -400,7 +419,7 @@ export default function ResearchPage() {
 
                 {/* NASDAQ Complete - 69% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "NASDAQ Complete", return: 69, color: "#6B7280" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">69%</span>
@@ -409,7 +428,7 @@ export default function ResearchPage() {
 
                 {/* Capital Markets - 75% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Capital Markets", return: 75, color: "#F59E0B" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">75%</span>
@@ -418,7 +437,7 @@ export default function ResearchPage() {
 
                 {/* Vertical SaaS - 77% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Vertical SaaS / Embedded Finance", return: 77, color: "#6B7280" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">77%</span>
@@ -427,7 +446,7 @@ export default function ResearchPage() {
 
                 {/* Mortgage/PropTech - 80% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Mortgage / PropTech", return: 80, color: "#EAB308" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">80%</span>
@@ -436,7 +455,7 @@ export default function ResearchPage() {
 
                 {/* Banking/Lending - 193% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Banking / Lending", return: 193, color: "#2563EB" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">193%</span>
@@ -445,7 +464,7 @@ export default function ResearchPage() {
 
                 {/* Insurtech - 209% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Insurtech", return: 209, color: "#7C3AED" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">209%</span>
@@ -454,7 +473,7 @@ export default function ResearchPage() {
 
                 {/* Blockchain/Crypto - 264% */}
                 <div
-                  className="flex-1 flex flex-col items-center justify-end cursor-pointer group"
+                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
                   onClick={() => setSelectedSector({ name: "Blockchain / Crypto", return: 264, color: "#DB2777" })}
                 >
                   <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">264%</span>
@@ -463,19 +482,41 @@ export default function ResearchPage() {
               </div>
 
               {/* Labels row */}
-              <div className="flex gap-2 sm:gap-3 md:gap-4 pt-2">
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">CFO Stack<br/>Solutions</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">GRC</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Healthcare</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Payments</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">S&P 500</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">NASDAQ<br/>Complete</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Capital<br/>Markets</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Vertical SaaS/<br/>Embedded<br/>Finance</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Mortgage/<br/>PropTech</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Banking/<br/>Lending</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757]">Insurtech</span>
-                <span className="flex-1 text-[11px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">Blockchain/<br/>Crypto</span>
+              <div className="flex w-max sm:w-full gap-2 sm:gap-3 md:gap-4 pt-2">
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">CFO Stack</span>
+                  <span className="hidden sm:inline">CFO Stack<br/>Solutions</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">GRC</span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Healthcare</span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Payments</span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">S&P 500</span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">NASDAQ</span>
+                  <span className="hidden sm:inline">NASDAQ<br/>Complete</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">Capital</span>
+                  <span className="hidden sm:inline">Capital<br/>Markets</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">Vertical SaaS</span>
+                  <span className="hidden sm:inline">Vertical SaaS/<br/>Embedded<br/>Finance</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">Mortgage</span>
+                  <span className="hidden sm:inline">Mortgage/<br/>PropTech</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">Banking</span>
+                  <span className="hidden sm:inline">Banking/<br/>Lending</span>
+                </span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Insurtech</span>
+                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
+                  <span className="sm:hidden">Crypto</span>
+                  <span className="hidden sm:inline">Blockchain/<br/>Crypto</span>
+                </span>
+              </div>
               </div>
             </div>
           </div>
@@ -817,7 +858,9 @@ export default function ResearchPage() {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <p className="text-xs text-[#575757]/60 uppercase tracking-wider mb-1">Stock Price</p>
-                    <p className="text-2xl font-display text-[#1C39BB]">${selectedTreemapCompany.price.toFixed(2)}</p>
+                    <p className="text-2xl font-display text-[#1C39BB]">
+                      {treemapPrice !== null ? `$${treemapPrice.toFixed(2)}` : "—"}
+                    </p>
                   </div>
                   <div>
                     <p className="text-xs text-[#575757]/60 uppercase tracking-wider mb-1">Market Cap</p>
@@ -826,11 +869,15 @@ export default function ResearchPage() {
                 </div>
                 <div>
                   <p className="text-xs text-[#575757]/60 uppercase tracking-wider mb-1">Daily Change</p>
-                  <span className={`inline-flex items-center gap-1 text-lg font-medium ${
-                    selectedTreemapCompany.dailyChange >= 0 ? "text-green-600" : "text-red-600"
-                  }`}>
-                    {selectedTreemapCompany.dailyChange >= 0 ? "▲" : "▼"} {selectedTreemapCompany.dailyChange >= 0 ? "+" : ""}{selectedTreemapCompany.dailyChange}%
-                  </span>
+                  {treemapDailyChange !== null ? (
+                    <span className={`inline-flex items-center gap-1 text-lg font-medium ${
+                      treemapDailyChange >= 0 ? "text-green-600" : "text-red-600"
+                    }`}>
+                      {treemapDailyChange >= 0 ? "▲" : "▼"} {treemapDailyChange >= 0 ? "+" : ""}{treemapDailyChange}%
+                    </span>
+                  ) : (
+                    <span className="text-[#575757]/40">—</span>
+                  )}
                 </div>
               </div>
 

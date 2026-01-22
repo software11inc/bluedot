@@ -1,4 +1,4 @@
-import { getQuote, getCompanyProfile } from "@/lib/finnhub";
+import { getCompanyProfile } from "@/lib/finnhub";
 
 // Top public fintech companies by market cap
 const FINTECH_COMPANIES = [
@@ -59,8 +59,6 @@ export interface FintechMarketCap {
   name: string;
   sector: string;
   marketCap: number; // in billions
-  price: number;
-  dailyChange: number;
   color: string;
 }
 
@@ -95,25 +93,18 @@ export async function GET() {
     const results = await Promise.all(
       FINTECH_COMPANIES.map(async (company) => {
         try {
-          const [quote, profile] = await Promise.all([
-            getQuote(company.symbol),
-            getCompanyProfile(company.symbol).catch(() => null),
-          ]);
+          const profile = await getCompanyProfile(company.symbol).catch(() => null);
 
           const marketCap = profile?.marketCapitalization || 0;
 
-          // Skip if no valid quote data
-          if (!quote || quote.c === 0 || quote.c === null) {
-            return null;
-          }
+          // Skip if no valid market cap data
+          if (!profile || marketCap === 0) return null;
 
           return {
             symbol: company.symbol,
             name: profile?.name || company.name,
             sector: company.sector,
             marketCap: parseFloat((marketCap / 1000).toFixed(1)), // Convert to billions
-            price: quote.c || 0,
-            dailyChange: parseFloat((quote.dp || 0).toFixed(2)),
             color: getSectorColor(company.sector),
           };
         } catch (error) {

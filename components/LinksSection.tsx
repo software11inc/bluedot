@@ -45,6 +45,7 @@ export default function LinksSection({ customLinks, className, sectionNumber = "
   const defaultLinks = [
     { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
     { label: "Community", subheader: "Join our network of fintech leaders", href: "/community" },
+    { label: "Research", subheader: "Live fintech market data and insights", href: "/research" },
   ];
 
   const links = customLinks || defaultLinks;

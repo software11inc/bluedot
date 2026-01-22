@@ -8,8 +8,6 @@ interface TreemapData {
   name: string;
   sector: string;
   marketCap: number;
-  price: number;
-  dailyChange: number;
   color: string;
 }
 
@@ -111,16 +109,11 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
                 </p>
               )}
 
-              {/* Market cap and change - only show if medium or larger */}
+              {/* Market cap - only show if medium or larger */}
               {isSmall && (
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className={`text-white/80 ${isMedium ? 'text-sm' : 'text-xs'}`}>
-                    ${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}
-                  </span>
-                  <span className={`${d.dailyChange >= 0 ? 'text-green-300' : 'text-red-300'} ${isMedium ? 'text-sm' : 'text-xs'}`}>
-                    {d.dailyChange >= 0 ? '▲' : '▼'}{Math.abs(d.dailyChange).toFixed(1)}%
-                  </span>
-                </div>
+                <span className={`text-white/80 ${isMedium ? 'text-sm' : 'text-xs'}`}>
+                  ${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}
+                </span>
               )}
 
               {/* Symbol for tiny boxes */}
