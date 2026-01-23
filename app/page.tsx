@@ -6,6 +6,7 @@ import FeaturedSection from "@/components/FeaturedSection";
 import AboutPreview from "@/components/AboutPreview";
 import LinksSection from "@/components/LinksSection";
 import Footer from "@/components/Footer";
+import PrefetchResearchData from "@/components/PrefetchResearchData";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <FeaturedSection />
         <AboutPreview />
         <LinksSection />
+        <PrefetchResearchData />
       </main>
       <Footer />
     </>
