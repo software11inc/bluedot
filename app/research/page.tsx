@@ -294,13 +294,13 @@ export default function ResearchPage() {
               {/* Left - Text */}
               <div>
                 <h2 className="font-display text-3xl md:text-4xl text-[#575757] mb-6">
-                  Recent Transactions
+                  The IPO Window for Fintech has Finally Resumed
                 </h2>
                 <p className="text-[#575757]/70 leading-relaxed mb-6">
-                  Blue Dot has executed secondary transactions and growth investments across the fintech landscape, partnering with leading companies at critical inflection points.
+                  These are the most recent fintech IPOs, highlighting where public market investors are placing their bets today.
                 </p>
                 <p className="text-[#575757]/70 leading-relaxed">
-                  Our portfolio spans payments, lending, banking infrastructure, and emerging fintech verticals. Each investment reflects our deep sector expertise and commitment to supporting exceptional founders.
+                  Explore the list to see how the latest wave of fintech issuers is performing since debut.
                 </p>
               </div>
 
@@ -351,176 +351,6 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* Sector Returns Section */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-12">
-              <p className="text-sm text-[#575757]/60 mb-2 font-mono">02 Our Focus</p>
-              <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] mb-4 leading-tight">
-                Public Market Investors<br />Have Favored Certain<br />Subscribers
-              </h2>
-              <p className="text-[#575757]/70 text-lg">
-                Total Two-Year Return by Sector
-              </p>
-              <p className="text-xs text-[#575757]/40 mt-2">
-                Source: Capital IQ Data as of 10/1/2025
-              </p>
-            </div>
-
-            {/* Sector Returns Bar Chart */}
-            <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 sm:mx-0 sm:px-0">
-              <div>
-                {/* Bars container - bottom aligned */}
-                <div className="flex w-max sm:w-full items-end gap-2 sm:gap-3 md:gap-4 border-b border-gray-300">
-                {/* CFO Stack Solutions - (3%) */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "CFO Stack Solutions", return: -3, color: "#059669", isDashed: true })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">(3%)</span>
-                  <div className="w-full h-[20px] border-2 border-dashed border-[#059669] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* GRC - 25% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "GRC", return: 25, color: "#1C39BB" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">25%</span>
-                  <div className="w-full h-[32px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Healthcare - 38% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Healthcare", return: 38, color: "#1C39BB" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">38%</span>
-                  <div className="w-full h-[48px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Payments - 50% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Payments", return: 50, color: "#1C39BB" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">50%</span>
-                  <div className="w-full h-[64px] bg-[#1C39BB] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* S&P 500 - 54% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "S&P 500", return: 54, color: "#93C5FD", isDashed: true })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">54%</span>
-                  <div className="w-full h-[70px] border-2 border-dashed border-[#93C5FD] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* NASDAQ Complete - 69% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "NASDAQ Complete", return: 69, color: "#6B7280" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">69%</span>
-                  <div className="w-full h-[88px] bg-[#6B7280] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Capital Markets - 75% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Capital Markets", return: 75, color: "#F59E0B" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">75%</span>
-                  <div className="w-full h-[96px] bg-[#F59E0B] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Vertical SaaS - 77% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Vertical SaaS / Embedded Finance", return: 77, color: "#6B7280" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">77%</span>
-                  <div className="w-full h-[100px] bg-[#6B7280] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Mortgage/PropTech - 80% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Mortgage / PropTech", return: 80, color: "#EAB308" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">80%</span>
-                  <div className="w-full h-[104px] bg-[#EAB308] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Banking/Lending - 193% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Banking / Lending", return: 193, color: "#2563EB" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">193%</span>
-                  <div className="w-full h-[240px] bg-[#2563EB] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Insurtech - 209% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Insurtech", return: 209, color: "#7C3AED" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">209%</span>
-                  <div className="w-full h-[260px] bg-[#7C3AED] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-
-                {/* Blockchain/Crypto - 264% */}
-                <div
-                  className="flex-none w-16 sm:flex-1 sm:w-auto flex flex-col items-center justify-end cursor-pointer group"
-                  onClick={() => setSelectedSector({ name: "Blockchain / Crypto", return: 264, color: "#DB2777" })}
-                >
-                  <span className="text-xs sm:text-sm md:text-base font-bold text-[#575757] mb-1">264%</span>
-                  <div className="w-full h-[320px] bg-[#DB2777] rounded-sm group-hover:opacity-80 transition-opacity" />
-                </div>
-              </div>
-
-              {/* Labels row */}
-              <div className="flex w-max sm:w-full gap-2 sm:gap-3 md:gap-4 pt-2">
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">CFO Stack</span>
-                  <span className="hidden sm:inline">CFO Stack<br/>Solutions</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">GRC</span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Healthcare</span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Payments</span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">S&P 500</span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">NASDAQ</span>
-                  <span className="hidden sm:inline">NASDAQ<br/>Complete</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">Capital</span>
-                  <span className="hidden sm:inline">Capital<br/>Markets</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">Vertical SaaS</span>
-                  <span className="hidden sm:inline">Vertical SaaS/<br/>Embedded<br/>Finance</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">Mortgage</span>
-                  <span className="hidden sm:inline">Mortgage/<br/>PropTech</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">Banking</span>
-                  <span className="hidden sm:inline">Banking/<br/>Lending</span>
-                </span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757]">Insurtech</span>
-                <span className="flex-none w-16 sm:flex-1 sm:w-auto text-[10px] sm:text-xs md:text-sm text-center text-[#575757] leading-tight">
-                  <span className="sm:hidden">Crypto</span>
-                  <span className="hidden sm:inline">Blockchain/<br/>Crypto</span>
-                </span>
-              </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
       <Footer />
 
