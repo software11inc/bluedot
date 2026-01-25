@@ -39,6 +39,13 @@ export default function DinnerContent({ slug }: { slug: string }) {
 
   // Get gallery images, ensure we have enough for layout
   const gallery = event.galleryImages || [];
+  const hasLargeImage =
+    event.sections ? event.sections.length > 3 && Boolean(gallery[3]) : Boolean(gallery[3]);
+  const gridImageCount = gallery.length >= 7 ? 3 : 2;
+  const gridStartIndex = hasLargeImage ? 4 : 3;
+  const gridImages = gallery.slice(gridStartIndex, gridStartIndex + gridImageCount);
+  const gridColsClass =
+    gridImages.length >= 3 ? "grid-cols-3" : gridImages.length === 2 ? "grid-cols-2" : "grid-cols-1";
 
   return (
     <>
@@ -264,13 +271,13 @@ export default function DinnerContent({ slug }: { slug: string }) {
             )}
 
             {/* Three images in grid - use remaining gallery images */}
-            {gallery.length >= 4 && (
-              <div className={`grid gap-4 mb-12 ${gallery.length >= 7 ? 'grid-cols-3' : 'grid-cols-2'}`}>
-                {gallery.slice(gallery.length >= 7 ? 4 : 3, gallery.length >= 7 ? 7 : 5).map((img, idx) => (
+            {gridImages.length > 0 && (
+              <div className={`grid gap-4 mb-12 ${gridColsClass}`}>
+                {gridImages.map((img, idx) => (
                   <div key={idx} className="aspect-square bg-gray-100 rounded-lg overflow-hidden relative">
                     <Image
                       src={img}
-                      alt={`${event.title} - Photo ${idx + 5}`}
+                      alt={`${event.title} - Photo ${gridStartIndex + idx + 1}`}
                       fill
                       className="object-cover"
                     />

@@ -5,18 +5,18 @@ import Image, { StaticImageData } from "next/image";
 import ScrollFillText from "./ScrollFillText";
 
 // Import logo images
-import klarnaLogo from "@/app/assets/main-logos/K-logo-wikipedia.png";
+import krakenLogo from "@/app/assets/main-logos/K-logo-wikipedia.png";
 import albertLogo from "@/app/assets/main-logos/albert.png";
 import forageLogo from "@/app/assets/main-logos/forage.png";
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
 import coverdashLogo from "@/app/assets/main-logos/coverdash.png";
 
-const logos: { alt: string; image: StaticImageData }[] = [
-  { alt: "Albert", image: albertLogo },
-  { alt: "Coverdash", image: coverdashLogo },
-  { alt: "DriveWealth", image: drivewealthLogo },
-  { alt: "Forage", image: forageLogo },
-  { alt: "Klarna", image: klarnaLogo },
+const logos: { alt: string; image: StaticImageData; href: string }[] = [
+  { alt: "Albert", image: albertLogo, href: "https://albert.com/" },
+  { alt: "Coverdash", image: coverdashLogo, href: "https://www.coverdash.com/" },
+  { alt: "DriveWealth", image: drivewealthLogo, href: "https://www.drivewealth.com/" },
+  { alt: "Forage", image: forageLogo, href: "https://www.joinforage.com/" },
+  { alt: "Kraken", image: krakenLogo, href: "https://www.kraken.com/" },
 ];
 
 export default function LogoCarousel() {
@@ -155,9 +155,12 @@ export default function LogoCarousel() {
             >
               {/* First set of logos */}
               {logos.map((logo, i) => (
-                <div
+                <a
                   key={`logo-1-${i}`}
-                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group cursor-pointer"
+                  href={logo.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group"
                 >
                   <Image
                     src={logo.image}
@@ -166,13 +169,16 @@ export default function LogoCarousel() {
                     height={40}
                     className="object-contain grayscale transition-all duration-300 group-hover:brightness-0 group-hover:invert"
                   />
-                </div>
+                </a>
               ))}
               {/* Duplicate for seamless loop */}
               {logos.map((logo, i) => (
-                <div
+                <a
                   key={`logo-2-${i}`}
-                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group cursor-pointer"
+                  href={logo.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group"
                 >
                   <Image
                     src={logo.image}
@@ -181,7 +187,7 @@ export default function LogoCarousel() {
                     height={40}
                     className="object-contain grayscale transition-all duration-300 group-hover:brightness-0 group-hover:invert"
                   />
-                </div>
+                </a>
               ))}
             </div>
           </div>

@@ -13,6 +13,7 @@ import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
 import logoDiscover from "@/app/assets/team-logos/Discover.png";
 import logoCapitalOne from "@/app/assets/team-logos/capital-one@logotyp.us.png";
 import logoShinsei from "@/app/assets/team-logos/Shinsei_Bank.png";
+import logoTreliant from "@/app/assets/team-logos/Treliant.png";
 
 export default function Advisors() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -278,6 +279,19 @@ export default function Advisors() {
                       </span>
                     )}
                   </div>
+                  {selectedAdvisor.linkedin && (
+                    <a
+                      href={selectedAdvisor.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-white/80 font-mono text-xs uppercase tracking-wider mt-2 hover:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      LinkedIn
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -294,10 +308,12 @@ export default function Advisors() {
                       {selectedAdvisor.logos.map((logo, i) => {
                         const isArielBoyman = selectedAdvisor.name === "Ariel Boyman";
                         const isPhilGoldfeder = selectedAdvisor.name === "Phil Goldfeder";
+                        const isPrincetonGraham = selectedAdvisor.name === "Princeton Graham";
                         const isPaulHastings = logo === logoPaulHastings;
                         const isSoFi = logo === logoSoFi;
                         const isDiscover = logo === logoDiscover;
                         const isCapitalOne = logo === logoCapitalOne;
+                        const isTreliant = logo === logoTreliant;
                         if (isPaulHastings || isSoFi) {
                           return (
                             <div key={i} className="h-[42px] flex items-center justify-center">
@@ -316,7 +332,7 @@ export default function Advisors() {
                         const isSanjay = selectedAdvisor.name === "Sanjay Sachdev";
                         const isColinWalsh = selectedAdvisor.name === "Colin Walsh";
                         const isShinsei = logo === logoShinsei;
-                        const height = isArielBoyman ? "h-[56px]" : isColinWalsh ? "h-[56px]" : isOliverGoldstein ? "h-[24px]" : isPhilGoldfeder ? "h-[32px]" : isDiscover ? "h-[28px]" : (isSanjay || isShinsei) ? "h-[28px]" : "h-[42px]";
+                        const height = isArielBoyman ? "h-[56px]" : isColinWalsh ? "h-[56px]" : isOliverGoldstein ? "h-[24px]" : isPhilGoldfeder ? "h-[32px]" : isDiscover ? "h-[28px]" : (isSanjay || isShinsei) ? "h-[28px]" : (isPrincetonGraham && isTreliant) ? "h-[28px]" : "h-[42px]";
                         return (
                           <div key={i} className={`${height} flex items-center justify-center`}>
                             <Image src={logo} alt="" width={168} height={50} className={`${height} w-auto object-contain grayscale opacity-60`} />
@@ -327,20 +343,6 @@ export default function Advisors() {
                   </div>
                 )}
 
-                {/* LinkedIn */}
-                {selectedAdvisor.linkedin && (
-                  <a
-                    href={selectedAdvisor.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                  </a>
-                )}
               </div>
             </div>
           )}

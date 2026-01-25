@@ -46,11 +46,18 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
-  description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+  description: "Blue Dot Investors is a fintech specialist investment firm focused on secondary transactions, special situations and late stage investing",
   metadataBase: new URL("https://bluedotinvestors.com"),
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
-    description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+    description: "Blue Dot Investors is a fintech specialist investment firm focused on secondary transactions, special situations and late stage investing",
     url: "https://bluedotinvestors.com",
     siteName: "Blue Dot Investors",
     images: [
@@ -66,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Blue Dot Investors | Fintech Secondaries and Late Stage Investing",
-    description: "A fintech specialist investment firm focused on late-stage secondaries and special situations investing.",
+    description: "Blue Dot Investors is a fintech specialist investment firm focused on secondary transactions, special situations and late stage investing",
     images: ["https://bluedotinvestors.com/og-image.png?v=3"],
   },
 };

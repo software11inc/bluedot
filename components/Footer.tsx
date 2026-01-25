@@ -5,7 +5,6 @@ import VerticalDotsAnimated from "./VerticalDotsAnimated";
 import TopLeftDotsAnimated from "./TopLeftDotsAnimated";
 import CenterDotsAnimated from "./CenterDotsAnimated";
 import BottomLeftDotsAnimated from "./BottomLeftDotsAnimated";
-import { dinnerSeries } from "@/data/dinners";
 
 export default function Footer() {
   return (
@@ -41,43 +40,21 @@ export default function Footer() {
           </div>
 
           {/* Right - Navigation Links */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-            <div>
-              <Link href="/team" className="text-white font-medium hover:text-white/80 transition-colors block mb-3">
-                Team
-              </Link>
-              <div className="space-y-2">
-                <Link href="/team#leadership" className="text-white/60 text-sm hover:text-white/80 transition-colors block">
-                  Leadership
-                </Link>
-                <Link href="/team#advisors" className="text-white/60 text-sm hover:text-white/80 transition-colors block">
-                  Advisors
-                </Link>
-              </div>
-            </div>
-
-            <div>
-              <Link href="/community" className="text-white font-medium hover:text-white/80 transition-colors block mb-3">
-                Community
-              </Link>
-              <div className="space-y-2">
-                {dinnerSeries.map((event) => (
-                  <Link
-                    key={event.slug}
-                    href={`/dinner-series/${event.slug}`}
-                    className="text-white/60 text-sm hover:text-white/80 transition-colors block whitespace-nowrap"
-                  >
-                    {event.title}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <Link href="/about" className="text-white font-medium hover:text-white/80 transition-colors block">
+          <div className="md:ml-auto">
+            <div className="flex flex-col items-start gap-3">
+              <Link href="/about" className="text-white font-medium hover:text-white/80 transition-colors">
                 About
               </Link>
-              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors block">
+              <Link href="/team" className="text-white font-medium hover:text-white/80 transition-colors">
+                Team
+              </Link>
+              <Link href="/community" className="text-white font-medium hover:text-white/80 transition-colors">
+                Community
+              </Link>
+              <Link href="/research" className="text-white font-medium hover:text-white/80 transition-colors">
+                Research
+              </Link>
+              <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors">
                 Contact Us
               </Link>
             </div>
@@ -86,10 +63,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="h-[1px] bg-white/20 mt-12 mb-6" />
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <a href="mailto:contact@bluedotinvestors.com" className="text-white/60 text-sm hover:text-white/80 transition-colors">
-            contact@bluedotinvestors.com
-          </a>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4">
           <p className="text-white/60 text-sm">
             &copy; {new Date().getFullYear()} Blue Dot. All rights reserved.
           </p>

@@ -73,7 +73,7 @@ export const dinnerSeries: DinnerEvent[] = [
     galleryImages: [crossRiver003, crossRiver1006, crossRiver7960, crossRiver7976, crossRiver7982, crossRiver7983, crossRiver8023, crossRiver8030],
     logo: crossRiverLogo,
     blogTitle: "Cross River Founder Gilles Gade: Banking with Heart and Purpose",
-    intro: "The pioneer and arguably the most important company in fintech banking is Cross River Bank. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
+    intro: "Gilles Gade is a banker who truly understands fintech as Cross River Bank was one of the first banks to go deep in bank-fintech partnerships. Blue Dot Investors hosted an intimate dinner with Gilles Gade, the Founder and CEO of Cross River Bank. For those who follow fintech and embedded banking, Cross River needs little introduction. It's the technology-driven infrastructure powering some of the industry's most innovative companies. But spending an evening with Gilles offered something far more valuable than a discussion of APIs and embedded finance: a window into the philosophy and values that have guided Cross River since its founding.",
     sections: [
       {
         heading: "An Unconventional Path",
@@ -121,7 +121,7 @@ export const dinnerSeries: DinnerEvent[] = [
     galleryImages: [bilt008, bilt009, bilt011, bilt013, bilt026, bilt083],
     logo: biltLogo,
     blogTitle: "Bilt Founder Ankur Jain: How to Build an Enduring Brand",
-    intro: "There is no company in fintech today that is generating more excitement than BILT. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
+    intro: "To scale a consumer brand to millions of customers is challenging in any market but to do so while creating a new category takes a unique approach. This is the story of Bilt. They have done something that many considered impossible: build a financial ecosystem based around rewards for renters. Bilt CEO and Founder, Ankur Jain, joined us for an intimate dinner sharing insights about building one of fintech's most audacious ventures.",
     sections: [
       {
         heading: "Born to Build",

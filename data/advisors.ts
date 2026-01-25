@@ -1,30 +1,31 @@
 import { StaticImageData } from "next/image";
 
 // Import advisor images
-import alexSimpson from "@/app/assets/advisors/Alex_Simpson.png";
-import arielBoyman from "@/app/assets/advisors/Ariel_Boyman.png";
-import arjunArora from "@/app/assets/advisors/Arjun_Arora.png";
-import asheetMehta from "@/app/assets/advisors/Asheet_Mehta.png";
-import ashwinShirvaikar from "@/app/assets/advisors/Ashwin_Shirvaikar.png";
-import brianHughes from "@/app/assets/advisors/Brian_Hughes.png";
-import ciaraBurnham from "@/app/assets/advisors/Ciara_Burnham.png";
-import colinWalsh from "@/app/assets/advisors/Colin_Walsh.png";
-import davidBoehmer from "@/app/assets/advisors/David_Boehmer.png";
-import harveyHudes from "@/app/assets/advisors/Harvey_Hudes.png";
-import jamesPeterson from "@/app/assets/advisors/James_Peterson.png";
-import jeffHolland from "@/app/assets/advisors/Jeff_Holland.png";
-import kirkChapman from "@/app/assets/advisors/Kirk_Chapman.png";
-import marshallLux from "@/app/assets/advisors/Marshall_Lux.png";
-import michaelHeller from "@/app/assets/advisors/Michael_Heller.png";
-import mikeLincoln from "@/app/assets/advisors/Mike_Lincoln.png";
-import milesReidy from "@/app/assets/advisors/Miles_Reidy.png";
-import oliverGoldstein from "@/app/assets/advisors/Oliver_Goldstein.png";
-import philGoldfeder from "@/app/assets/advisors/Phil_Goldfeder.png";
-import princetonGraham from "@/app/assets/advisors/Princeton_Graham.png";
-import sanjaySachdev from "@/app/assets/advisors/Sanjay_Sachdev.png";
-import stephenMugford from "@/app/assets/advisors/Stephen_Mugford.png";
-import tomBrown from "@/app/assets/advisors/Tom_Brown.png";
-import triciaKemp from "@/app/assets/advisors/Tricia_Kemp.png";
+import adityaKhurjekar from "@/app/assets/advisors/Aditya_Khurjekar.webp";
+import alexSimpson from "@/app/assets/advisors/Alex_Simpson.webp";
+import arielBoyman from "@/app/assets/advisors/Ariel_Boyman.webp";
+import arjunArora from "@/app/assets/advisors/Arjun_Arora.webp";
+import asheetMehta from "@/app/assets/advisors/Asheet_Mehta.webp";
+import ashwinShirvaikar from "@/app/assets/advisors/Ashwin_Shirvaikar.webp";
+import brianHughes from "@/app/assets/advisors/Brian_Hughes.webp";
+import ciaraBurnham from "@/app/assets/advisors/Ciara_Burnham.webp";
+import colinWalsh from "@/app/assets/advisors/Colin_Walsh.webp";
+import davidBoehmer from "@/app/assets/advisors/David_Boehmer.webp";
+import harveyHudes from "@/app/assets/advisors/Harvey_Hudes.webp";
+import jamesPeterson from "@/app/assets/advisors/James_Peterson.webp";
+import jeffHolland from "@/app/assets/advisors/Jeff_Holland.webp";
+import kirkChapman from "@/app/assets/advisors/Kirk_Chapman.webp";
+import marshallLux from "@/app/assets/advisors/Marshall_Lux.webp";
+import michaelHeller from "@/app/assets/advisors/Michael_Heller.webp";
+import mikeLincoln from "@/app/assets/advisors/Mike_Lincoln.webp";
+import milesReidy from "@/app/assets/advisors/Miles_Reidy.webp";
+import oliverGoldstein from "@/app/assets/advisors/Oliver_Goldstein.webp";
+import philGoldfeder from "@/app/assets/advisors/Phil_Goldfeder.webp";
+import princetonGraham from "@/app/assets/advisors/Princeton_Graham.webp";
+import sanjaySachdev from "@/app/assets/advisors/Sanjay_Sachdev.webp";
+import stephenMugford from "@/app/assets/advisors/Stephen_Mugford.webp";
+import tomBrown from "@/app/assets/advisors/Tom_Brown.webp";
+import triciaKemp from "@/app/assets/advisors/Tricia_Kemp.webp";
 
 // Import logos
 import logoMercury from "@/app/assets/team-logos/Mercury_Financial.png";
@@ -92,7 +93,7 @@ export interface Advisor {
   hidden?: boolean;
 }
 
-export const advisors: Advisor[] = [
+const advisorsData: Advisor[] = [
   {
     name: "Arjun Arora",
     title: "Advisor",
@@ -101,6 +102,15 @@ export const advisors: Advisor[] = [
     logos: [logoFormatOne, logoJefferies, logo500, logoYahoo],
     linkedin: "https://www.linkedin.com/in/arjundevarora/",
     speciality: "Fundraising",
+  },
+  {
+    name: "Aditya Khurjekar",
+    title: "Advisor",
+    image: adityaKhurjekar,
+    bio: "Aditya Khurjekar is the Managing Partner at TNBT Global, driving investment and GTM strategy for the age of AI. A definitive leader in FinTech, Aditya co-founded Money20/20 and Medici Global, the two platforms that shaped the modern industry. His track record of innovation includes founding the mobile payments venture at Verizon that now powers Apple Pay and Google Pay. Beyond commerce, Aditya serves as Global Advisor to Civitas ID, leveraging tech to solve the identity crisis for 120M+ displaced persons.",
+    logos: [],
+    linkedin: "https://www.linkedin.com/in/khurjekar/",
+    speciality: "AI & Fintech",
   },
   {
     name: "David Boehmer",
@@ -201,7 +211,7 @@ export const advisors: Advisor[] = [
     bio: "Harvey Hudes is founder of Caliber, an Inc 5000 marketing communications firm focused on helping financial services, fintechs, insurtechs, & proptechs increase their visibility and credibility. Harvey started the firm after seeing a gap between fintech innovation and financial-services storytelling while working in financial media. They have since collaborated with more than 300 companies, including Goldman Sachs, Blackstone, KKR, and Berkshire Hathaway portfolio companies, financial institutions, investors, and numerous other industry-leading and growth-stage companies.\n\nHarvey is an active investor in the fintech ecosystem and holds Advisory Board positions with a number of innovating organizations.\n\nHe also owns The Financial Revolutionist, a media outlet providing readers with financial innovation insights and intelligence.",
     logos: [],
     linkedin: "https://www.linkedin.com/in/harveyhudes/",
-    speciality: "PR & Communications",
+    speciality: "Marketing and Communications",
   },
   {
     name: "Brian Hughes",
@@ -316,6 +326,17 @@ export const advisors: Advisor[] = [
     speciality: "Consumer Fintech",
   },
 ];
+
+const getAdvisorLastName = (name: string) => name.trim().split(/\s+/).slice(-1)[0].toLowerCase();
+
+export const advisors = [...advisorsData].sort((a, b) => {
+  const lastA = getAdvisorLastName(a.name);
+  const lastB = getAdvisorLastName(b.name);
+  if (lastA === lastB) {
+    return a.name.localeCompare(b.name);
+  }
+  return lastA.localeCompare(lastB);
+});
 
 export const specialities = [
   "All",

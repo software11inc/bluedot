@@ -66,7 +66,7 @@ export default function AboutPage() {
                 bodyVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              We invest in late stage fintech companies across all major verticals of fintech.
+              We invest in late stage companies across all major verticals of fintech.
             </p>
           </div>
         </section>
@@ -147,7 +147,7 @@ export default function AboutPage() {
                 </h2>
                 <div className="space-y-6 text-[#575757]/80 leading-relaxed">
                   <p>
-                    Blue Dot works alongside one of the largest advisor networks globally. Our advisor network consists of <span className="text-[#1C39BB] font-medium">ex-operators</span> and <span className="text-[#1C39BB] font-medium">functional domain experts</span> who provide expertise across verticals, stages, and geographies in fintech.
+                    We purpose-built an extensive network of advisors to guide the entrepreneurs and companies we back. Our network consists of <span className="text-[#1C39BB] font-medium">ex-operators</span> and <span className="text-[#1C39BB] font-medium">functional domain experts</span> who provide strategic context across verticals, stages, and geographies in fintech.
                   </p>
                   <p>
                     We leverage this network to empower the entrepreneurs and companies we back—<span className="text-[#575757] font-medium">unlocking doors</span> and providing <span className="text-[#575757] font-medium">strategic insight</span> across the fintech ecosystem.

@@ -11,11 +11,11 @@ import { advisors as allAdvisors, Advisor } from "@/data/advisors";
 const advisors = allAdvisors.filter(a => !a.hidden);
 
 // Import team images
-import sahejSuri from "@/app/assets/team/sahej_suri.png";
-import aaronJatana from "@/app/assets/Aaron_Jatana.png";
-import aaronVermut from "@/app/assets/team/Aaron_Vermut.png";
+import sahejSuri from "@/app/assets/team/sahej_suri.webp";
+import aaronJatana from "@/app/assets/team/Aaron_Jatana.webp";
+import aaronVermut from "@/app/assets/team/Aaron_Vermut.webp";
 import peterRenton from "@/app/assets/peter-renton.png";
-import rachaelLee from "@/app/assets/team/Rachael_Lee.png";
+import rachaelLee from "@/app/assets/team/Rachael_Lee.webp";
 
 // Import team logos
 import logoQED from "@/app/assets/team-logos/qed.jpeg";
@@ -30,6 +30,7 @@ import logoEarnest from "@/app/assets/team-logos/earnest.png";
 import logoStanford from "@/app/assets/team-logos/Stanford.jpeg";
 import logoWellsGroup from "@/app/assets/team-logos/Wells_group.png";
 import logoKPMG from "@/app/assets/team-logos/KPMG.png";
+import logoAlchemist from "@/app/assets/team-logos/Alchemist White horizontal logo.svg";
 import logoPaulHastings from "@/app/assets/team-logos/paul-hastings@logotyp.us.png";
 import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
 import logoDiscover from "@/app/assets/team-logos/Discover.png";
@@ -60,7 +61,7 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
     bio: "Rachael is Chief of Staff at Blue Dot Investors. In her role, she works closely with the team on execution, internal systems, and strategic initiatives. She brings operating experience from Earnest, Box, and Alchemist Accelerator. She holds a BA in Political Science and an MA in Media & Technology from Stanford.",
     image: rachaelLee,
     linkedin: "https://www.linkedin.com/in/rachael-lee-455786107/",
-    logos: [logoEarnest, logoBox, logoStanford],
+    logos: [logoAlchemist, logoEarnest, logoBox, logoStanford],
   },
   {
     name: "Aaron Jatana",
@@ -73,8 +74,9 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
   {
     name: "Peter Renton",
     title: "Head of Community",
-    bio: "Peter leads community for Blue Dot Investors.\n\nPeter is the CEO of Renton & Co, LLC, a consulting firm specializing in fintech media, events and thought leadership. He was formerly the co-founder and chairman of Fintech Nexus, a fintech media and events company that produced 31 large-scale events worldwide. The events business was sold to Fintech Meetup in 2023 and the media business was sold to COMMAND, a PR firm, in 2024.\n\nSince July 2024, Peter has been an independent fintech media and events consultant, working with select fintech startups and helping to produce 5+ small events a year. Peter has been writing about fintech since 2010, with over 2,500 articles published. He is the author and creator of the Fintech One-on-One Podcast, the first and longest-running fintech interview series, with almost 600 episodes.\n\nOver the last decade, Peter has also conducted more than 750 live interviews and panel discussions and produced over 1,800 fintech newsletters.",
+    bio: "Peter leads community for Blue Dot Investors.\n\nPeter is the CEO of Renton & Co, LLC, a consulting firm specializing in fintech media, events and thought leadership. He was formerly the co-founder and chairman of Fintech Nexus, a fintech media and events company that produced 31 large-scale events worldwide. The events business was sold to Fintech Meetup in 2023 and the media business was sold to COMMAND in 2024.\n\nSince July 2024, Peter has been an independent fintech media and events consultant, working with select fintech startups and helping to produce 5+ small events a year. Peter has been writing about fintech since 2010, with over 2,500 articles published. He is the author and creator of the Fintech One-on-One Podcast, the first and longest-running fintech interview series, with almost 600 episodes.\n\nOver the last decade, Peter has also conducted more than 750 live interviews and panel discussions and produced over 1,800 fintech newsletters.",
     image: peterRenton,
+    linkedin: "https://www.linkedin.com/in/peterrenton/",
   },
 ];
 
@@ -159,7 +161,7 @@ export default function TeamPage() {
                 {/* Left column */}
                 <div className="mt-auto md:mt-0">
                   <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB] max-w-[380px] md:max-w-[580px]">
-                    Led by Fintech experts with deep sector expertise
+                    Led by a team with deep fintech expertise
                   </h1>
                 </div>
 
@@ -272,9 +274,22 @@ export default function TeamPage() {
                         <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-2">
                           {member.name}
                         </h2>
-                        <p className="font-mono text-sm text-[#1C39BB] uppercase tracking-wider mb-6">
+                        <p className="font-mono text-sm text-[#1C39BB] uppercase tracking-wider mb-2">
                           {member.title}
                         </p>
+                        {member.linkedin && (
+                          <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors mb-6"
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn
+                          </a>
+                        )}
                         <p className="font-sans text-lg text-[#575757]/80 leading-relaxed whitespace-pre-line">
                           {member.bio}
                         </p>
@@ -286,6 +301,8 @@ export default function TeamPage() {
                               {member.logos.map((logo, logoIndex) => {
                                 const isRobinhood = logo === logoRobinhood;
                                 const isCapitalOne = logo === logoCapitalOne;
+                                const isAlchemist = logo === logoAlchemist;
+                                const isProsper = logo === logoProsper;
                                 if (isCapitalOne) {
                                   return (
                                     <div key={logoIndex} className="h-[42px] flex items-center justify-center">
@@ -300,9 +317,13 @@ export default function TeamPage() {
                                       alt=""
                                       width={168}
                                       height={50}
-                                      className={isRobinhood
-                                        ? "w-[120px] h-auto object-contain grayscale opacity-60"
-                                        : "h-[42px] w-auto object-contain grayscale opacity-60"
+                                      className={isAlchemist
+                                        ? "h-[42px] w-auto object-contain brightness-0 opacity-60"
+                                        : isProsper
+                                          ? "h-[32px] w-auto object-contain grayscale opacity-60"
+                                          : isRobinhood
+                                            ? "w-[120px] h-auto object-contain grayscale opacity-60"
+                                            : "h-[42px] w-auto object-contain grayscale opacity-60"
                                       }
                                     />
                                   </div>
@@ -312,20 +333,6 @@ export default function TeamPage() {
                           </div>
                         )}
 
-                        {/* LinkedIn */}
-                        {member.linkedin && (
-                          <a
-                            href={member.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors mt-4"
-                          >
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                            LinkedIn
-                          </a>
-                        )}
                       </div>
                     ))}
                   </div>
@@ -374,7 +381,7 @@ export default function TeamPage() {
 
             {/* Headline */}
             <h2 className="text-4xl md:text-5xl font-sans text-[#575757] max-w-2xl mb-12">
-              Working alongside a deep network of Fintech Specialists.
+              Working alongside a deep network of fintech specialists.
             </h2>
 
             {/* Advisors grid - 4 per row */}
@@ -464,6 +471,19 @@ export default function TeamPage() {
                       </span>
                     )}
                   </div>
+                  {selectedAdvisor.linkedin && (
+                    <a
+                      href={selectedAdvisor.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-white/80 font-mono text-xs uppercase tracking-wider mt-2 hover:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      LinkedIn
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -513,20 +533,6 @@ export default function TeamPage() {
                   </div>
                 )}
 
-                {/* LinkedIn */}
-                {selectedAdvisor.linkedin && (
-                  <a
-                    href={selectedAdvisor.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                  </a>
-                )}
               </div>
             </div>
           )}
@@ -587,6 +593,19 @@ export default function TeamPage() {
 
               {/* Content */}
               <div className="p-8">
+                {selectedTeamMember.linkedin && (
+                  <a
+                    href={selectedTeamMember.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors mb-4"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                  </a>
+                )}
                 <p className="font-sans text-[#575757]/80 leading-relaxed mb-8 whitespace-pre-line">
                   {selectedTeamMember.bio}
                 </p>
@@ -597,27 +616,24 @@ export default function TeamPage() {
                     <div className="flex flex-wrap gap-6 items-center">
                       {selectedTeamMember.logos.map((logo, i) => (
                         <div key={i} className="h-[36px] flex items-center justify-center">
-                          <Image src={logo} alt="" width={144} height={42} className="h-[36px] w-auto object-contain grayscale opacity-60" />
+                          <Image
+                            src={logo}
+                            alt=""
+                            width={144}
+                            height={42}
+                            className={logo === logoAlchemist
+                              ? "h-[36px] w-auto object-contain brightness-0 opacity-60"
+                              : logo === logoProsper
+                                ? "h-[28px] w-auto object-contain grayscale opacity-60"
+                                : "h-[36px] w-auto object-contain grayscale opacity-60"
+                            }
+                          />
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* LinkedIn */}
-                {selectedTeamMember.linkedin && (
-                  <a
-                    href={selectedTeamMember.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-[#575757]/60 font-sans text-sm hover:text-[#575757] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                  </a>
-                )}
               </div>
             </div>
           )}

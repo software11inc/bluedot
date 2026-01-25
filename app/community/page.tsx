@@ -78,9 +78,12 @@ export default function CommunityPage() {
         <section className="pt-6 pb-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* Section title */}
-            <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-8 text-center">
+            <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-2 text-center">
               The Blue Dot Dinner Series
             </h2>
+            <p className="text-[#575757]/70 text-lg text-center mb-8">
+              Who you surround yourself with is your path to winning.
+            </p>
 
             {/* Bento grid - 1 left, 2 middle, 1 right */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[600px]">
@@ -174,9 +177,9 @@ export default function CommunityPage() {
                 <Link
                   key={i}
                   href={`/dinner-series/${event.slug}`}
-                  className="flex-shrink-0 w-[300px] md:w-[380px] snap-start group cursor-pointer"
+                  className="flex-shrink-0 w-[360px] md:w-[480px] snap-start group cursor-pointer"
                 >
-                  <div className="relative aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden mb-4">
+                  <div className="relative h-[360px] md:h-[450px] bg-gray-100 rounded-lg overflow-hidden mb-4">
                     <Image
                       src={event.image}
                       alt={event.title}
@@ -211,8 +214,9 @@ export default function CommunityPage() {
 
         <LinksSection
           customLinks={[
-            { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
             { label: "About Us", subheader: "Learn more about Blue Dot Investors", href: "/about" },
+            { label: "Our Team", subheader: "Meet the people behind Blue Dot", href: "/team" },
+            { label: "Research", subheader: "Explore our market insights", href: "/research" },
           ]}
           sectionNumber="03"
           className="pt-8 pb-24 bg-white"

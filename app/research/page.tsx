@@ -9,6 +9,42 @@ import heroCircles from "@/app/assets/hero-circles-color.svg";
 import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 
 const API_BASE = "https://blue-dot-api.william-b0e.workers.dev";
+const CACHE_KEYS = {
+  stockPrices: "bd-research-stock-prices",
+  marketCaps: "bd-research-market-caps",
+};
+const CACHE_TTL_MS = {
+  stockPrices: 2 * 60 * 1000,
+  marketCaps: 10 * 60 * 1000,
+};
+const MIN_CACHE_COUNTS = {
+  stockPrices: 8,
+  marketCaps: 15,
+};
+
+function readSessionCache<T>(key: string, ttlMs: number): T | null {
+  try {
+    const raw = sessionStorage.getItem(key);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.ts !== "number") return null;
+    if (Date.now() - parsed.ts > ttlMs) {
+      sessionStorage.removeItem(key);
+      return null;
+    }
+    return parsed.data as T;
+  } catch {
+    return null;
+  }
+}
+
+function writeSessionCache<T>(key: string, data: T) {
+  try {
+    sessionStorage.setItem(key, JSON.stringify({ ts: Date.now(), data }));
+  } catch {
+    // Best-effort cache; ignore errors.
+  }
+}
 
 // Type for live stock price data
 interface StockPriceData {
@@ -110,6 +146,7 @@ export default function ResearchPage() {
     ? companyDetails?.quote?.dp ?? null
     : null;
 
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLineVisible(true);
@@ -118,43 +155,68 @@ export default function ResearchPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Fetch all initial data in parallel for faster load
+  // Fetch initial data and update each section as soon as it resolves
   useEffect(() => {
-    async function fetchAllData() {
+    const cachedPrices = readSessionCache<{ data: StockPriceData[] }>(
+      CACHE_KEYS.stockPrices,
+      CACHE_TTL_MS.stockPrices
+    );
+    const hasCachedPrices =
+      (cachedPrices?.data?.length || 0) >= MIN_CACHE_COUNTS.stockPrices;
+    if (hasCachedPrices) {
+      setStockPrices(cachedPrices.data);
+      setLoadingPrices(false);
+    }
+
+    const cachedMarketCaps = readSessionCache<{
+      data: FintechMarketCap[];
+      totalMarketCap?: number;
+    }>(CACHE_KEYS.marketCaps, CACHE_TTL_MS.marketCaps);
+    const hasCachedMarketCaps =
+      (cachedMarketCaps?.data?.length || 0) >= MIN_CACHE_COUNTS.marketCaps;
+    if (hasCachedMarketCaps) {
+      setMarketCaps(cachedMarketCaps.data);
+      setTotalMarketCap(cachedMarketCaps.totalMarketCap || 0);
+      setLoadingMarketCaps(false);
+    }
+
+    async function fetchPrices() {
       try {
-        const [pricesRes, marketCapsRes] = await Promise.allSettled([
-          fetch(`${API_BASE}/stock-prices`),
-          fetch(`${API_BASE}/fintech-marketcaps`),
-        ]);
-
-        // Handle stock prices
-        if (pricesRes.status === 'fulfilled' && pricesRes.value.ok) {
-          const json = await pricesRes.value.json();
-          console.log('Stock prices loaded:', json.data?.length);
-          setStockPrices(json.data || []);
-        } else {
-          console.error('Stock prices failed:', pricesRes);
-        }
-        setLoadingPrices(false);
-
-        // Handle market caps
-        if (marketCapsRes.status === 'fulfilled' && marketCapsRes.value.ok) {
-          const json = await marketCapsRes.value.json();
-          console.log('Market caps loaded:', json.data?.length);
-          setMarketCaps(json.data || []);
-          setTotalMarketCap(json.totalMarketCap || 0);
-        } else {
-          console.error('Market caps failed:', marketCapsRes);
-        }
-        setLoadingMarketCaps(false);
+        const res = await fetch(`${API_BASE}/stock-prices`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        console.log('Stock prices loaded:', json.data?.length);
+        setStockPrices(json.data || []);
+        writeSessionCache(CACHE_KEYS.stockPrices, json);
       } catch (error) {
-        console.error('fetchAllData error:', error);
+        console.error('Stock prices failed:', error);
+      } finally {
         setLoadingPrices(false);
+      }
+    }
+
+    async function fetchMarketCaps() {
+      try {
+        const res = await fetch(`${API_BASE}/fintech-marketcaps`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        console.log('Market caps loaded:', json.data?.length);
+        setMarketCaps(json.data || []);
+        setTotalMarketCap(json.totalMarketCap || 0);
+        writeSessionCache(CACHE_KEYS.marketCaps, json);
+      } catch (error) {
+        console.error('Market caps failed:', error);
+      } finally {
         setLoadingMarketCaps(false);
       }
     }
 
-    fetchAllData();
+    if (!hasCachedPrices) {
+      fetchPrices();
+    }
+    if (!hasCachedMarketCaps) {
+      fetchMarketCaps();
+    }
 
     // Refresh prices every 2 minutes (data is cached on worker anyway)
     const interval = setInterval(async () => {
@@ -237,56 +299,6 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* Treemap Section */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl text-[#575757] mb-2">
-                  Fintech Market Cap
-                </h2>
-                <p className="text-[#575757]/60">
-                  Public fintech companies by market capitalization (squarified treemap)
-                </p>
-              </div>
-              {totalMarketCap > 0 && (
-                <div className="text-left md:text-right">
-                  <p className="text-xs text-[#575757]/60 uppercase tracking-wider">Total Market Cap</p>
-                  <p className="text-2xl font-display text-[#1C39BB]">${totalMarketCap.toLocaleString()}B</p>
-                  <p className="text-xs text-[#575757]/40">{marketCaps.length} companies</p>
-                </div>
-              )}
-            </div>
-
-            {/* D3 Treemap */}
-            {loadingMarketCaps ? (
-              <div className="bg-gray-200 rounded-lg animate-pulse h-[500px]" />
-            ) : (
-              <div className="overflow-hidden rounded-lg bg-gray-100">
-                <Treemap
-                  data={marketCaps}
-                  onSelect={setSelectedTreemapCompany}
-                />
-              </div>
-            )}
-
-            {/* Sector Legend */}
-            {!loadingMarketCaps && marketCaps.length > 0 && (
-              <div className="flex flex-wrap gap-4 mt-8 justify-center">
-                {Array.from(new Set(marketCaps.map(c => c.sector))).map(sector => {
-                  const company = marketCaps.find(c => c.sector === sector);
-                  return (
-                    <div key={sector} className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded" style={{ backgroundColor: company?.color }} />
-                      <span className="text-xs text-[#575757]/70">{sector}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </section>
-
         {/* Tombstones Section */}
         <section className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -350,6 +362,56 @@ export default function ResearchPage() {
             </div>
           </div>
         </section>
+        {/* Treemap Section */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
+              <div>
+                <h2 className="font-display text-3xl md:text-4xl text-[#575757] mb-2">
+                  Fintech Market Cap
+                </h2>
+                <p className="text-[#575757]/60">
+                  Public fintech companies by market capitalization (squarified treemap)
+                </p>
+              </div>
+              {totalMarketCap > 0 && (
+                <div className="text-left md:text-right">
+                  <p className="text-xs text-[#575757]/60 uppercase tracking-wider">Total Market Cap</p>
+                  <p className="text-2xl font-display text-[#1C39BB]">${totalMarketCap.toLocaleString()}B</p>
+                  <p className="text-xs text-[#575757]/40">{marketCaps.length} companies</p>
+                </div>
+              )}
+            </div>
+
+            {/* D3 Treemap */}
+            {loadingMarketCaps ? (
+              <div className="bg-gray-200 rounded-lg animate-pulse h-[500px]" />
+            ) : (
+              <div className="overflow-hidden rounded-lg bg-gray-100">
+                <Treemap
+                  data={marketCaps}
+                  onSelect={setSelectedTreemapCompany}
+                />
+              </div>
+            )}
+
+            {/* Sector Legend */}
+            {!loadingMarketCaps && marketCaps.length > 0 && (
+              <div className="flex flex-wrap gap-4 mt-8 justify-center">
+                {Array.from(new Set(marketCaps.map(c => c.sector))).map(sector => {
+                  const company = marketCaps.find(c => c.sector === sector);
+                  return (
+                    <div key={sector} className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded" style={{ backgroundColor: company?.color }} />
+                      <span className="text-xs text-[#575757]/70">{sector}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </section>
+
 
       </main>
       <Footer />
