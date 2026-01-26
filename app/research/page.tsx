@@ -163,7 +163,7 @@ export default function ResearchPage() {
     );
     const hasCachedPrices =
       (cachedPrices?.data?.length || 0) >= MIN_CACHE_COUNTS.stockPrices;
-    if (hasCachedPrices) {
+    if (hasCachedPrices && cachedPrices) {
       setStockPrices(cachedPrices.data);
       setLoadingPrices(false);
     }
@@ -174,7 +174,7 @@ export default function ResearchPage() {
     }>(CACHE_KEYS.marketCaps, CACHE_TTL_MS.marketCaps);
     const hasCachedMarketCaps =
       (cachedMarketCaps?.data?.length || 0) >= MIN_CACHE_COUNTS.marketCaps;
-    if (hasCachedMarketCaps) {
+    if (hasCachedMarketCaps && cachedMarketCaps) {
       setMarketCaps(cachedMarketCaps.data);
       setTotalMarketCap(cachedMarketCaps.totalMarketCap || 0);
       setLoadingMarketCaps(false);
