@@ -3,6 +3,8 @@ import { dinnerSeries } from "@/data/dinners";
 
 const BASE_URL = "https://bluedotinvestors.com";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
