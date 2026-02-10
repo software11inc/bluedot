@@ -11,15 +11,12 @@ import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
 const API_BASE = "https://blue-dot-api.william-b0e.workers.dev";
 const CACHE_KEYS = {
   stockPrices: "bd-research-stock-prices",
-  marketCaps: "bd-research-market-caps",
 };
 const CACHE_TTL_MS = {
   stockPrices: 2 * 60 * 1000,
-  marketCaps: 10 * 60 * 1000,
 };
 const MIN_CACHE_COUNTS = {
   stockPrices: 8,
-  marketCaps: 15,
 };
 
 function readSessionCache<T>(key: string, ttlMs: number): T | null {
@@ -168,17 +165,6 @@ export default function ResearchPage() {
       setLoadingPrices(false);
     }
 
-    const cachedMarketCaps = readSessionCache<{
-      data: FintechMarketCap[];
-      totalMarketCap?: number;
-    }>(CACHE_KEYS.marketCaps, CACHE_TTL_MS.marketCaps);
-    const hasCachedMarketCaps =
-      (cachedMarketCaps?.data?.length || 0) >= MIN_CACHE_COUNTS.marketCaps;
-    if (hasCachedMarketCaps && cachedMarketCaps) {
-      setMarketCaps(cachedMarketCaps.data);
-      setTotalMarketCap(cachedMarketCaps.totalMarketCap || 0);
-      setLoadingMarketCaps(false);
-    }
 
     async function fetchPrices() {
       try {
@@ -197,13 +183,11 @@ export default function ResearchPage() {
 
     async function fetchMarketCaps() {
       try {
-        const res = await fetch(`${API_BASE}/fintech-marketcaps`);
+        const res = await fetch('/data/fintech-marketcaps.json');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        console.log('Market caps loaded:', json.data?.length);
         setMarketCaps(json.data || []);
         setTotalMarketCap(json.totalMarketCap || 0);
-        writeSessionCache(CACHE_KEYS.marketCaps, json);
       } catch (error) {
         console.error('Market caps failed:', error);
       } finally {
@@ -214,9 +198,7 @@ export default function ResearchPage() {
     if (!hasCachedPrices) {
       fetchPrices();
     }
-    if (!hasCachedMarketCaps) {
-      fetchMarketCaps();
-    }
+    fetchMarketCaps();
 
     // Refresh prices every 2 minutes (data is cached on worker anyway)
     const interval = setInterval(async () => {

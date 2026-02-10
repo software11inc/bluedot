@@ -78,12 +78,9 @@ export default function CommunityPage() {
         <section className="pt-6 pb-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             {/* Section title */}
-            <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-2 text-center">
+            <h2 className="font-display text-4xl md:text-5xl text-[#575757] mb-14 text-center">
               The Blue Dot Dinner Series
             </h2>
-            <p className="text-[#575757]/70 text-lg text-center mb-8">
-              Who you surround yourself with is your path to winning.
-            </p>
 
             {/* Bento grid - 1 left, 2 middle, 1 right */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[600px]">

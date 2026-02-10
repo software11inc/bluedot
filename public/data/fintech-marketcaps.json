@@ -1,0 +1,216 @@
+{
+  "data": [
+    {
+      "symbol": "BEKE",
+      "name": "Ke Holdings Inc",
+      "sector": "Mortgage / PropTech",
+      "marketCap": 171.2,
+      "color": "#EAB308"
+    },
+    {
+      "symbol": "SHOP",
+      "name": "Shopify Inc",
+      "sector": "Vertical SaaS / Embedded Finance",
+      "marketCap": 154.1,
+      "color": "#6B7280"
+    },
+    {
+      "symbol": "INTU",
+      "name": "Intuit Inc",
+      "sector": "CFO Stack Solutions",
+      "marketCap": 121.7,
+      "color": "#059669"
+    },
+    {
+      "symbol": "NU",
+      "name": "Nu Holdings Ltd",
+      "sector": "Banking / Lending",
+      "marketCap": 85,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "HOOD",
+      "name": "Robinhood Markets Inc",
+      "sector": "Capital Markets",
+      "marketCap": 77.8,
+      "color": "#F59E0B"
+    },
+    {
+      "symbol": "RKT",
+      "name": "Rocket Companies Inc",
+      "sector": "Mortgage / PropTech",
+      "marketCap": 55.2,
+      "color": "#EAB308"
+    },
+    {
+      "symbol": "COIN",
+      "name": "Coinbase Global Inc",
+      "sector": "Blockchain / Crypto",
+      "marketCap": 45.1,
+      "color": "#DB2777"
+    },
+    {
+      "symbol": "PAYX",
+      "name": "Paychex Inc",
+      "sector": "CFO Stack Solutions",
+      "marketCap": 35.2,
+      "color": "#059669"
+    },
+    {
+      "symbol": "SOFI",
+      "name": "SoFi Technologies Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 27.1,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "SYF",
+      "name": "Synchrony Financial",
+      "sector": "Banking / Lending",
+      "marketCap": 25.7,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "CPAY",
+      "name": "Corpay Inc",
+      "sector": "Payments",
+      "marketCap": 24.9,
+      "color": "#1C39BB"
+    },
+    {
+      "symbol": "AFRM",
+      "name": "Affirm Holdings Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 19.3,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "TOST",
+      "name": "Toast Inc",
+      "sector": "Vertical SaaS / Embedded Finance",
+      "marketCap": 16.8,
+      "color": "#6B7280"
+    },
+    {
+      "symbol": "GWRE",
+      "name": "Guidewire Software Inc",
+      "sector": "Insurtech",
+      "marketCap": 10.7,
+      "color": "#0891B2"
+    },
+    {
+      "symbol": "XP",
+      "name": "XP Inc",
+      "sector": "Capital Markets",
+      "marketCap": 10.6,
+      "color": "#F59E0B"
+    },
+    {
+      "symbol": "PAYC",
+      "name": "Paycom Software Inc",
+      "sector": "CFO Stack Solutions",
+      "marketCap": 7.1,
+      "color": "#059669"
+    },
+    {
+      "symbol": "PCTY",
+      "name": "Paylocity Holding Corp",
+      "sector": "CFO Stack Solutions",
+      "marketCap": 6.1,
+      "color": "#059669"
+    },
+    {
+      "symbol": "LMND",
+      "name": "Lemonade Inc",
+      "sector": "Insurtech",
+      "marketCap": 5.4,
+      "color": "#0891B2"
+    },
+    {
+      "symbol": "FOUR",
+      "name": "Shift4 Payments Inc",
+      "sector": "Payments",
+      "marketCap": 5.2,
+      "color": "#1C39BB"
+    },
+    {
+      "symbol": "BILL",
+      "name": "BILL Holdings Inc",
+      "sector": "CFO Stack Solutions",
+      "marketCap": 5,
+      "color": "#059669"
+    },
+    {
+      "symbol": "STNE",
+      "name": "StoneCo Ltd",
+      "sector": "Payments",
+      "marketCap": 4.9,
+      "color": "#1C39BB"
+    },
+    {
+      "symbol": "UPST",
+      "name": "Upstart Holdings Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 3.8,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "QTWO",
+      "name": "Q2 Holdings Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 3.5,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "PAGS",
+      "name": "PagSeguro Digital Ltd",
+      "sector": "Payments",
+      "marketCap": 3.5,
+      "color": "#1C39BB"
+    },
+    {
+      "symbol": "OSCR",
+      "name": "Oscar Health Inc",
+      "sector": "Healthcare",
+      "marketCap": 3.4,
+      "color": "#EC4899"
+    },
+    {
+      "symbol": "RELY",
+      "name": "Remitly Global Inc",
+      "sector": "Payments",
+      "marketCap": 2.8,
+      "color": "#1C39BB"
+    },
+    {
+      "symbol": "DAVE",
+      "name": "Dave Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 2.5,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "NCNO",
+      "name": "nCino Inc",
+      "sector": "Banking / Lending",
+      "marketCap": 2.1,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "LC",
+      "name": "LendingClub Corp",
+      "sector": "Banking / Lending",
+      "marketCap": 2,
+      "color": "#2563EB"
+    },
+    {
+      "symbol": "MQ",
+      "name": "Marqeta Inc",
+      "sector": "Payments",
+      "marketCap": 1.8,
+      "color": "#1C39BB"
+    }
+  ],
+  "totalMarketCap": 939.5,
+  "lastUpdated": "2026-02-10"
+}
