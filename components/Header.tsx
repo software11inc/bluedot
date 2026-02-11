@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/team", label: "Team" },
   { href: "/community", label: "Community" },
   { href: "/research", label: "Research" },
+  { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ];
 

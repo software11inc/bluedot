@@ -26,6 +26,8 @@ import sanjaySachdev from "@/app/assets/advisors/Sanjay_Sachdev.webp";
 import stephenMugford from "@/app/assets/advisors/Stephen_Mugford.webp";
 import tomBrown from "@/app/assets/advisors/Tom_Brown.webp";
 import triciaKemp from "@/app/assets/advisors/Tricia_Kemp.webp";
+import luvleenSidhu from "@/app/assets/advisors/Luvleen_Sidhu.webp";
+import davidKleinhandler from "@/app/assets/advisors/David_Kleinhandler.webp";
 
 // Import logos
 import logoMercury from "@/app/assets/team-logos/Mercury_Financial.png";
@@ -81,6 +83,10 @@ import logoAFC from "@/app/assets/team-logos/AFC.png";
 import logoBloomberg from "@/app/assets/team-logos/bloombergpng.png";
 import logoCrossRiver from "@/app/assets/team-logos/cross_river.png";
 import logoNYState from "@/app/assets/team-logos/NY_State.png";
+import logoBMTechnologies from "@/app/assets/team-logos/BM_Technologies.png";
+import logoOptifino from "@/app/assets/team-logos/Optifino.png";
+import logoCovr from "@/app/assets/team-logos/Covr.png";
+import logoDynasty from "@/app/assets/team-logos/Dynasty_Financial_Partners.png";
 
 export interface Advisor {
   name: string;
@@ -325,6 +331,24 @@ const advisorsData: Advisor[] = [
     linkedin: "https://www.linkedin.com/in/colindwalsh/",
     speciality: "Consumer Fintech",
   },
+  {
+    name: "Luvleen Sidhu",
+    title: "Advisor",
+    image: luvleenSidhu,
+    bio: "Luvleen Sidhu is a fintech entrepreneur and the Founder and former CEO of BM Technologies (BMTX). After launching the digital banking platform in 2015 (originally as BankMobile), she became one of the youngest female founders to take a company public when it listed on the NYSE in 2021. Under her leadership, the company grew into a major Banking-as-a-Service (BaaS) provider, partnering with over 700 universities and major brands like T-Mobile. In early 2025, she oversaw the $66 million sale of BMTX to First Carolina Bank, subsequently stepping down from her executive role to focus on advising fintech startups and pursuing new ventures in financial inclusion. An MBA graduate of The Wharton School and a Harvard alumna, she is also the co-author of the bestseller \"Why Can't Banks Be As Easy As Uber?\"",
+    logos: [logoBMTechnologies],
+    linkedin: "https://www.linkedin.com/in/luvleensidhu",
+    speciality: "Neobanks",
+  },
+  {
+    name: "David Kleinhandler",
+    title: "Advisor",
+    image: davidKleinhandler,
+    bio: "David Kleinhandler is founder and CEO of Kleinhandler Corporation, a strategic life insurance firm serving high-net-worth individuals that has generated over $5 billion in sales since 1996. He founded Optifino in 2022, a client-centric life insurance fintech company, and currently serves as Chairman of Covr Financial Technologies. David served on the Board of Directors at Dynasty Financial Partners (2010-2019), a leading investment and technology platform for independent financial advisors. With over 30 years specializing in wealth transfer, estate tax strategies, and insurance optimization for ultra-high-net-worth clients, he brings a deliberate approach to simplifying complexity and framing decisions clearly. David works with founders and investors to cut through noise, identify what matters most, and drive sustainable outcomes with a long-term perspective.",
+    logos: [logoOptifino, logoCovr, logoDynasty],
+    linkedin: "https://www.linkedin.com/in/david-kleinhandler",
+    speciality: "Insurtech",
+  },
 ];
 
 const getAdvisorLastName = (name: string) => name.trim().split(/\s+/).slice(-1)[0].toLowerCase();
@@ -359,4 +383,6 @@ export const specialities = [
   "PE Investing",
   "Identity & Fraud",
   "Payments",
+  "Neobanks",
+  "Insurtech",
 ];

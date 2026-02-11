@@ -54,6 +54,9 @@ export default function Footer() {
               <Link href="/research" className="text-white font-medium hover:text-white/80 transition-colors">
                 Research
               </Link>
+              <Link href="/press" className="text-white font-medium hover:text-white/80 transition-colors">
+                Press
+              </Link>
               <Link href="/contact" className="text-white font-medium hover:text-white/80 transition-colors">
                 Contact Us
               </Link>
