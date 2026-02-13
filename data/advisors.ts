@@ -257,7 +257,7 @@ const advisorsData: Advisor[] = [
     logos: [logoMcKinsey, logoBCG, logoJPM],
     linkedin: "https://www.linkedin.com/in/marshall-lux-b05537120/",
     speciality: "Strategy",
-    hidden: true,
+    hidden: false,
   },
   {
     name: "Asheet Mehta",
