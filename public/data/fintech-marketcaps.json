@@ -1,20 +1,6 @@
 {
   "data": [
     {
-      "symbol": "BEKE",
-      "name": "Ke Holdings Inc",
-      "sector": "Mortgage / PropTech",
-      "marketCap": 171.2,
-      "color": "#EAB308"
-    },
-    {
-      "symbol": "SHOP",
-      "name": "Shopify Inc",
-      "sector": "Vertical SaaS / Embedded Finance",
-      "marketCap": 154.1,
-      "color": "#6B7280"
-    },
-    {
       "symbol": "INTU",
       "name": "Intuit Inc",
       "sector": "CFO Stack Solutions",
@@ -211,6 +197,6 @@
       "color": "#1C39BB"
     }
   ],
-  "totalMarketCap": 939.5,
+  "totalMarketCap": 614.2,
   "lastUpdated": "2026-02-10"
 }

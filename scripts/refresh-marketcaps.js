@@ -12,7 +12,6 @@ if (!FINNHUB_API_KEY) {
 
 const FINTECH_COMPANIES = [
   { symbol: "INTU", name: "Intuit", sector: "CFO Stack Solutions" },
-  { symbol: "SHOP", name: "Shopify", sector: "Vertical SaaS / Embedded Finance" },
   { symbol: "COIN", name: "Coinbase", sector: "Blockchain / Crypto" },
   { symbol: "NU", name: "Nu Holdings", sector: "Banking / Lending" },
   { symbol: "SOFI", name: "SoFi Technologies", sector: "Banking / Lending" },
@@ -38,7 +37,6 @@ const FINTECH_COMPANIES = [
   { symbol: "XP", name: "XP Inc", sector: "Capital Markets" },
   { symbol: "PAYX", name: "Paychex", sector: "CFO Stack Solutions" },
   { symbol: "SYF", name: "Synchrony Financial", sector: "Banking / Lending" },
-  { symbol: "BEKE", name: "KE Holdings", sector: "Mortgage / PropTech" },
   { symbol: "RKT", name: "Rocket Companies", sector: "Mortgage / PropTech" },
   { symbol: "OSCR", name: "Oscar Health", sector: "Healthcare" },
 ];
