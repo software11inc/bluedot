@@ -28,6 +28,7 @@ import tomBrown from "@/app/assets/advisors/Tom_Brown.webp";
 import triciaKemp from "@/app/assets/advisors/Tricia_Kemp.webp";
 import luvleenSidhu from "@/app/assets/advisors/Luvleen_Sidhu.webp";
 import davidKleinhandler from "@/app/assets/advisors/David_Kleinhandler.webp";
+import charlesRosenblatt from "@/app/assets/advisors/Charles_Rosenblatt.webp";
 
 // Import logos
 import logoMercury from "@/app/assets/team-logos/Mercury_Financial.png";
@@ -87,6 +88,8 @@ import logoBMTechnologies from "@/app/assets/team-logos/BM_Technologies.png";
 import logoOptifino from "@/app/assets/team-logos/Optifino.png";
 import logoCovr from "@/app/assets/team-logos/Covr.png";
 import logoDynasty from "@/app/assets/team-logos/Dynasty_Financial_Partners.png";
+import logoButterPayments from "@/app/assets/team-logos/Butter_Payments.png";
+import logoPayoneer from "@/app/assets/team-logos/Payoneer.png";
 
 export interface Advisor {
   name: string;
@@ -339,6 +342,15 @@ const advisorsData: Advisor[] = [
     logos: [logoBMTechnologies],
     linkedin: "https://www.linkedin.com/in/luvleensidhu",
     speciality: "Neobanks",
+  },
+  {
+    name: "Charles Rosenblatt",
+    title: "Advisor",
+    image: charlesRosenblatt,
+    bio: "Charles Rosenblatt is a distinguished payments executive and entrepreneur with over 20 years of experience leading high-growth FinTech organizations and global financial institutions. He currently serves as the CEO of Butter Payments, where he leads the charge in utilizing AI-driven solutions for failed payment recovery and revenue retention. Throughout his career, Charles has been instrumental in scaling companies toward major liquidity events, notably serving as Chief Strategy Officer at Payoneer during its $3.3 billion public listing and as a key management member at Hyperwallet leading up to its acquisition by PayPal.\n\nBeyond his executive leadership, Charles is recognized as a pioneer in financial product innovation, having developed the first Buy Now, Pay Later (BNPL) product in the U.S. during his tenure at Capital One. His deep operational expertise spans the entire payments ecosystem, from global disbursements and cross-border trade to senior leadership roles at Chase and Capital One. He began his career at D.E. Shaw & Co., where he managed substantial uncollateralized loan acquisitions.\n\nCharles holds a B.A. in Economics and Politics from Pomona College and an M.B.A. from the University of Virginia Darden School of Business. An active figure in the venture community, he continues to advise early-stage startups on strategy and global scale.",
+    logos: [logoButterPayments, logoPayoneer, logoCapitalOne, logoJPM],
+    linkedin: "",
+    speciality: "Payments",
   },
   {
     name: "David Kleinhandler",

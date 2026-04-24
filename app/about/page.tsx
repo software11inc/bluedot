@@ -56,7 +56,7 @@ export default function AboutPage() {
             <HeroCirclesAnimated className="mb-6 w-14" />
             <h1 className="font-display text-4xl md:text-6xl text-[#1C39BB] leading-tight mb-8 max-w-4xl">
               <TypeWriter
-                text="A fintech specialist investment firm focused on late-stage secondaries and special situations investing."
+                text="A fintech specialist investment firm focused on late-stage growth and special situations investing."
                 delay={15}
                 startDelay={200}
               />

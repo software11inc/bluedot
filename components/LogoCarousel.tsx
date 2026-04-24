@@ -10,6 +10,7 @@ import albertLogo from "@/app/assets/main-logos/albert.png";
 import forageLogo from "@/app/assets/main-logos/forage.png";
 import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
 import coverdashLogo from "@/app/assets/main-logos/coverdash.png";
+import plataLogo from "@/app/assets/main-logos/plata.png";
 
 const logos: { alt: string; image: StaticImageData; href: string }[] = [
   { alt: "Albert", image: albertLogo, href: "https://albert.com/" },
@@ -17,6 +18,7 @@ const logos: { alt: string; image: StaticImageData; href: string }[] = [
   { alt: "DriveWealth", image: drivewealthLogo, href: "https://www.drivewealth.com/" },
   { alt: "Forage", image: forageLogo, href: "https://www.joinforage.com/" },
   { alt: "Kraken", image: krakenLogo, href: "https://www.kraken.com/" },
+  { alt: "Plata", image: plataLogo, href: "https://www.plata.mx/" },
 ];
 
 export default function LogoCarousel() {
