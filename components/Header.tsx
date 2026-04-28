@@ -11,8 +11,6 @@ const navLinks: { href: string; label: string; badge?: string }[] = [
   { href: "/about", label: "About" },
   { href: "/team", label: "Team" },
   { href: "/community", label: "Community" },
-  { href: "/research/bluedot-ft-partners-report", label: "Research" },
-  { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ];
 
