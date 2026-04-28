@@ -133,7 +133,9 @@ export default function ResearchReportCTA({
         <p className="text-lg">Blue Dot × FT Partners</p>
       </div>
       <a
-        href="#"
+        href="https://ftpartners.com/fintech-strategic-insights/fintech-liquidity-supercycle"
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-block px-8 py-3 bg-[#1C39BB] text-white rounded-full font-semibold hover:bg-[#1C39BB]/90 transition-colors"
       >
         Read the Report
