@@ -20,10 +20,22 @@ export default function FintechRevenueComparison() {
 
   return (
     <div>
-      <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-24 max-w-4xl">
+      <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-8 md:mb-24 max-w-4xl">
         Even more striking, the top 100 private FinTech companies are{" "}
         <span className="text-[#5BB7E8]">outpacing</span> their public peers in revenue
       </h2>
+
+      {/* Mobile-only callout sits above the bars */}
+      <div className="md:hidden flex justify-center mb-6">
+        <div className="bg-white shadow-md rounded-2xl px-6 py-3 border border-gray-100">
+          <div className="text-2xl font-bold text-[#5BB7E8] text-center leading-none">
+            ~{Math.round(pctHigher)}%
+          </div>
+          <div className="text-sm font-semibold text-[#575757] text-center mt-1">
+            Higher
+          </div>
+        </div>
+      </div>
 
       <div className="relative">
         {/* Asymmetric dotted connector spanning full chart width */}
@@ -79,7 +91,7 @@ export default function FintechRevenueComparison() {
         <div className="grid grid-cols-2 gap-6 md:gap-10 items-end">
           {/* Public */}
           <div
-            className="rounded-lg flex flex-col items-center justify-center text-white p-8 md:p-12"
+            className="rounded-lg flex flex-col items-center justify-center text-white p-3 sm:p-6 md:p-12 text-center"
             style={{
               background:
                 "linear-gradient(135deg, #F4845F 0%, #F4A57F 100%)",
@@ -87,10 +99,10 @@ export default function FintechRevenueComparison() {
               minHeight: "16rem",
             }}
           >
-            <div className="text-3xl md:text-5xl font-display font-bold mb-3 text-white/80">
+            <div className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-2 md:mb-3 text-white/80">
               Public
             </div>
-            <div className="text-5xl md:text-7xl font-display font-bold mb-2 drop-shadow-md">
+            <div className="text-3xl sm:text-5xl md:text-7xl font-display font-bold mb-2 drop-shadow-md whitespace-nowrap">
               ${publicRevenue} B
             </div>
             <div className="text-lg md:text-xl text-white/90">in total Revenue</div>
@@ -98,34 +110,23 @@ export default function FintechRevenueComparison() {
 
           {/* Private */}
           <div
-            className="rounded-lg flex flex-col items-center justify-center text-white p-8 md:p-12"
+            className="rounded-lg flex flex-col items-center justify-center text-white p-3 sm:p-6 md:p-12 text-center"
             style={{
               background:
                 "linear-gradient(135deg, #1C39BB 0%, #3B5BD9 100%)",
               height: `${tallestBarRem}rem`,
             }}
           >
-            <div className="text-3xl md:text-5xl font-display font-bold mb-3 text-white/80">
+            <div className="text-2xl sm:text-3xl md:text-5xl font-display font-bold mb-2 md:mb-3 text-white/80">
               Private
             </div>
-            <div className="text-5xl md:text-7xl font-display font-bold mb-2 drop-shadow-md">
+            <div className="text-3xl sm:text-5xl md:text-7xl font-display font-bold mb-2 drop-shadow-md whitespace-nowrap">
               ${privateRevenue} B
             </div>
             <div className="text-lg md:text-xl text-white/90">in Total Revenue</div>
           </div>
         </div>
 
-        {/* Mobile callout */}
-        <div className="md:hidden flex justify-center -mt-4 mb-4">
-          <div className="bg-white shadow-md rounded-2xl px-6 py-3 border border-gray-100">
-            <div className="text-2xl font-bold text-[#5BB7E8] text-center leading-none">
-              ~{Math.round(pctHigher)}%
-            </div>
-            <div className="text-sm font-semibold text-[#575757] text-center mt-1">
-              Higher
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="text-xs text-[#575757]/60 mt-8 max-w-4xl space-y-2">

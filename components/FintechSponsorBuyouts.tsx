@@ -51,7 +51,7 @@ export default function FintechSponsorBuyouts({
 
   return (
     <div>
-      <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-8 max-w-5xl">
+      <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-8 max-w-md md:max-w-5xl">
         {headline}
       </h2>
 
@@ -74,11 +74,11 @@ export default function FintechSponsorBuyouts({
 
         <div className="relative">
           {callout && (
-            <div className="absolute top-4 md:top-8 left-2 md:left-8 z-10 bg-white shadow-md rounded-2xl px-5 md:px-8 py-4 md:py-6 border border-gray-100 max-w-[260px]">
-              <div className="text-3xl md:text-5xl font-bold text-[#16a34a] text-center leading-none">
+            <div className="hidden md:block absolute md:top-8 md:left-8 z-10 bg-white shadow-md rounded-2xl md:px-8 md:py-6 border border-gray-100 max-w-[260px]">
+              <div className="md:text-5xl font-bold text-[#16a34a] text-center leading-none">
                 {callout.value}
               </div>
-              <div className="text-sm md:text-base font-semibold text-[#16a34a] text-center mt-2 leading-snug">
+              <div className="md:text-base font-semibold text-[#16a34a] text-center mt-2 leading-snug">
                 {callout.label}
               </div>
             </div>
@@ -188,6 +188,20 @@ export default function FintechSponsorBuyouts({
         </div>
 
       </div>
+
+      {/* Mobile-only callout below the chart (in-chart pill is hidden on mobile to avoid overlap) */}
+      {callout && (
+        <div className="md:hidden mt-6 flex justify-center">
+          <div className="bg-white shadow-md rounded-2xl px-6 py-4 border border-gray-100 max-w-xs">
+            <div className="text-3xl font-bold text-[#16a34a] text-center leading-none">
+              {callout.value}
+            </div>
+            <div className="text-sm font-semibold text-[#16a34a] text-center mt-2 leading-snug">
+              {callout.label}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="text-xs text-[#575757]/60 mt-4 space-y-1">{source}</div>
     </div>

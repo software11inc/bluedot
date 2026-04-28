@@ -114,9 +114,12 @@ export default function ResearchReportCTA({
   );
 
   const Heading = asHero ? "h1" : "h2";
+  // Mobile sizes are tuned so the forced 2-line break ("The Fintech" / "Liquidity Supercycle")
+  // doesn't overflow on a 375px viewport (px-6 → ~327px usable). "Liquidity Supercycle" is
+  // the binding line — it caps the mobile size around 32–34px in font-display.
   const headlineSize = asHero
-    ? "text-5xl md:text-6xl lg:text-7xl"
-    : "text-4xl md:text-5xl lg:text-6xl";
+    ? "text-[2.125rem] leading-[1.05] sm:leading-tight sm:text-5xl md:text-6xl lg:text-7xl"
+    : "text-3xl sm:text-4xl md:text-5xl lg:text-6xl";
 
   const headline = (
     <div className="space-y-6">
