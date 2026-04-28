@@ -56,7 +56,7 @@ export default function AboutPage() {
             <HeroCirclesAnimated className="mb-6 w-14" />
             <h1 className="font-display text-4xl md:text-6xl text-[#1C39BB] leading-tight mb-8 max-w-4xl">
               <TypeWriter
-                text="A fintech specialist investment firm focused on late-stage growth and special situations investing."
+                text="A fintech specialist investment firm focused on late stage growth equity and secondaries investing."
                 delay={15}
                 startDelay={200}
               />
@@ -92,18 +92,18 @@ export default function AboutPage() {
               {[
                 {
                   number: "01",
+                  title: "Growth Investing",
+                  description: "Backing category-defining fintech companies poised for continued expansion and market leadership.",
+                },
+                {
+                  number: "02",
                   title: "Late-Stage Secondaries",
                   description: "Providing liquidity solutions to shareholders of high-growth fintech companies at inflection points.",
                 },
                 {
-                  number: "02",
+                  number: "03",
                   title: "Special Situations",
                   description: "Opportunistic investments in unique market conditions where our expertise unlocks value.",
-                },
-                {
-                  number: "03",
-                  title: "Growth Investing",
-                  description: "Backing category-defining fintech companies poised for continued expansion and market leadership.",
                 },
               ].map((item, idx) => (
                 <div

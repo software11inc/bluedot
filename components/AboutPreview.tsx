@@ -53,7 +53,7 @@ export default function AboutPreview() {
           }`}
         >
           <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-6 max-w-3xl">
-            A fintech specialist investment firm focused on late-stage secondaries and special situations investing.
+            A fintech specialist investment firm focused on late stage growth equity and secondaries investing.
           </h2>
           <p className="text-lg md:text-xl text-[#575757]/80 leading-relaxed mb-8 max-w-2xl">
             We invest in late stage fintech companies across all major verticals of fintech.

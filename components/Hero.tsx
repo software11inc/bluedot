@@ -68,7 +68,7 @@ export default function Hero() {
               <div className="md:self-end text-left md:text-right max-w-xs">
                 <Image src={splitDot} alt="" className="md:ml-auto mb-4" />
                 <p className="text-lg md:text-xl text-white/80">
-                  A fintech specialist investment firm focused on late-stage growth and special situations investing.
+                  A fintech specialist investment firm focused on late-stage growth and secondaries investing.
                 </p>
               </div>
             </div>
