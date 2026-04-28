@@ -98,7 +98,7 @@ export default function RootLayout({
             gtag('config', 'G-4FDLQPLBBE');
           `}
         </Script>
-        <Script id="reb2b" strategy="afterInteractive">
+        <Script id="reb2b" strategy="beforeInteractive">
           {`
             !function(key) {
               if (window.reb2b) return;
