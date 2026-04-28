@@ -278,6 +278,111 @@ export default function ResearchPage() {
       <main>
         <ResearchReportCTA flip asHero background="white" />
 
+        {/* Private vs Public Revenue Comparison */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechRevenueComparison />
+          </div>
+        </section>
+
+        {/* Private Top 100 Revenue Concentration */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechRevenueConcentration />
+          </div>
+        </section>
+
+        {/* Private FinTech Revenue Pie ($174B) */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPieSection
+              segments={[
+                { name: "Crypto & Blockchain", value: 45, color: "#F4845F" },
+                { name: "Banking / Lending Tech", value: 35, color: "#2E8B57" },
+                { name: "Payments", value: 32, color: "#3DA5F0" },
+                { name: "Office of the CFO", value: 20, color: "#2575C9" },
+                { name: "Wealth & Capital Markets Tech", value: 18, color: "#C778A2" },
+                { name: "InsurTech", value: 13, color: "#A2D2DF" },
+                { name: "Healthcare FinTech", value: 12, color: "#B89B5A" },
+              ]}
+              headlinePrefix="The private FinTech top 100 generate"
+              headlineHighlight="$174 billion"
+              headlineSuffix="in total revenue"
+              description="The Crypto & Blockchain sector leads for total revenue as well, followed by Banking / Lending Tech and Payments sectors."
+              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
+              unit="B"
+            />
+          </div>
+        </section>
+
+        {/* Private Fintech Valuation Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPieSection
+              segments={[
+                { name: "Crypto & Blockchain", value: 759, color: "#F4845F" },
+                { name: "Payments", value: 358, color: "#3DA5F0" },
+                { name: "Office of the CFO", value: 230, color: "#2575C9" },
+                { name: "Banking / Lending Tech", value: 228, color: "#2E8B57" },
+                { name: "Wealth & Capital Markets Tech", value: 157, color: "#C778A2" },
+                { name: "Healthcare FinTech", value: 68, color: "#B89B5A" },
+                { name: "InsurTech", value: 67, color: "#A2D2DF" },
+              ]}
+              headlinePrefix="The private FinTech top 100 represents"
+              headlineHighlight="$1.9 trillion"
+              headlineSuffix="in total valuation"
+              description="Some of the largest private FinTech companies in the world are Crypto & Blockchain players, with the sector handily ranking in the top spot for valuation."
+              source="Source: Company press releases, public news, FT Partners' proprietary data and estimates"
+              unit="B"
+            />
+          </div>
+        </section>
+
+        {/* Valuation / Revenue Multiple Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechBarSection
+              segments={[
+                { name: "InsurTech", value: 5.0, color: "#A2D2DF" },
+                { name: "Healthcare\nFinTech", value: 5.5, color: "#B89B5A" },
+                { name: "Banking/Lending Tech", value: 6.5, color: "#2E8B57" },
+                { name: "Wealth & Capital\nMarkets Tech", value: 9.0, color: "#C778A2" },
+                { name: "Payments", value: 11.4, color: "#3DA5F0" },
+                { name: "Office of\nthe CFO", value: 11.8, color: "#2575C9" },
+                { name: "Crypto & Blockchain", value: 16.9, color: "#F4845F" },
+              ]}
+              headlinePrefix="Across all sectors, the top 100 largest private FinTech companies reflect a valuation / revenue multiple of"
+              headlineHighlight="10.7x"
+              description="Three sectors claim a revenue multiple over 10x, with Crypto & Blockchain at the high end."
+              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
+              yAxisLabel="Valuation / Revenue Multiple"
+              valueSuffix="x"
+              valueDecimals={1}
+            />
+          </div>
+        </section>
+
+        {/* World Map of well-funded VC-backed FinTechs */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechWorldMap />
+          </div>
+        </section>
+
+        {/* Public Top 100 Founded 2006+ Treemap */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPublicTreemap />
+          </div>
+        </section>
+
+        {/* Nu + Revolut vs US Banks Customer Base */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechCustomerBaseComparison />
+          </div>
+        </section>
+
         {/* Tombstones Section */}
         <section className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -285,7 +390,7 @@ export default function ResearchPage() {
               {/* Left - Headline */}
               <div className="md:col-span-3">
                 <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight">
-                  The IPO window for FinTech finally re-opened
+                  The IPO window for FinTech has finally re-opened
                 </h2>
                 <div className="text-xs text-[#575757]/60 mt-10 space-y-1">
                   <p>Source: FT Partners&apos; Proprietary Database</p>
@@ -348,142 +453,8 @@ export default function ResearchPage() {
             </div>
           </div>
         </section>
-        {/* Treemap Section */}
-        <section className="py-24 bg-white hidden">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl text-[#575757] mb-2">
-                  Fintech Market Cap
-                </h2>
-                <p className="text-[#575757]/60">
-                  Public fintech companies by market capitalization (squarified treemap)
-                </p>
-              </div>
-              {totalMarketCap > 0 && (
-                <div className="text-left md:text-right">
-                  <p className="text-xs text-[#575757]/60 uppercase tracking-wider">Total Market Cap</p>
-                  <p className="text-2xl font-display text-[#1C39BB]">${totalMarketCap.toLocaleString()}B</p>
-                  <p className="text-xs text-[#575757]/40">{marketCaps.length} companies</p>
-                </div>
-              )}
-            </div>
-
-            {/* D3 Treemap */}
-            {loadingMarketCaps ? (
-              <div className="bg-gray-200 rounded-lg animate-pulse h-[500px]" />
-            ) : (
-              <div className="overflow-hidden rounded-lg bg-gray-100">
-                <Treemap
-                  data={marketCaps}
-                  onSelect={setSelectedTreemapCompany}
-                />
-              </div>
-            )}
-
-            {/* Sector Legend */}
-            {!loadingMarketCaps && marketCaps.length > 0 && (
-              <div className="flex flex-wrap gap-4 mt-8 justify-center">
-                {Array.from(new Set(marketCaps.map(c => c.sector))).map(sector => {
-                  const company = marketCaps.find(c => c.sector === sector);
-                  return (
-                    <div key={sector} className="flex items-center gap-2">
-                      <div className="w-3 h-3 rounded" style={{ backgroundColor: company?.color }} />
-                      <span className="text-xs text-[#575757]/70">{sector}</span>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </section>
-
-        {/* Private Fintech Valuation Section */}
-        <section className="py-24 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechPieSection
-              segments={[
-                { name: "Crypto & Blockchain", value: 759, color: "#F4845F" },
-                { name: "Payments", value: 358, color: "#3DA5F0" },
-                { name: "Office of the CFO", value: 230, color: "#2575C9" },
-                { name: "Banking / Lending Tech", value: 228, color: "#2E8B57" },
-                { name: "Wealth & Capital Markets Tech", value: 157, color: "#C778A2" },
-                { name: "Healthcare FinTech", value: 68, color: "#B89B5A" },
-                { name: "InsurTech", value: 67, color: "#A2D2DF" },
-              ]}
-              headlinePrefix="The private FinTech top 100 represents"
-              headlineHighlight="$1.9 trillion"
-              headlineSuffix="in total valuation"
-              description="Some of the largest private FinTech companies in the world are Crypto & Blockchain players, with the sector handily ranking in the top spot for valuation."
-              source="Source: Company press releases, public news, FT Partners' proprietary data and estimates"
-              unit="B"
-            />
-          </div>
-        </section>
-
-        {/* Private Fintech Revenue Section */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechPieSection
-              segments={[
-                { name: "Crypto & Blockchain", value: 45, color: "#F4845F" },
-                { name: "Banking / Lending Tech", value: 35, color: "#2E8B57" },
-                { name: "Payments", value: 32, color: "#3DA5F0" },
-                { name: "Office of the CFO", value: 20, color: "#2575C9" },
-                { name: "Wealth & Capital Markets Tech", value: 18, color: "#C778A2" },
-                { name: "InsurTech", value: 13, color: "#A2D2DF" },
-                { name: "Healthcare FinTech", value: 12, color: "#B89B5A" },
-              ]}
-              headlinePrefix="The private FinTech top 100 generate"
-              headlineHighlight="$174 billion"
-              headlineSuffix="in total revenue"
-              description="The Crypto & Blockchain sector leads for total revenue as well, followed by Banking / Lending Tech and Payments sectors."
-              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
-              unit="B"
-            />
-          </div>
-        </section>
-
-        {/* Valuation / Revenue Multiple Section */}
-        <section className="py-24 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechBarSection
-              segments={[
-                { name: "InsurTech", value: 5.0, color: "#A2D2DF" },
-                { name: "Healthcare\nFinTech", value: 5.5, color: "#B89B5A" },
-                { name: "Banking/Lending Tech", value: 6.5, color: "#2E8B57" },
-                { name: "Wealth & Capital\nMarkets Tech", value: 9.0, color: "#C778A2" },
-                { name: "Payments", value: 11.4, color: "#3DA5F0" },
-                { name: "Office of\nthe CFO", value: 11.8, color: "#2575C9" },
-                { name: "Crypto & Blockchain", value: 16.9, color: "#F4845F" },
-              ]}
-              headlinePrefix="Across all sectors, the top 100 largest private FinTech companies reflect a valuation / revenue multiple of"
-              headlineHighlight="10.7x"
-              description="Three sectors claim a revenue multiple over 10x, with Crypto & Blockchain at the high end."
-              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
-              yAxisLabel="Valuation / Revenue Multiple"
-              valueSuffix="x"
-              valueDecimals={1}
-            />
-          </div>
-        </section>
-
-        {/* Private Top 100 Revenue Concentration */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechRevenueConcentration />
-          </div>
-        </section>
-
-        {/* Private vs Public Revenue Comparison */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechRevenueComparison />
-          </div>
-        </section>
-
         {/* US FinTech IPO Activity Chart */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechIPOChart />
           </div>
@@ -548,15 +519,51 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* FinTech Secondary Activity Surge */}
+        {/* FinTech Secondary Volume Treemap (Top 10 + Other) */}
         <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-3 max-w-5xl">
+              In FinTech, 10 companies accounted for nearly 96% of all LTM executed volume
+            </h2>
+            <p className="text-[#1f2937] text-base md:text-lg font-semibold mb-6">
+              FinTech-Focused Top 10 + Other – % LTM Executed Secondary Volume
+            </p>
+
+            <div className="overflow-hidden rounded-lg">
+              <Treemap
+                data={[
+                  { symbol: "STRIPE", name: "Stripe", sector: "Payments", marketCap: 47.79, color: "#00B0F0", logo: "/secondary-treemap-logos/stripe.png" },
+                  { symbol: "KRAKEN", name: "Kraken", sector: "Crypto & Blockchain", marketCap: 20.36, color: "#F17649", logo: "/secondary-treemap-logos/kraken.png" },
+                  { symbol: "RIPPLING", name: "Rippling", sector: "Office of the CFO", marketCap: 8.85, color: "#0072B2", logo: "/secondary-treemap-logos/rippling.png" },
+                  { symbol: "ALPHASENSE", name: "AlphaSense", sector: "Wealth & Capital Markets Tech", marketCap: 6.78, color: "#CC79A7", logo: "/secondary-treemap-logos/alphasense.png" },
+                  { symbol: "REVOLUT", name: "Revolut", sector: "Banking / Lending Tech", marketCap: 3.73, color: "#253EC8", logo: "/secondary-treemap-logos/revolut.png" },
+                  { symbol: "ETHOS", name: "Ethos", sector: "InsurTech", marketCap: 2.32, color: "#96DCF8", logo: "/secondary-treemap-logos/ethos.png" },
+                  { symbol: "UPGRADE", name: "Upgrade", sector: "Banking / Lending Tech", marketCap: 2.06, color: "#009E73", logo: "/secondary-treemap-logos/upgrade.png" },
+                  { symbol: "RIPPLE", name: "Ripple", sector: "Crypto & Blockchain", marketCap: 1.51, color: "#F4906D", logo: "/secondary-treemap-logos/ripple.png" },
+                  { symbol: "MERCURY", name: "Mercury", sector: "Office of the CFO", marketCap: 1.34, color: "#0072B2", logo: "/secondary-treemap-logos/mercury.png" },
+                  { symbol: "POLYMARKET", name: "Polymarket", sector: "Wealth & Capital Markets Tech", marketCap: 0.94, color: "#CC79A7", logo: "/secondary-treemap-logos/polymarket.png" },
+                  { symbol: "OTHER", name: "Other", sector: "Mixed", marketCap: 4.33, color: "#5B6FE5" },
+                ]}
+                onSelect={() => undefined}
+                valueFormat="percent"
+              />
+            </div>
+
+            <div className="text-xs text-[#575757]/60 mt-6 space-y-1">
+              <p>Source: Caplight Technologies, Inc. as of December 15, 2025</p>
+            </div>
+          </div>
+        </section>
+
+        {/* FinTech Secondary Activity Surge */}
+        <section className="py-24 bg-white">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechSecondaryActivity />
           </div>
         </section>
 
         {/* FinTech Sponsor Buyouts */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechSponsorBuyouts
               headline="FinTech sponsor buyouts were previously a nascent exit pathway, but now represent a steadily growing viable exit option and enduring asset class…"
@@ -641,7 +648,7 @@ export default function ResearchPage() {
         </section>
 
         {/* Strategic M&A market share */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-24 bg-gray-50 hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechSponsorBuyouts
               headline="Strategic M&A was historically the dominant exit pathway for FinTech companies, but in recent years, it has experienced a meaningful decline in market share"
@@ -723,7 +730,7 @@ export default function ResearchPage() {
         </section>
 
         {/* PE / Sponsor M&A % of Total $ Volume */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechSponsorBuyouts
               headline="…With recent take-privates and large-scale buyouts capturing a sizeable portion of the total dollar volume"
@@ -797,13 +804,6 @@ export default function ResearchPage() {
               valueSuffix="%"
               valueInside
             />
-          </div>
-        </section>
-
-        {/* World Map of well-funded VC-backed FinTechs */}
-        <section className="py-24 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechWorldMap />
           </div>
         </section>
 
@@ -897,29 +897,15 @@ export default function ResearchPage() {
           </div>
         </section>
 
-        {/* Nu + Revolut vs US Banks Customer Base */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechCustomerBaseComparison />
-          </div>
-        </section>
-
-        {/* Public Top 100 Founded 2006+ Treemap */}
-        <section className="py-24 bg-gray-50">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <FintechPublicTreemap />
-          </div>
-        </section>
-
         {/* Mature Fund Vintages — Liquidity Pressure */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechMatureVintages />
           </div>
         </section>
 
         {/* Twenty-year FinTech growth */}
-        <section className="py-24 bg-gray-50">
+        <section className="py-24 bg-gray-50 hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <FintechTwentyYearGrowth />
           </div>

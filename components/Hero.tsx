@@ -49,7 +49,7 @@ export default function Hero() {
               {/* Left column */}
               <div className="mt-auto md:mt-0">
                 <h1 className="font-display text-5xl md:text-7xl text-white mb-1 max-w-[280px] md:max-w-[400px]">
-                  <TypeWriter text="Late-Stage Growth" delay={60} startDelay={2000} />
+                  <TypeWriter text="Late-Stage Fintech" delay={60} startDelay={2000} />
                 </h1>
                 <p className="text-xl md:text-2xl text-white/80">
                   and Secondaries Investing

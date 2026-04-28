@@ -47,8 +47,7 @@ export default function FintechPublicTreemap() {
   return (
     <div>
       <h2 className="font-display text-2xl md:text-4xl text-[#1C39BB] leading-tight mb-3 max-w-5xl">
-        We next analyzed the largest public FinTech companies founded in the last twenty
-        years. Robinhood{" "}
+        The largest public FinTech companies founded in the last twenty years. Robinhood{" "}
         <span className="text-[#575757]">(NASDAQ:HOOD)</span> and Nu Holdings{" "}
         <span className="text-[#575757]">(NYSE:NU)</span> lead the pack, accounting for almost
         a quarter of the total market cap

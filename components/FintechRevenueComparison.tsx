@@ -21,7 +21,7 @@ export default function FintechRevenueComparison() {
   return (
     <div>
       <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-8 md:mb-24 max-w-4xl">
-        Even more striking, the top 100 private FinTech companies are{" "}
+        The top 100 private FinTech companies are{" "}
         <span className="text-[#5BB7E8]">outpacing</span> their public peers in revenue
       </h2>
 

@@ -17,9 +17,10 @@ interface TreemapProps {
   width?: number;
   height?: number;
   onSelect: (company: TreemapData) => void;
+  valueFormat?: "dollars" | "percent";
 }
 
-export default function Treemap({ data, width: propWidth, height: propHeight = 600, onSelect }: TreemapProps) {
+export default function Treemap({ data, width: propWidth, height: propHeight = 600, onSelect, valueFormat = "dollars" }: TreemapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: propWidth || 1200, height: propHeight });
 
@@ -120,7 +121,11 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
                 )}
                 {isSmall && (
                   <span className={`text-white/80 ${isMedium ? 'text-sm' : 'text-xs'}`}>
-                    ${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}
+                    {valueFormat === "percent"
+                      ? d.marketCap >= 1
+                        ? `${d.marketCap.toFixed(0)}%`
+                        : `${d.marketCap.toFixed(1)}%`
+                      : `$${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}`}
                   </span>
                 )}
                 {!isTiny && area > 400 && (

@@ -35,7 +35,7 @@ export default function FintechProfitableIndustry() {
     <div className="grid md:grid-cols-2 gap-10 items-start">
       <div>
         <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight mb-12">
-          FinTech is the Future of the World&apos;s Most Profitable Industry
+          The North Star: Financial Services is The World&apos;s Most Profitable Industry
         </h2>
         <p className="text-xl md:text-2xl text-[#575757] leading-snug font-medium max-w-md">
           No industry generates more profit than financial services — and

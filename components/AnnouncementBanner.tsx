@@ -30,14 +30,14 @@ export default function AnnouncementBanner() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 py-2">
           <Link
-            href="/research"
+            href="/research/bluedot-ft-partners-report"
             className="group flex flex-1 items-center gap-3 text-sm min-w-0"
           >
             <span className="hidden sm:inline-flex shrink-0 items-center rounded-full border border-white/30 px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider">
               New
             </span>
             <span className="truncate">
-              <span className="font-medium">FT Partners × Blue Dot Research</span>
+              <span className="font-medium">Bluedot x FT Research</span>
               <span className="hidden md:inline text-white/80">
                 {" "}
                 — explore our latest fintech market insights
