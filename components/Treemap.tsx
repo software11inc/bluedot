@@ -9,6 +9,7 @@ interface TreemapData {
   sector: string;
   marketCap: number;
   color: string;
+  logo?: string;
 }
 
 interface TreemapProps {
@@ -97,32 +98,43 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
             }}
             onClick={() => onSelect(d)}
           >
-            <div className="p-2 h-full flex flex-col justify-end">
-              {/* Company name - only show if there's enough space */}
-              {isTiny && (
-                <p
-                  className={`text-white font-medium truncate ${
-                    isLarge ? 'text-lg' : isMedium ? 'text-base' : isSmall ? 'text-sm' : 'text-xs'
-                  }`}
-                >
-                  {d.name}
-                </p>
-              )}
-
-              {/* Market cap - only show if medium or larger */}
-              {isSmall && (
-                <span className={`text-white/80 ${isMedium ? 'text-sm' : 'text-xs'}`}>
-                  ${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}
-                </span>
-              )}
-
-              {/* Symbol for tiny boxes */}
-              {!isTiny && area > 400 && (
-                <p className="text-white/90 text-[10px] font-medium truncate">
-                  {d.symbol}
-                </p>
-              )}
-            </div>
+            {d.logo ? (
+              <div className="absolute inset-0 flex items-center justify-center p-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={d.logo}
+                  alt={d.name}
+                  className="max-w-[80%] max-h-[60%] object-contain"
+                />
+              </div>
+            ) : (
+              <div className="p-2 h-full flex flex-col justify-end">
+                {isTiny && (
+                  <p
+                    className={`text-white font-medium truncate ${
+                      isLarge ? 'text-lg' : isMedium ? 'text-base' : isSmall ? 'text-sm' : 'text-xs'
+                    }`}
+                  >
+                    {d.name}
+                  </p>
+                )}
+                {isSmall && (
+                  <span className={`text-white/80 ${isMedium ? 'text-sm' : 'text-xs'}`}>
+                    ${d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}B` : `${(d.marketCap * 1000).toFixed(0)}M`}
+                  </span>
+                )}
+                {!isTiny && area > 400 && (
+                  <p className="text-white/90 text-[10px] font-medium truncate">
+                    {d.symbol}
+                  </p>
+                )}
+              </div>
+            )}
+            {d.logo && isSmall && (
+              <span className="absolute bottom-1 left-2 text-white/90 text-xs font-bold">
+                {d.marketCap >= 1 ? `${d.marketCap.toFixed(0)}%` : `${(d.marketCap).toFixed(1)}%`}
+              </span>
+            )}
           </div>
         );
       })}

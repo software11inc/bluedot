@@ -5,12 +5,12 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/app/assets/blue-dot-logo.svg";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/team", label: "Team" },
   { href: "/community", label: "Community" },
-  { href: "/research", label: "Research" },
   { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ];
@@ -31,8 +31,10 @@ export default function Header({ animate = true }: { animate?: boolean }) {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md py-4 ${animate ? "animate-nav-slide-down" : ""}`}>
-      <nav className="mx-auto max-w-7xl px-6 lg:px-8">
+    <header className={`fixed top-0 left-0 right-0 z-50 ${animate ? "animate-nav-slide-down" : ""}`}>
+      <AnnouncementBanner />
+      <div className="bg-white/80 backdrop-blur-md py-4">
+        <nav className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/">
             <Image src={logo} alt="Blue Dot" height={37} />
@@ -113,7 +115,8 @@ export default function Header({ animate = true }: { animate?: boolean }) {
             </div>
           </div>
         )}
-      </nav>
+        </nav>
+      </div>
 
       {/* Animated underline - disabled for now
       <div

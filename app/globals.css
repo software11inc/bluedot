@@ -214,7 +214,6 @@ html {
 
 /* Touch-friendly: Pause carousel animations on hover for better UX */
 @media (hover: hover) {
-  .animate-logo-scroll:hover,
   .animate-advisor-scroll:hover {
     animation-play-state: paused;
   }

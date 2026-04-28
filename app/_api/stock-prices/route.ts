@@ -1,34 +1,39 @@
 import { getQuote } from "@/lib/finnhub";
 
-// Recent Fintech IPOs with their IPO prices
 const FINTECH_IPOS = [
-  { symbol: "GLXY", name: "Galaxy Digital", ipoPrice: 5, ipoDate: "Feb 2006", sector: "Crypto" },
-  { symbol: "ARX", name: "Accelerant Holdings", ipoPrice: 14, ipoDate: "Jul 2025", sector: "Insurance" },
-  { symbol: "ANTA", name: "Antalpha Platform", ipoPrice: 10, ipoDate: "May 2025", sector: "Financial Services" },
-  { symbol: "BLSH", name: "Bullish", ipoPrice: 20, ipoDate: "Aug 2025", sector: "Crypto Exchange" },
-  { symbol: "ETOR", name: "eToro", ipoPrice: 52, ipoDate: "May 2025", sector: "Trading" },
-  { symbol: "CRCL", name: "Circle", ipoPrice: 26, ipoDate: "Jun 2025", sector: "Stablecoin" },
-  { symbol: "CHYM", name: "Chime", ipoPrice: 27, ipoDate: "Jun 2025", sector: "Digital Banking" },
-  { symbol: "GEMI", name: "Gemini", ipoPrice: 10, ipoDate: "Sep 2025", sector: "Crypto" },
-  { symbol: "NP", name: "Neptune Insurance", ipoPrice: 20, ipoDate: "Oct 2025", sector: "Insurance" },
-  { symbol: "FIGR", name: "Figure", ipoPrice: 36, ipoDate: "Sep 2025", sector: "Blockchain Lending" },
-  { symbol: "KLAR", name: "Klarna", ipoPrice: 21, ipoDate: "Sep 2025", sector: "BNPL" },
-  { symbol: "OS", name: "OneStream", ipoPrice: 20, ipoDate: "Jul 2024", sector: "Financial Software" },
-  { symbol: "WAY", name: "Waystar", ipoPrice: 21.50, ipoDate: "Jun 2024", sector: "Healthcare Payments" },
-  { symbol: "SLDE", name: "Slide Insurance", ipoPrice: 15, ipoDate: "Jun 2025", sector: "Insurtech" },
-  { symbol: "TTAN", name: "ServiceTitan", ipoPrice: 71, ipoDate: "Dec 2024", sector: "Field Service" },
-  { symbol: "NAVN", name: "Navan", ipoPrice: 13, ipoDate: "Oct 2025", sector: "Travel & Expense" },
+  { symbol: "PAYP", name: "PayPay",      ipoPrice: null, ipoDate: "3/11/2026",  grossProceeds: 880,  logo: "/ipo-logos/PAYP.png",  sector: "Payments" },
+  { symbol: "BTGO", name: "BitGo",       ipoPrice: null, ipoDate: "1/26/2026",  grossProceeds: 213,  logo: "/ipo-logos/BTGO.jpeg", sector: "Crypto" },
+  { symbol: "NP",   name: "Neptune",     ipoPrice: 20,   ipoDate: "9/30/2025",  grossProceeds: 368,  logo: "/ipo-logos/NP.jpeg",   sector: "Insurance" },
+  { symbol: "MIAX", name: "Miax",        ipoPrice: null, ipoDate: "8/13/2025",  grossProceeds: 345,  logo: "/ipo-logos/MIAX.png",  sector: "Capital Markets" },
+  { symbol: "CHYM", name: "Chime",       ipoPrice: 27,   ipoDate: "6/11/2025",  grossProceeds: 864,  logo: "/ipo-logos/CHYM.png",  sector: "Digital Banking" },
+  { symbol: "AGBK", name: "agi",         ipoPrice: null, ipoDate: "2/10/2026",  grossProceeds: 240,  logo: "/ipo-logos/AGBK.png",  sector: "Banking" },
+  { symbol: "WLTH", name: "Wealthfront", ipoPrice: null, ipoDate: "12/11/2025", grossProceeds: 485,  logo: "/ipo-logos/WLTH.png",  sector: "Wealth" },
+  { symbol: "GEMI", name: "Gemini",      ipoPrice: 10,   ipoDate: "9/11/2025",  grossProceeds: 425,  logo: "/ipo-logos/GEMI.svg",  sector: "Crypto" },
+  { symbol: "BLSH", name: "Bullish",     ipoPrice: 20,   ipoDate: "8/12/2025",  grossProceeds: 1110, logo: "/ipo-logos/BLSH.png",  sector: "Crypto Exchange" },
+  { symbol: "CRCL", name: "Circle",      ipoPrice: 26,   ipoDate: "6/04/2025",  grossProceeds: 1054, logo: "/ipo-logos/CRCL.png",  sector: "Stablecoin" },
+  { symbol: "PICS", name: "PicPay",      ipoPrice: null, ipoDate: "1/28/2026",  grossProceeds: 434,  logo: "/ipo-logos/PICS.png",  sector: "Payments" },
+  { symbol: "XZO",  name: "Exzeo",       ipoPrice: null, ipoDate: "11/04/2025", grossProceeds: 168,  logo: "/ipo-logos/XZO.png",   sector: "Insurtech" },
+  { symbol: "FIGR", name: "Figure",      ipoPrice: 36,   ipoDate: "9/10/2025",  grossProceeds: 788,  logo: "/ipo-logos/FIGR.png",  sector: "Blockchain Lending" },
+  { symbol: "ARX",  name: "Accelerant",  ipoPrice: 14,   ipoDate: "7/23/2025",  grossProceeds: 724,  logo: "/ipo-logos/ARX.png",   sector: "Insurance" },
+  { symbol: "ETOR", name: "eToro",       ipoPrice: 52,   ipoDate: "5/13/2025",  grossProceeds: 620,  logo: "/ipo-logos/ETOR.png",  sector: "Trading" },
+  { symbol: "LIFE", name: "Ethos",       ipoPrice: null, ipoDate: "1/28/2026",  grossProceeds: 200,  logo: "/ipo-logos/LIFE.jpeg", sector: "Insurance" },
+  { symbol: "NAVN", name: "Navan",       ipoPrice: 13,   ipoDate: "10/29/2025", grossProceeds: 923,  logo: "/ipo-logos/NAVN.png",  sector: "Travel & Expense" },
+  { symbol: "KLAR", name: "Klarna",      ipoPrice: 21,   ipoDate: "9/09/2025",  grossProceeds: 1372, logo: "/ipo-logos/KLAR.png",  sector: "BNPL" },
+  { symbol: "SLDE", name: "Slide",       ipoPrice: 15,   ipoDate: "6/17/2025",  grossProceeds: 408,  logo: "/ipo-logos/SLDE.png",  sector: "Insurtech" },
+  { symbol: "OS",   name: "OneStream",   ipoPrice: 20,   ipoDate: "6/23/2024",  grossProceeds: 490,  logo: "/ipo-logos/OS.png",    sector: "Financial Software" },
 ];
 
 export interface StockPriceData {
   symbol: string;
   name: string;
   sector: string;
-  ipoPrice: number;
+  ipoPrice: number | null;
   ipoDate: string;
-  currentPrice: number;
-  returnSinceIPO: number;
-  dailyChange: number;
+  grossProceeds: number;
+  logo: string;
+  currentPrice: number | null;
+  returnSinceIPO: number | null;
+  dailyChange: number | null;
 }
 
 export async function GET() {
@@ -37,8 +42,11 @@ export async function GET() {
       FINTECH_IPOS.map(async (company) => {
         try {
           const quote = await getQuote(company.symbol);
-          const currentPrice = quote.c;
-          const returnPct = ((currentPrice - company.ipoPrice) / company.ipoPrice) * 100;
+          const currentPrice = quote.c || null;
+          const returnPct =
+            currentPrice !== null && company.ipoPrice
+              ? ((currentPrice - company.ipoPrice) / company.ipoPrice) * 100
+              : null;
 
           return {
             symbol: company.symbol,
@@ -46,19 +54,23 @@ export async function GET() {
             sector: company.sector,
             ipoPrice: company.ipoPrice,
             ipoDate: company.ipoDate,
-            currentPrice: currentPrice,
-            returnSinceIPO: parseFloat(returnPct.toFixed(1)),
-            dailyChange: parseFloat(quote.dp.toFixed(2)),
+            grossProceeds: company.grossProceeds,
+            logo: company.logo,
+            currentPrice,
+            returnSinceIPO:
+              returnPct !== null ? parseFloat(returnPct.toFixed(1)) : null,
+            dailyChange: parseFloat((quote.dp ?? 0).toFixed(2)),
           };
         } catch (error) {
           console.error(`Error fetching ${company.symbol}:`, error);
-          // Return placeholder data if API fails
           return {
             symbol: company.symbol,
             name: company.name,
             sector: company.sector,
             ipoPrice: company.ipoPrice,
             ipoDate: company.ipoDate,
+            grossProceeds: company.grossProceeds,
+            logo: company.logo,
             currentPrice: null,
             returnSinceIPO: null,
             dailyChange: null,

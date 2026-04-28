@@ -29,6 +29,9 @@ yarn-error.log*
 # Vercel
 .vercel
 
+# Remotion video sub-project (separate workspace, not part of the site build)
+/video/
+
 # Uploads (uncomment to ignore uploaded images)
 # /public/uploads/*
 # !/public/uploads/.gitkeep

@@ -4,9 +4,24 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Treemap from "@/components/Treemap";
-import Image from "next/image";
-import heroCircles from "@/app/assets/hero-circles-color.svg";
-import dotGroupHero from "@/app/assets/dot-group-hero-horizontal.svg";
+import FintechPieSection from "@/components/FintechPieSection";
+import FintechBarSection from "@/components/FintechBarSection";
+import FintechRevenueComparison from "@/components/FintechRevenueComparison";
+import FintechIPOChart from "@/components/FintechIPOChart";
+import FintechIPORevenueBars from "@/components/FintechIPORevenueBars";
+import FintechSecondaryConcentration from "@/components/FintechSecondaryConcentration";
+import FintechSecondaryActivity from "@/components/FintechSecondaryActivity";
+import FintechSponsorBuyouts from "@/components/FintechSponsorBuyouts";
+import FintechWorldMap from "@/components/FintechWorldMap";
+import FintechCustomerBaseComparison from "@/components/FintechCustomerBaseComparison";
+import FintechPublicTreemap from "@/components/FintechPublicTreemap";
+import FintechMatureVintages from "@/components/FintechMatureVintages";
+import FintechTwentyYearGrowth from "@/components/FintechTwentyYearGrowth";
+import FintechProfitableIndustry from "@/components/FintechProfitableIndustry";
+import FintechRevenueConcentration from "@/components/FintechRevenueConcentration";
+import DealLogos from "@/components/DealLogos";
+import ResearchReportCTA from "@/components/ResearchReportCTA";
+import { FINTECH_IPOS } from "./fintech-ipos";
 
 const API_BASE = "https://blue-dot-api.william-b0e.workers.dev";
 const CACHE_KEYS = {
@@ -43,13 +58,32 @@ function writeSessionCache<T>(key: string, data: T) {
   }
 }
 
+function mergeLivePrices(
+  apiData: Partial<StockPriceData>[]
+): StockPriceData[] {
+  const bySymbol = new Map(
+    apiData.filter((d) => d?.symbol).map((d) => [d.symbol as string, d])
+  );
+  return FINTECH_IPOS.map((ipo) => {
+    const live = bySymbol.get(ipo.symbol);
+    return {
+      ...ipo,
+      currentPrice: live?.currentPrice ?? null,
+      returnSinceIPO: live?.returnSinceIPO ?? null,
+      dailyChange: live?.dailyChange ?? null,
+    };
+  });
+}
+
 // Type for live stock price data
 interface StockPriceData {
   symbol: string;
   name: string;
   sector: string;
-  ipoPrice: number;
+  ipoPrice: number | null;
   ipoDate: string;
+  grossProceeds: number;
+  logo: string;
   currentPrice: number | null;
   returnSinceIPO: number | null;
   dailyChange: number | null;
@@ -119,11 +153,17 @@ interface CompanyDetails {
 }
 
 export default function ResearchPage() {
-  const [lineVisible, setLineVisible] = useState(false);
   const [selectedTombstone, setSelectedTombstone] = useState<StockPriceData | null>(null);
   const [selectedTreemapCompany, setSelectedTreemapCompany] = useState<FintechMarketCap | null>(null);
-  const [stockPrices, setStockPrices] = useState<StockPriceData[]>([]);
-  const [loadingPrices, setLoadingPrices] = useState(true);
+  const [stockPrices, setStockPrices] = useState<StockPriceData[]>(() =>
+    FINTECH_IPOS.map((ipo) => ({
+      ...ipo,
+      currentPrice: null,
+      returnSinceIPO: null,
+      dailyChange: null,
+    }))
+  );
+  const [loadingPrices, setLoadingPrices] = useState(false);
   const [companyDetails, setCompanyDetails] = useState<CompanyDetails | null>(null);
   const [loadingDetails, setLoadingDetails] = useState(false);
   const [marketCaps, setMarketCaps] = useState<FintechMarketCap[]>([]);
@@ -144,25 +184,16 @@ export default function ResearchPage() {
     : null;
 
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLineVisible(true);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   // Fetch initial data and update each section as soon as it resolves
   useEffect(() => {
-    const cachedPrices = readSessionCache<{ data: StockPriceData[] }>(
+    const cachedPrices = readSessionCache<{ data: Partial<StockPriceData>[] }>(
       CACHE_KEYS.stockPrices,
       CACHE_TTL_MS.stockPrices
     );
     const hasCachedPrices =
       (cachedPrices?.data?.length || 0) >= MIN_CACHE_COUNTS.stockPrices;
     if (hasCachedPrices && cachedPrices) {
-      setStockPrices(cachedPrices.data);
-      setLoadingPrices(false);
+      setStockPrices(mergeLivePrices(cachedPrices.data));
     }
 
 
@@ -172,12 +203,10 @@ export default function ResearchPage() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
         console.log('Stock prices loaded:', json.data?.length);
-        setStockPrices(json.data || []);
+        setStockPrices(mergeLivePrices(json.data || []));
         writeSessionCache(CACHE_KEYS.stockPrices, json);
       } catch (error) {
         console.error('Stock prices failed:', error);
-      } finally {
-        setLoadingPrices(false);
       }
     }
 
@@ -206,7 +235,7 @@ export default function ResearchPage() {
         const res = await fetch(`${API_BASE}/stock-prices`);
         if (res.ok) {
           const json = await res.json();
-          setStockPrices(json.data || []);
+          setStockPrices(mergeLivePrices(json.data || []));
         }
       } catch (error) {
         console.error("Error refreshing stock prices:", error);
@@ -246,98 +275,73 @@ export default function ResearchPage() {
   return (
     <>
       <Header animate={false} />
-      <main className="pt-24">
-        {/* Hero section */}
-        <section className="min-h-[50vh] flex flex-col pb-12 bg-white">
-          <div className="mx-auto max-w-7xl w-full h-full px-6 lg:px-8">
-            <div className="relative w-full h-full">
-              <div className="w-full h-full flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 md:py-12 animate-page-content">
-                <div className="mt-auto md:mt-0">
-                  <h1 className="font-display text-5xl md:text-7xl text-[#1C39BB]">
-                    Fintech<br />Research
-                  </h1>
-                </div>
-
-                <div className="absolute -bottom-8 md:-bottom-10 left-0">
-                  <span className="font-mono text-sm md:text-base text-black tracking-wider uppercase">
-                    Market Insights
-                  </span>
-                  <div className="absolute left-0 top-full mt-2 h-[1px] w-[calc(100%+100vw)] -ml-[100vw]">
-                    <div className="absolute inset-0 bg-gray-200" />
-                    <div
-                      className={`absolute inset-0 bg-[#1C39BB] transition-transform duration-[1.2s] ease-[cubic-bezier(0.4,0,0.2,1)] origin-left ${
-                        lineVisible ? "scale-x-100" : "scale-x-0"
-                      }`}
-                    />
-                  </div>
-                </div>
-
-                <div className="md:self-end flex flex-col items-end gap-6 -translate-y-[15%]">
-                  <Image src={dotGroupHero} alt="" className="md:ml-auto" />
-                  <Image src={heroCircles} alt="" className="md:ml-auto" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <main>
+        <ResearchReportCTA flip asHero background="white" />
 
         {/* Tombstones Section */}
         <section className="py-24 bg-gray-50">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 gap-16">
-              {/* Left - Text */}
-              <div>
-                <h2 className="font-display text-3xl md:text-4xl text-[#575757] mb-6">
-                  The IPO Window for Fintech has Finally Resumed
+            <div className="grid md:grid-cols-12 gap-10 md:gap-16 items-start">
+              {/* Left - Headline */}
+              <div className="md:col-span-3">
+                <h2 className="font-display text-3xl md:text-5xl text-[#1C39BB] leading-tight">
+                  The IPO window for FinTech finally re-opened
                 </h2>
-                <p className="text-[#575757]/70 leading-relaxed mb-6">
-                  These are the most recent fintech IPOs, highlighting where public market investors are placing their bets today.
-                </p>
-                <p className="text-[#575757]/70 leading-relaxed">
-                  Explore the list to see how the latest wave of fintech issuers is performing since debut.
-                </p>
+                <div className="text-xs text-[#575757]/60 mt-10 space-y-1">
+                  <p>Source: FT Partners&apos; Proprietary Database</p>
+                  <p>Note: Only includes US-listed IPOs that raised $30 million or more in gross proceeds</p>
+                </div>
               </div>
 
               {/* Right - Tombstones Grid */}
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="md:col-span-9 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 {loadingPrices ? (
-                  // Loading skeleton
-                  Array.from({ length: 12 }).map((_, i) => (
-                    <div key={i} className="bg-white rounded-lg p-4 animate-pulse">
-                      <div className="h-4 bg-gray-200 rounded w-20 mb-2" />
-                      <div className="h-3 bg-gray-200 rounded w-16 mb-3" />
-                      <div className="h-6 bg-gray-200 rounded w-16 mb-1" />
-                      <div className="h-3 bg-gray-200 rounded w-12" />
+                  Array.from({ length: 20 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="bg-white rounded-2xl shadow-sm p-4 aspect-square animate-pulse"
+                    >
+                      <div className="h-3 bg-gray-200 rounded w-12 mb-1" />
+                      <div className="h-3 bg-gray-200 rounded w-16 ml-auto mb-3" />
+                      <div className="h-10 bg-gray-100 rounded w-full mb-3" />
+                      <div className="h-5 bg-gray-200 rounded w-20 mb-1" />
+                      <div className="h-3 bg-gray-200 rounded w-24" />
                     </div>
                   ))
                 ) : (
                   stockPrices.map((stock) => (
-                    <div
+                    <button
                       key={stock.symbol}
-                      className="bg-white rounded-lg p-4 cursor-pointer hover:bg-[#1C39BB] hover:text-white transition-all duration-300 group"
                       onClick={() => setSelectedTombstone(stock)}
+                      className="group bg-white rounded-2xl shadow-sm p-4 text-left transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#1C39BB]/30"
                     >
-                      <p className="font-medium text-sm group-hover:text-white text-[#575757]">
-                        {stock.name}
+                      <div className="flex justify-between items-start text-[11px] font-semibold tracking-wider">
+                        <span className="text-gray-300 uppercase">
+                          {stock.symbol}
+                        </span>
+                        <span className="text-gray-400">
+                          {stock.ipoDate}
+                        </span>
+                      </div>
+                      <div className="my-3 h-14 flex items-center justify-center px-2">
+                        {stock.logo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={stock.logo}
+                            alt={stock.name}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        ) : (
+                          <span className="font-display text-xl text-[#1C39BB]">
+                            {stock.name}
+                          </span>
+                        )}
+                      </div>
+                      <p className="font-bold text-lg md:text-xl text-[#111827]">
+                        ${stock.grossProceeds.toLocaleString()} M
                       </p>
-                      <p className="text-xs text-[#575757]/60 group-hover:text-white/70 mt-1">
-                        {stock.sector}
-                      </p>
-                      <p className="text-lg font-display text-[#1C39BB] group-hover:text-white mt-2">
-                        {stock.currentPrice !== null ? `$${stock.currentPrice.toFixed(2)}` : "—"}
-                      </p>
-                      <p className={`text-xs mt-1 ${
-                        stock.returnSinceIPO !== null
-                          ? stock.returnSinceIPO >= 0
-                            ? "text-green-600 group-hover:text-green-300"
-                            : "text-red-600 group-hover:text-red-300"
-                          : "text-[#575757]/40 group-hover:text-white/60"
-                      }`}>
-                        {stock.returnSinceIPO !== null
-                          ? `${stock.returnSinceIPO >= 0 ? "▲" : "▼"} ${stock.returnSinceIPO >= 0 ? "+" : ""}${stock.returnSinceIPO}% since IPO`
-                          : "—"}
-                      </p>
-                    </div>
+                      <p className="text-xs text-[#575757]/60">Gross Proceeds</p>
+                    </button>
                   ))
                 )}
               </div>
@@ -345,7 +349,7 @@ export default function ResearchPage() {
           </div>
         </section>
         {/* Treemap Section */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white hidden">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
               <div>
@@ -394,6 +398,541 @@ export default function ResearchPage() {
           </div>
         </section>
 
+        {/* Private Fintech Valuation Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPieSection
+              segments={[
+                { name: "Crypto & Blockchain", value: 759, color: "#F4845F" },
+                { name: "Payments", value: 358, color: "#3DA5F0" },
+                { name: "Office of the CFO", value: 230, color: "#2575C9" },
+                { name: "Banking / Lending Tech", value: 228, color: "#2E8B57" },
+                { name: "Wealth & Capital Markets Tech", value: 157, color: "#C778A2" },
+                { name: "Healthcare FinTech", value: 68, color: "#B89B5A" },
+                { name: "InsurTech", value: 67, color: "#A2D2DF" },
+              ]}
+              headlinePrefix="The private FinTech top 100 represents"
+              headlineHighlight="$1.9 trillion"
+              headlineSuffix="in total valuation"
+              description="Some of the largest private FinTech companies in the world are Crypto & Blockchain players, with the sector handily ranking in the top spot for valuation."
+              source="Source: Company press releases, public news, FT Partners' proprietary data and estimates"
+              unit="B"
+            />
+          </div>
+        </section>
+
+        {/* Private Fintech Revenue Section */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPieSection
+              segments={[
+                { name: "Crypto & Blockchain", value: 45, color: "#F4845F" },
+                { name: "Banking / Lending Tech", value: 35, color: "#2E8B57" },
+                { name: "Payments", value: 32, color: "#3DA5F0" },
+                { name: "Office of the CFO", value: 20, color: "#2575C9" },
+                { name: "Wealth & Capital Markets Tech", value: 18, color: "#C778A2" },
+                { name: "InsurTech", value: 13, color: "#A2D2DF" },
+                { name: "Healthcare FinTech", value: 12, color: "#B89B5A" },
+              ]}
+              headlinePrefix="The private FinTech top 100 generate"
+              headlineHighlight="$174 billion"
+              headlineSuffix="in total revenue"
+              description="The Crypto & Blockchain sector leads for total revenue as well, followed by Banking / Lending Tech and Payments sectors."
+              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
+              unit="B"
+            />
+          </div>
+        </section>
+
+        {/* Valuation / Revenue Multiple Section */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechBarSection
+              segments={[
+                { name: "InsurTech", value: 5.0, color: "#A2D2DF" },
+                { name: "Healthcare\nFinTech", value: 5.5, color: "#B89B5A" },
+                { name: "Banking/Lending Tech", value: 6.5, color: "#2E8B57" },
+                { name: "Wealth & Capital\nMarkets Tech", value: 9.0, color: "#C778A2" },
+                { name: "Payments", value: 11.4, color: "#3DA5F0" },
+                { name: "Office of\nthe CFO", value: 11.8, color: "#2575C9" },
+                { name: "Crypto & Blockchain", value: 16.9, color: "#F4845F" },
+              ]}
+              headlinePrefix="Across all sectors, the top 100 largest private FinTech companies reflect a valuation / revenue multiple of"
+              headlineHighlight="10.7x"
+              description="Three sectors claim a revenue multiple over 10x, with Crypto & Blockchain at the high end."
+              source="Source: Company filings, company press releases, public news, FT Partners' proprietary data and estimates"
+              yAxisLabel="Valuation / Revenue Multiple"
+              valueSuffix="x"
+              valueDecimals={1}
+            />
+          </div>
+        </section>
+
+        {/* Private Top 100 Revenue Concentration */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechRevenueConcentration />
+          </div>
+        </section>
+
+        {/* Private vs Public Revenue Comparison */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechRevenueComparison />
+          </div>
+        </section>
+
+        {/* US FinTech IPO Activity Chart */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechIPOChart />
+          </div>
+        </section>
+
+        {/* Median LTM Revenue at IPO */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechIPORevenueBars
+              headline="New US public market entrants have raised the bar for FinTech IPOs"
+              description={
+                <>
+                  Median LTM Revenue at the time of the IPO for recent FinTech public market
+                  entrants increased{" "}
+                  <span className="font-semibold text-[#1C39BB]">3.4x</span> compared to the
+                  median from the 2011–2019 cohort.
+                </>
+              }
+              source="Source: S&P Capital IQ; Company Filings; FT Partners' Proprietary Database"
+              chartTitle="Median LTM Revenue at IPO"
+              bars={[
+                { period: "2011–2019", value: 199, color: "#C7CFF0" },
+                { period: "2020–2022", value: 343, color: "#C7CFF0" },
+                { period: "2024–2026 YTD", value: 673, color: "#1C39BB" },
+              ]}
+              unitPrefix="$"
+              unitSuffix="M"
+            />
+          </div>
+        </section>
+
+        {/* Median LTM Revenue Per Employee at IPO */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechIPORevenueBars
+              headline="…And reached significantly higher revenue per employee than earlier classes"
+              description={
+                <>
+                  Median LTM Revenue Per Employee at the time of the IPO for new public
+                  FinTech companies rose{" "}
+                  <span className="font-semibold text-[#1C39BB]">2.8x</span> relative to the
+                  median from the 2011–2019 cohort.
+                </>
+              }
+              source="Source: S&P Capital IQ; Company Filings; FT Partners' Proprietary Database"
+              chartTitle="Median LTM Revenue Per Employee at IPO"
+              bars={[
+                { period: "2011–2019", value: 230, color: "#C7CFF0" },
+                { period: "2020–2022", value: 293, color: "#C7CFF0" },
+                { period: "2024–2026 YTD", value: 652, color: "#1C39BB" },
+              ]}
+              unitPrefix="$"
+              unitSuffix="k"
+            />
+          </div>
+        </section>
+
+        {/* Secondary Market Concentration */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSecondaryConcentration />
+          </div>
+        </section>
+
+        {/* FinTech Secondary Activity Surge */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSecondaryActivity />
+          </div>
+        </section>
+
+        {/* FinTech Sponsor Buyouts */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSponsorBuyouts
+              headline="FinTech sponsor buyouts were previously a nascent exit pathway, but now represent a steadily growing viable exit option and enduring asset class…"
+              chartTitle="Private Equity / Sponsor M&A"
+              chartSubtitle="# of Deals"
+              bars={[
+                { year: "2015", value: 88 },
+                { year: "2016", value: 82 },
+                { year: "2017", value: 101 },
+                { year: "2018", value: 144 },
+                { year: "2019", value: 101 },
+                {
+                  year: "2020",
+                  value: 112,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/onex.png", alt: "Onex" }]}
+                      target={{ src: "/deal-logos/buyouts/onedigital.jpeg", alt: "OneDigital" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2021",
+                  value: 155,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/thoma-bravo.jpeg", alt: "Thoma Bravo" }]}
+                      target={{ src: "/deal-logos/buyouts/bottomline.png", alt: "Bottomline Technologies" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2022",
+                  value: 111,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/thoma-bravo.jpeg", alt: "Thoma Bravo" }]}
+                      target={{ src: "/deal-logos/buyouts/coupa.png", alt: "Coupa" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2023",
+                  value: 131,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/vista.jpeg", alt: "Vista" }]}
+                      target={{ src: "/deal-logos/buyouts/duck-creek.png", alt: "Duck Creek Technologies" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2024",
+                  value: 177,
+                  deal: (
+                    <DealLogos
+                      acquirers={[
+                        { src: "/deal-logos/buyouts/towerbrook.png", alt: "TowerBrook" },
+                        { src: "/deal-logos/buyouts/cdr.png", alt: "CD&R" },
+                      ]}
+                      target={{ src: "/deal-logos/buyouts/r1.png", alt: "R1", height: 22 }}
+                      logoHeight={14}
+                    />
+                  ),
+                },
+                {
+                  year: "2025",
+                  value: 129,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/tpg.png", alt: "TPG" }]}
+                      target={{ src: "/deal-logos/buyouts/avidxchange.png", alt: "AvidXchange" }}
+                    />
+                  ),
+                },
+              ]}
+              source="Source: FT Partners' Proprietary Database"
+              barColor="#A8C5D9"
+              valueInside
+            />
+          </div>
+        </section>
+
+        {/* Strategic M&A market share */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSponsorBuyouts
+              headline="Strategic M&A was historically the dominant exit pathway for FinTech companies, but in recent years, it has experienced a meaningful decline in market share"
+              chartTitle="Strategic M&A"
+              chartSubtitle="% of Total Number of Deals"
+              bars={[
+                { year: "2015", value: 67 },
+                { year: "2016", value: 69 },
+                { year: "2017", value: 61 },
+                { year: "2018", value: 55 },
+                { year: "2019", value: 55 },
+                {
+                  year: "2020",
+                  value: 52,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/intuit.png", alt: "Intuit" }]}
+                      target={{ src: "/deal-logos/strategic/credit-karma.png", alt: "Credit Karma" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2021",
+                  value: 48,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/visa.svg", alt: "Visa" }]}
+                      target={{ src: "/deal-logos/strategic/tink.jpeg", alt: "Tink" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2022",
+                  value: 44,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/fiserv.svg", alt: "Fiserv" }]}
+                      target={{ src: "/deal-logos/strategic/finxact.png", alt: "Finxact" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2023",
+                  value: 42,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/nasdaq.svg", alt: "Nasdaq" }]}
+                      target={{ src: "/deal-logos/strategic/adenza.png", alt: "Adenza" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2024",
+                  value: 43,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/visa.svg", alt: "Visa" }]}
+                      target={{ src: "/deal-logos/strategic/featurespace.jpeg", alt: "Featurespace" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2025",
+                  value: 42,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/strategic/global-payments.svg", alt: "Global Payments" }]}
+                      target={{ src: "/deal-logos/strategic/worldpay.png", alt: "Worldpay" }}
+                    />
+                  ),
+                },
+              ]}
+              source="Source: FT Partners' Proprietary Database"
+              barColor="#1C39BB"
+              valueSuffix="%"
+              valueInside
+            />
+          </div>
+        </section>
+
+        {/* PE / Sponsor M&A % of Total $ Volume */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSponsorBuyouts
+              headline="…With recent take-privates and large-scale buyouts capturing a sizeable portion of the total dollar volume"
+              chartTitle="Private Equity / Sponsor M&A"
+              chartSubtitle="% of Total $ Volume"
+              bars={[
+                { year: "2015", value: 15 },
+                { year: "2016", value: 16 },
+                { year: "2017", value: 34 },
+                {
+                  year: "2018*",
+                  value: 54,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/sponsor-volume/blackstone.png", alt: "Blackstone", height: 30 }]}
+                      target={{ src: "/deal-logos/sponsor-volume/refinitiv.png", alt: "Refinitiv" }}
+                    />
+                  ),
+                },
+                { year: "2019", value: 12 },
+                { year: "2020", value: 9 },
+                { year: "2021", value: 19 },
+                {
+                  year: "2022",
+                  value: 46,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/sponsor-volume/vista.jpeg", alt: "Vista", height: 24 }]}
+                      target={{ src: "/deal-logos/sponsor-volume/avalara.png", alt: "Avalara" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2023",
+                  value: 53,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/sponsor-volume/gtcr.png", alt: "GTCR" }]}
+                      target={{ src: "/deal-logos/sponsor-volume/worldpay.jpeg", alt: "Worldpay", height: 22 }}
+                    />
+                  ),
+                },
+                {
+                  year: "2024",
+                  value: 52,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/sponsor-volume/advent.svg", alt: "Advent" }]}
+                      target={{ src: "/deal-logos/sponsor-volume/nuvei.png", alt: "Nuvei" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2025",
+                  value: 33,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/buyouts/thoma-bravo.jpeg", alt: "Thoma Bravo" }]}
+                      target={{ src: "/deal-logos/sponsor-volume/dayforce.png", alt: "Dayforce" }}
+                    />
+                  ),
+                },
+              ]}
+              source={
+                <>
+                  <p>Source: FT Partners&apos; Proprietary Database</p>
+                  <p>* 2018 volume includes Blackstone&apos;s $20 billion buyout of Refinitiv.</p>
+                </>
+              }
+              barColor="#A8C5D9"
+              valueSuffix="%"
+              valueInside
+            />
+          </div>
+        </section>
+
+        {/* World Map of well-funded VC-backed FinTechs */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechWorldMap />
+          </div>
+        </section>
+
+        {/* FinTech-to-FinTech M&A # of Deals */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechSponsorBuyouts
+              headline="FinTech-to-FinTech M&A was historically a small category – we believe FinTech-to-FinTech M&A will continue to be a prevalent exit pathway"
+              chartTitle="FinTech-to-FinTech M&A"
+              chartSubtitle="# of Deals"
+              bars={[
+                { year: "2015", value: 150 },
+                { year: "2016", value: 139 },
+                { year: "2017", value: 173 },
+                { year: "2018", value: 162 },
+                { year: "2019", value: 249 },
+                {
+                  year: "2020",
+                  value: 255,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/sofi.png", alt: "SoFi" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/galileo.jpeg", alt: "Galileo", height: 28 }}
+                    />
+                  ),
+                },
+                {
+                  year: "2021",
+                  value: 452,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/bill.jpeg", alt: "Bill" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/divvy.png", alt: "Divvy" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2022",
+                  value: 463,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/sofi.png", alt: "SoFi" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/technisys.png", alt: "Technisys", height: 22 }}
+                    />
+                  ),
+                },
+                {
+                  year: "2023",
+                  value: 409,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/acorns.png", alt: "Acorns" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/gohenry.png", alt: "GoHenry" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2024",
+                  value: 491,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/stripe.png", alt: "Stripe" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/bridge.png", alt: "Bridge" }}
+                    />
+                  ),
+                },
+                {
+                  year: "2025",
+                  value: 659,
+                  deal: (
+                    <DealLogos
+                      acquirers={[{ src: "/deal-logos/fintech-m-and-a/coinbase.svg", alt: "Coinbase" }]}
+                      target={{ src: "/deal-logos/fintech-m-and-a/deribit.png", alt: "Deribit", height: 28 }}
+                    />
+                  ),
+                },
+              ]}
+              source={
+                <>
+                  <p>Source: FT Partners&apos; Proprietary Database</p>
+                  <p>Note: FinTech acquirers include FinTech companies founded 2004 or later.</p>
+                </>
+              }
+              barColor="#A8C5D9"
+              valueInside
+              callout={{
+                value: "4.4X",
+                label: "Increase in FinTech-to-FinTech deals in the last decade",
+              }}
+            />
+          </div>
+        </section>
+
+        {/* Nu + Revolut vs US Banks Customer Base */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechCustomerBaseComparison />
+          </div>
+        </section>
+
+        {/* Public Top 100 Founded 2006+ Treemap */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechPublicTreemap />
+          </div>
+        </section>
+
+        {/* Mature Fund Vintages — Liquidity Pressure */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechMatureVintages />
+          </div>
+        </section>
+
+        {/* Twenty-year FinTech growth */}
+        <section className="py-24 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechTwentyYearGrowth />
+          </div>
+        </section>
+
+        {/* Net Margin by Global Industry */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <FintechProfitableIndustry />
+          </div>
+        </section>
+
+        <ResearchReportCTA tiles="slides" />
 
       </main>
       <Footer />
@@ -468,7 +1007,9 @@ export default function ResearchPage() {
                   </div>
                   <div>
                     <p className="text-xs text-[#575757]/60 uppercase tracking-wider mb-1">IPO Price</p>
-                    <p className="text-2xl font-display text-[#575757]">${selectedTombstone.ipoPrice}</p>
+                    <p className="text-2xl font-display text-[#575757]">
+                      {selectedTombstone.ipoPrice !== null ? `$${selectedTombstone.ipoPrice}` : "—"}
+                    </p>
                   </div>
                 </div>
 
