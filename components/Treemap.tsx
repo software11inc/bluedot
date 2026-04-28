@@ -10,6 +10,7 @@ interface TreemapData {
   marketCap: number;
   color: string;
   logo?: string;
+  logoScale?: number;
 }
 
 interface TreemapProps {
@@ -88,7 +89,7 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
         return (
           <div
             key={d.symbol}
-            className="absolute overflow-hidden cursor-pointer transition-all duration-200 hover:brightness-110 hover:z-10"
+            className="absolute overflow-hidden"
             style={{
               left: leaf.x0,
               top: leaf.y0,
@@ -97,7 +98,6 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
               backgroundColor: d.color,
               borderRadius: '6px',
             }}
-            onClick={() => onSelect(d)}
           >
             {d.logo ? (
               <div className="absolute inset-0 flex items-center justify-center p-3">
@@ -105,7 +105,11 @@ export default function Treemap({ data, width: propWidth, height: propHeight = 6
                 <img
                   src={d.logo}
                   alt={d.name}
-                  className="max-w-[80%] max-h-[60%] object-contain"
+                  className="object-contain"
+                  style={{
+                    maxWidth: `${80 * (d.logoScale ?? 1)}%`,
+                    maxHeight: `${60 * (d.logoScale ?? 1)}%`,
+                  }}
                 />
               </div>
             ) : (

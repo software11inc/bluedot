@@ -7,10 +7,11 @@ import Image from "next/image";
 import logo from "@/app/assets/blue-dot-logo.svg";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 
-const navLinks = [
+const navLinks: { href: string; label: string; badge?: string }[] = [
   { href: "/about", label: "About" },
   { href: "/team", label: "Team" },
   { href: "/community", label: "Community" },
+  { href: "/research/bluedot-ft-partners-report", label: "Research" },
   { href: "/press", label: "Press" },
   { href: "/contact", label: "Contact" },
 ];
@@ -48,13 +49,24 @@ export default function Header({ animate = true }: { animate?: boolean }) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium px-4 py-2 transition-all ${
+                  className={`text-sm font-medium px-4 py-2 transition-all inline-flex items-center gap-2 ${
                     isActive
                       ? "bg-[#1C39BB] text-white"
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`}
                 >
                   {link.label}
+                  {link.badge && (
+                    <span
+                      className={`text-[9px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${
+                        isActive
+                          ? "border-white/40 text-white"
+                          : "border-[#1C39BB]/30 text-[#1C39BB]"
+                      }`}
+                    >
+                      {link.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}
@@ -101,7 +113,7 @@ export default function Header({ animate = true }: { animate?: boolean }) {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm px-4 py-2 transition-all ${
+                    className={`text-sm px-4 py-2 transition-all inline-flex items-center gap-2 ${
                       isActive
                         ? "bg-[#1C39BB] text-white"
                         : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
@@ -109,6 +121,17 @@ export default function Header({ animate = true }: { animate?: boolean }) {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}
+                    {link.badge && (
+                      <span
+                        className={`text-[10px] font-medium normal-case tracking-normal px-1.5 py-0.5 rounded-full border ${
+                          isActive
+                            ? "border-white/40 text-white"
+                            : "border-[#1C39BB]/30 text-[#1C39BB]"
+                        }`}
+                      >
+                        {link.badge}
+                      </span>
+                    )}
                   </Link>
                 );
               })}

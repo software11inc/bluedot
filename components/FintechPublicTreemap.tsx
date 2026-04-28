@@ -16,7 +16,7 @@ const SECTOR_COLORS: Record<string, string> = {
 // Values are scaled so cell areas mirror the deck's "% of Market Cap" view.
 const companies = [
   { symbol: "HOOD", name: "Robinhood", sector: "Wealth & Capital Markets Tech", marketCap: 12, logo: "/treemap-logos/robinhood.png" },
-  { symbol: "NU", name: "Nu Holdings", sector: "Banking / Lending Tech", marketCap: 12, logo: "/treemap-logos/nu.png" },
+  { symbol: "NU", name: "Nu Holdings", sector: "Banking / Lending Tech", marketCap: 12, logo: "/treemap-logos/nu.png", logoScale: 0.65 },
   { symbol: "COIN", name: "Coinbase", sector: "Crypto & Blockchain", marketCap: 9, logo: "/treemap-logos/coinbase.png" },
   { symbol: "ADYEN", name: "Adyen", sector: "Payments", marketCap: 6, logo: "/treemap-logos/adyen.png" },
   { symbol: "SOFI", name: "SoFi", sector: "Banking / Lending Tech", marketCap: 4, logo: "/treemap-logos/sofi.png" },
@@ -33,7 +33,7 @@ const companies = [
   { symbol: "PB", name: "PB Fintech", sector: "InsurTech", marketCap: 1, logo: "/treemap-logos/pb.png" },
   { symbol: "BLSH", name: "Bullish", sector: "Crypto & Blockchain", marketCap: 1, logo: "/treemap-logos/bullish.png" },
   { symbol: "XRO", name: "Xero", sector: "Office of the CFO", marketCap: 1, logo: "/treemap-logos/xero.png" },
-  { symbol: "FIGURE", name: "Figure", sector: "Banking / Lending Tech", marketCap: 1, logo: "/treemap-logos/figure.png" },
+  { symbol: "FIGURE", name: "Figure", sector: "Crypto & Blockchain", marketCap: 1, logo: "/treemap-logos/figure.png" },
   { symbol: "KAKAO", name: "Kakaobank", sector: "Banking / Lending Tech", marketCap: 1, logo: "/treemap-logos/kakaobank.png" },
   { symbol: "OTHERS", name: "All Others", sector: "Mixed", marketCap: 26 },
 ].map((c) => ({
@@ -71,7 +71,7 @@ export default function FintechPublicTreemap() {
       </div>
 
       <div className="overflow-hidden rounded-lg bg-gray-100">
-        <Treemap data={companies} onSelect={() => {}} />
+        <Treemap data={companies} onSelect={() => {}} valueFormat="percent" />
       </div>
     </div>
   );

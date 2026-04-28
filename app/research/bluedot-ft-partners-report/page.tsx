@@ -253,6 +253,13 @@ export default function ResearchPage() {
       return;
     }
 
+    // Skip the Finnhub lookup for pre-IPO tombstones — their ticker isn't live yet
+    // and the API returns whatever stale match it has, which surfaces wrong companies.
+    if (selectedTombstone && selectedTombstone.ipoPrice === null) {
+      setCompanyDetails(null);
+      return;
+    }
+
     async function fetchDetails() {
       setLoadingDetails(true);
       try {
@@ -415,10 +422,9 @@ export default function ResearchPage() {
                   ))
                 ) : (
                   stockPrices.map((stock) => (
-                    <button
+                    <div
                       key={stock.symbol}
-                      onClick={() => setSelectedTombstone(stock)}
-                      className="group bg-white rounded-2xl shadow-sm p-4 text-left transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#1C39BB]/30"
+                      className="bg-white rounded-2xl shadow-sm p-4 text-left"
                     >
                       <div className="flex justify-between items-start text-[11px] font-semibold tracking-wider">
                         <span className="text-gray-300 uppercase">
@@ -446,7 +452,7 @@ export default function ResearchPage() {
                         ${stock.grossProceeds.toLocaleString()} M
                       </p>
                       <p className="text-xs text-[#575757]/60">Gross Proceeds</p>
-                    </button>
+                    </div>
                   ))
                 )}
               </div>

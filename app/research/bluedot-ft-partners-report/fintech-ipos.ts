@@ -14,7 +14,7 @@ export const FINTECH_IPOS: FintechIpo[] = [
   { symbol: "NP",   name: "Neptune",     ipoPrice: 20,   ipoDate: "9/30/2025",  grossProceeds: 368,  logo: "/ipo-logos/NP.jpeg",   sector: "Insurance" },
   { symbol: "MIAX", name: "Miax",        ipoPrice: null, ipoDate: "8/13/2025",  grossProceeds: 345,  logo: "/ipo-logos/MIAX.png",  sector: "Capital Markets" },
   { symbol: "CHYM", name: "Chime",       ipoPrice: 27,   ipoDate: "6/11/2025",  grossProceeds: 864,  logo: "/ipo-logos/CHYM.png",  sector: "Digital Banking" },
-  { symbol: "AGBK", name: "agi",         ipoPrice: null, ipoDate: "2/10/2026",  grossProceeds: 240,  logo: "/ipo-logos/AGBK.png",  sector: "Banking" },
+  { symbol: "AGBK", name: "Agibank",     ipoPrice: null, ipoDate: "2/10/2026",  grossProceeds: 240,  logo: "/ipo-logos/AGBK.png",  sector: "Banking" },
   { symbol: "WLTH", name: "Wealthfront", ipoPrice: null, ipoDate: "12/11/2025", grossProceeds: 485,  logo: "/ipo-logos/WLTH.png",  sector: "Wealth" },
   { symbol: "GEMI", name: "Gemini",      ipoPrice: 10,   ipoDate: "9/11/2025",  grossProceeds: 425,  logo: "/ipo-logos/GEMI.svg",  sector: "Crypto" },
   { symbol: "BLSH", name: "Bullish",     ipoPrice: 20,   ipoDate: "8/12/2025",  grossProceeds: 1110, logo: "/ipo-logos/BLSH.png",  sector: "Crypto Exchange" },
