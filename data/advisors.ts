@@ -285,7 +285,7 @@ const advisorsData: Advisor[] = [
     title: "Advisor",
     image: jamesPeterson,
     bio: "James Peterson has served in senior leadership roles spanning consumer finance and bank partnership ecosystems, including as Chief Executive Officer at Mercury Financial. He has also held senior credit leadership roles at partner banks supporting fintech and marketplace lending programs. His background centers on building underwriting and risk frameworks that scale across consumer credit portfolios.",
-    logos: [logoMercury, logoJPM, logoCapitalOne],
+    logos: [logoMercury, logoJPM],
     linkedin: "https://www.linkedin.com/in/james-peterson-a4781293/",
     speciality: "Credit",
   },
