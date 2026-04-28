@@ -202,11 +202,10 @@ export default function ResearchPage() {
         const res = await fetch(`${API_BASE}/stock-prices`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        console.log('Stock prices loaded:', json.data?.length);
         setStockPrices(mergeLivePrices(json.data || []));
         writeSessionCache(CACHE_KEYS.stockPrices, json);
-      } catch (error) {
-        console.error('Stock prices failed:', error);
+      } catch {
+        // Live prices are nice-to-have; the tombstones still render with static IPO data.
       }
     }
 
@@ -217,8 +216,8 @@ export default function ResearchPage() {
         const json = await res.json();
         setMarketCaps(json.data || []);
         setTotalMarketCap(json.totalMarketCap || 0);
-      } catch (error) {
-        console.error('Market caps failed:', error);
+      } catch {
+        // Market caps are nice-to-have; the page still renders without them.
       } finally {
         setLoadingMarketCaps(false);
       }
@@ -229,20 +228,7 @@ export default function ResearchPage() {
     }
     fetchMarketCaps();
 
-    // Refresh prices every 2 minutes (data is cached on worker anyway)
-    const interval = setInterval(async () => {
-      try {
-        const res = await fetch(`${API_BASE}/stock-prices`);
-        if (res.ok) {
-          const json = await res.json();
-          setStockPrices(mergeLivePrices(json.data || []));
-        }
-      } catch (error) {
-        console.error("Error refreshing stock prices:", error);
-      }
-    }, 120000);
-
-    return () => clearInterval(interval);
+    // Tombstones display static IPO data only — no recurring refresh needed.
   }, []);
 
   // Fetch company details when a tombstone or treemap company is selected
