@@ -1,98 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import Image, { StaticImageData } from "next/image";
+import { useEffect, useRef, useState } from "react";
 import ScrollFillText from "./ScrollFillText";
-
-// Import logo images
-import krakenLogo from "@/app/assets/main-logos/K-logo-wikipedia.png";
-import albertLogo from "@/app/assets/main-logos/albert.png";
-import forageLogo from "@/app/assets/main-logos/forage.png";
-import drivewealthLogo from "@/app/assets/main-logos/drivewealth.webp";
-import coverdashLogo from "@/app/assets/main-logos/coverdash.png";
-import plataLogo from "@/app/assets/main-logos/plata.png";
-
-const logos: { alt: string; image: StaticImageData; href: string }[] = [
-  { alt: "Albert", image: albertLogo, href: "https://albert.com/" },
-  { alt: "Coverdash", image: coverdashLogo, href: "https://www.coverdash.com/" },
-  { alt: "DriveWealth", image: drivewealthLogo, href: "https://www.drivewealth.com/" },
-  { alt: "Forage", image: forageLogo, href: "https://www.joinforage.com/" },
-  { alt: "Kraken", image: krakenLogo, href: "https://www.kraken.com/" },
-  { alt: "Plata", image: plataLogo, href: "https://www.plata.mx/" },
-];
 
 export default function LogoCarousel() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [scrollStart, setScrollStart] = useState(0);
-  const [isTouching, setIsTouching] = useState(false);
-
-  // Detect touch device
-  useEffect(() => {
-    setIsTouchDevice(window.matchMedia("(hover: none) and (pointer: coarse)").matches);
-  }, []);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    setIsTouching(true);
-    setTouchStart(e.touches[0].clientX);
-    if (carouselRef.current) {
-      setScrollStart(carouselRef.current.scrollLeft);
-    }
-  }, []);
-
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!carouselRef.current) return;
-    const touchDelta = touchStart - e.touches[0].clientX;
-    carouselRef.current.scrollLeft = scrollStart + touchDelta;
-  }, [touchStart, scrollStart]);
-
-  const handleTouchEnd = useCallback(() => {
-    setIsTouching(false);
-  }, []);
-
-  // Seamless infinite scroll using JS
-  useEffect(() => {
-    if (!carouselRef.current) return;
-
-    const carousel = carouselRef.current;
-    let animationId: number;
-    let position = isTouchDevice ? carousel.scrollLeft : 0;
-    const speed = 0.5; // pixels per frame
-
-    const animate = () => {
-      // Pause auto-scroll while user is touching
-      if (isTouching) {
-        animationId = requestAnimationFrame(animate);
-        return;
-      }
-
-      position += speed;
-      const halfWidth = carousel.scrollWidth / 2;
-
-      // Reset position seamlessly when we've scrolled past the first set
-      if (position >= halfWidth) {
-        position = 0;
-        if (isTouchDevice) {
-          carousel.scrollLeft = 0;
-        }
-      }
-
-      if (isTouchDevice) {
-        carousel.scrollLeft = position;
-      } else {
-        carousel.style.transform = `translateX(-${position}px)`;
-      }
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(animationId);
-  }, [isTouchDevice, isTouching]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -134,66 +47,10 @@ export default function LogoCarousel() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative flex flex-col md:flex-row md:items-center flex-wrap">
-          {/* Left column - heading with gradient overlay */}
-          <div className="relative z-10 w-full md:w-1/2 md:pr-12 flex-shrink-0 mb-8 md:mb-0">
-            <ScrollFillText
-              text="Investing in companies across the fintech landscape."
-              className="text-4xl md:text-5xl font-display max-w-lg"
-            />
-            {/* Gradient that extends over the carousel - desktop only */}
-            <div className="hidden md:block absolute top-0 bottom-0 -right-24 w-24 bg-gradient-to-r from-white to-transparent" />
-          </div>
-
-          {/* Right column - logo carousel */}
-          <div className="w-full md:flex-1 overflow-hidden">
-            <div
-              ref={carouselRef}
-              className={`flex ${isTouchDevice ? 'overflow-x-auto scrollbar-hide' : ''}`}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              style={isTouchDevice ? { scrollbarWidth: 'none', msOverflowStyle: 'none' } : {}}
-            >
-              {/* First set of logos */}
-              {logos.map((logo, i) => (
-                <a
-                  key={`logo-1-${i}`}
-                  href={logo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group"
-                >
-                  <Image
-                    src={logo.image}
-                    alt={logo.alt}
-                    width={100}
-                    height={40}
-                    className="object-contain grayscale transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-                  />
-                </a>
-              ))}
-              {/* Duplicate for seamless loop */}
-              {logos.map((logo, i) => (
-                <a
-                  key={`logo-2-${i}`}
-                  href={logo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-shrink-0 w-32 h-16 mx-6 flex items-center justify-center bg-gray-100 rounded-lg transition-colors duration-300 hover:bg-[#1C39BB] group"
-                >
-                  <Image
-                    src={logo.image}
-                    alt={logo.alt}
-                    width={100}
-                    height={40}
-                    className="object-contain grayscale transition-all duration-300 group-hover:brightness-0 group-hover:invert"
-                  />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
+        <ScrollFillText
+          text="Investing in companies across the fintech landscape."
+          className="text-4xl md:text-5xl font-display max-w-lg"
+        />
       </div>
     </section>
   );

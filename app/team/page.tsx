@@ -15,7 +15,6 @@ import sahejSuri from "@/app/assets/team/sahej_suri.webp";
 import aaronJatana from "@/app/assets/team/Aaron_Jatana.webp";
 import aaronVermut from "@/app/assets/team/Aaron_Vermut.webp";
 import peterRenton from "@/app/assets/peter-renton.png";
-import rachaelLee from "@/app/assets/team/Rachael_Lee.webp";
 
 // Import team logos
 import logoQED from "@/app/assets/team-logos/qed.jpeg";
@@ -25,12 +24,8 @@ import logoProsper from "@/app/assets/team-logos/Prosper.png";
 import logoRobinhood from "@/app/assets/team-logos/Robinhood.png";
 import logoWellsFargo from "@/app/assets/team-logos/Wells_Fargo.png";
 import logoNEA from "@/app/assets/team-logos/NEA.png";
-import logoBox from "@/app/assets/team-logos/box.png";
-import logoEarnest from "@/app/assets/team-logos/earnest.png";
-import logoStanford from "@/app/assets/team-logos/Stanford.jpeg";
 import logoWellsGroup from "@/app/assets/team-logos/Wells_group.png";
 import logoKPMG from "@/app/assets/team-logos/KPMG.png";
-import logoAlchemist from "@/app/assets/team-logos/Alchemist White horizontal logo.svg";
 import logoPaulHastings from "@/app/assets/team-logos/paul-hastings@logotyp.us.png";
 import logoSoFi from "@/app/assets/team-logos/sofi@logotyp.us.png";
 import logoDiscover from "@/app/assets/team-logos/Discover.png";
@@ -54,14 +49,6 @@ const teamMembers: { name: string; title: string; bio: string; image: StaticImag
     image: aaronVermut,
     linkedin: "https://www.linkedin.com/in/vermut/",
     logos: [logoProsper, logoRobinhood, logoWellsFargo, logoNEA],
-  },
-  {
-    name: "Rachael Lee",
-    title: "Chief of Staff",
-    bio: "Rachael is Chief of Staff at Blue Dot Investors. In her role, she works closely with the team on execution, internal systems, and strategic initiatives. She brings operating experience from Earnest, Box, and Alchemist Accelerator. She holds a BA in Political Science and an MA in Media & Technology from Stanford.",
-    image: rachaelLee,
-    linkedin: "https://www.linkedin.com/in/rachael-lee-455786107/",
-    logos: [logoAlchemist, logoEarnest, logoBox, logoStanford],
   },
   {
     name: "Aaron Jatana",
@@ -301,7 +288,6 @@ export default function TeamPage() {
                               {member.logos.map((logo, logoIndex) => {
                                 const isRobinhood = logo === logoRobinhood;
                                 const isCapitalOne = logo === logoCapitalOne;
-                                const isAlchemist = logo === logoAlchemist;
                                 const isProsper = logo === logoProsper;
                                 if (isCapitalOne) {
                                   return (
@@ -317,9 +303,7 @@ export default function TeamPage() {
                                       alt=""
                                       width={168}
                                       height={50}
-                                      className={isAlchemist
-                                        ? "h-[42px] w-auto object-contain brightness-0 opacity-60"
-                                        : isProsper
+                                      className={isProsper
                                           ? "h-[32px] w-auto object-contain grayscale opacity-60"
                                           : isRobinhood
                                             ? "w-[120px] h-auto object-contain grayscale opacity-60"
@@ -621,9 +605,7 @@ export default function TeamPage() {
                             alt=""
                             width={144}
                             height={42}
-                            className={logo === logoAlchemist
-                              ? "h-[36px] w-auto object-contain brightness-0 opacity-60"
-                              : logo === logoProsper
+                            className={logo === logoProsper
                                 ? "h-[28px] w-auto object-contain grayscale opacity-60"
                                 : "h-[36px] w-auto object-contain grayscale opacity-60"
                             }
